@@ -3,6 +3,7 @@
  */
 
 import {Component} from "@angular/core";
+import TeamSelectionService from "./teamSelection.service";
 
 @Component({
   selector: 'team-selection',
@@ -10,4 +11,6 @@ import {Component} from "@angular/core";
 })
 export default class TeamSelectionComponent{
 
+  constructor(private teamSelectionService: TeamSelectionService){
+  }
 }

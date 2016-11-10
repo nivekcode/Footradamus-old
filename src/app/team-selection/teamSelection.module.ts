@@ -4,9 +4,13 @@
 
 import {NgModule} from "@angular/core";
 import TeamSelectionComponent from "./teamSelection.component";
+import TeamSelectionService from "./teamSelection.service";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
+  imports: [CommonModule],
   declarations: [TeamSelectionComponent],
-  exports: [TeamSelectionComponent]
+  exports: [TeamSelectionComponent],
+  providers: [TeamSelectionService]
 })
 export default class TeamSelectionModule{}

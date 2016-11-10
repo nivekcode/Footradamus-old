@@ -1,13 +1,13 @@
-<div class="col-md-2">
+<div class="col-md-2" (click)="getPreviousClub()">
   <button class="btn">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
   </button>
 </div>
 <div class="col-md-8 text-center">
-  <label>Test</label>
+  <label>{{ clubTitle }}</label>
 </div>
 <div class="col-md-2">
-  <button class="btn">
+  <button class="btn" (click)="getNextClub()">
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
   </button>
 </div>

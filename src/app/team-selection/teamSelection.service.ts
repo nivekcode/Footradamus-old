@@ -5,19 +5,14 @@
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
 import 'rxjs/add/operator/map'
+import team from "../model/team.model";
 
 @Injectable()
 export default class TeamSelectionService {
 
-  teams: Array<string> = [];
+  teams: Array<team> = [];
 
   constructor(private http: Http) {
-    this.teams.push('Real Madrid');
-    this.teams.push('FC Arsenal');
-    this.teams.push('FC Liverpool');
-    this.teams.push('Celta Vigo');
-
-
     this.http.get('http://api.football-api.com/2.0/standings/1204?Authorization=565ec012251f932ea4000001393b4115a8bf4bf551672b0543e35683')
       .map(res => {
         return res.json()
@@ -29,10 +24,11 @@ export default class TeamSelectionService {
             }
           });
       })
-      .subscribe(response => console.log(response));
+      .subscribe(res => {
+        this.teams = res;
+      });
 
   }
-
 
   _createLogoUrl(teamName) {
     return `https://hdlogo.files.wordpress.com/2011/08/${teamName.toLowerCase()}-logo.png`

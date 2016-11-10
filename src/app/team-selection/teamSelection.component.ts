@@ -7,7 +7,7 @@ import TeamSelectionService from "./teamSelection.service";
 
 @Component({
   selector: 'team-selection',
-  templateUrl: './teamSelection.html'
+  templateUrl: './teamSelection.html',
 })
 export default class TeamSelectionComponent{
 

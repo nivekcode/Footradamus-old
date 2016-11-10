@@ -1,6 +1,4 @@
-<h1>The Teamselection</h1>
-<ul>
-  <li *ngFor="let team of teamSelectionService.teams">
-    {{ team }}
-  </li>
-</ul>
+<div class="jumbotron">
+  <selector></selector>
+  <club-logo [logoUrl]="teamSelectionService.teams[0]?.clubLogo"></club-logo>
+</div>

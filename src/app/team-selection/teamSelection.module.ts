@@ -6,10 +6,12 @@ import {NgModule} from "@angular/core";
 import TeamSelectionComponent from "./teamSelection.component";
 import TeamSelectionService from "./teamSelection.service";
 import {CommonModule} from "@angular/common";
+import SelectorComponent from "./selector/selector.component";
+import ClubLogoComponent from "./club-logo/clubLogo.component";
 
 @NgModule({
   imports: [CommonModule],
-  declarations: [TeamSelectionComponent],
+  declarations: [TeamSelectionComponent, SelectorComponent, ClubLogoComponent],
   exports: [TeamSelectionComponent],
   providers: [TeamSelectionService]
 })

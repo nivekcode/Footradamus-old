@@ -20,7 +20,7 @@ export default class TeamSelectionComponent{
   changeClub(changeDirection: ChangeDirection){
     switch (changeDirection){
       case ChangeDirection.NEXT:
-        this.counter === this.teamSelectionService.teams.length ? this.counter = 0 : this.counter++;
+        this.counter === this.teamSelectionService.teams.length-1 ? this.counter = 0 : this.counter++;
         break;
       case ChangeDirection.PREVIOUS:
         this.counter === 0 ? this.counter = this.teamSelectionService.teams.length-1 : this.counter--;

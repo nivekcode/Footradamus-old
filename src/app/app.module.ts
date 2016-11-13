@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import TeamSelectionModule from "./team-selection/teamSelection.module";
+import MatchSelectionModule from "./match-selection/matchSelection.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import TeamSelectionModule from "./team-selection/teamSelection.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    TeamSelectionModule
+    MatchSelectionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

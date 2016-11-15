@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import TeamSelectionModule from "./team-selection/teamSelection.module";
 import MatchSelectionModule from "./match-selection/matchSelection.module";
 
 @NgModule({

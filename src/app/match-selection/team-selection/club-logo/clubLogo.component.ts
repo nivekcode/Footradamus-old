@@ -6,8 +6,8 @@ import {Component, Input} from "@angular/core";
 
 @Component({
   selector: 'club-logo',
-  templateUrl: './clubLogo.html',
-  styleUrls: ['./clubLogo.css']
+  templateUrl: 'clubLogo.html',
+  styleUrls: ['clubLogo.css']
 })
 export default class ClubLogoComponent{
 

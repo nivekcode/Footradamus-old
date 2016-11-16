@@ -4,8 +4,8 @@
 
 import {Injectable} from "@angular/core";
 import {Http} from "@angular/http";
+import team from "../../model/team.model";
 import 'rxjs/add/operator/map'
-import team from "../model/team.model";
 
 @Injectable()
 export default class TeamSelectionService {

@@ -3,11 +3,11 @@
  */
 
 import {Component, EventEmitter, Output, Input} from "@angular/core";
-import ChangeDirection from "../../model/changeDirection.model";
+import ChangeDirection from "../../../model/changeDirection.model";
 
 @Component({
   selector: 'selector',
-  templateUrl: './selector.html'
+  templateUrl: 'selector.html'
 })
 export default class SelectorComponent{
 

@@ -5,7 +5,7 @@ import {Component} from "@angular/core";
 
 @Component({
   selector: 'match-selection',
-  templateUrl: './matchSelection.html'
+  templateUrl: 'matchSelection.html'
 })
 export default class MatchSelectionComponent{
 

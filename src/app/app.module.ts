@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import MatchSelectionModule from "./match-selection/matchSelection.module";
+import PredictionModule from "./prediction/prediction.module";
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import MatchSelectionModule from "./match-selection/matchSelection.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    MatchSelectionModule
+    PredictionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

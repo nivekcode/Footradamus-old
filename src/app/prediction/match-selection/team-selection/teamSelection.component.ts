@@ -4,7 +4,7 @@
 
 import {Component} from "@angular/core";
 import TeamSelectionService from "./teamSelection.service";
-import ChangeDirection from "../../model/changeDirection.model";
+import ChangeDirection from "../../../model/changeDirection.model";
 
 @Component({
   selector: 'team-selection',

@@ -5,6 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import PredictionModule from "./prediction/prediction.module";
+import {StoreModule} from "@ngrx/store";
+import {matchReducer} from "./reducers/match/match.reducer";
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import PredictionModule from "./prediction/prediction.module";
     BrowserModule,
     FormsModule,
     HttpModule,
-    PredictionModule
+    PredictionModule,
+    StoreModule.provideStore({ match: matchReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

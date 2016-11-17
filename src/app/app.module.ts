@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import PredictionModule from "./prediction/prediction.module";
 import {StoreModule} from "@ngrx/store";
-import {matchReducer} from "./reducers/match/match.reducer";
+import {matchReducer} from "./reducers/match.reducer";
 
 @NgModule({
   declarations: [

@@ -28,7 +28,6 @@ export default class TeamSelectionService {
       })
       .subscribe(res => {
         this.teams = res;
-        this.teams.forEach(team => console.log(team));
       });
 
   }

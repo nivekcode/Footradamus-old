@@ -29,6 +29,7 @@ export default class TeamSelectionComponent {
         break;
       case ChangeDirection.PREVIOUS:
         this.counter === 0 ? this.counter = this.teamSelectionService.teams.length - 1 : this.counter--;
+        this._addMatchToStore();
         break;
     }
   }

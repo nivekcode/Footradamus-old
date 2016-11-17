@@ -2,12 +2,12 @@
  * Created by kevinkreuzer on 10.11.16.
  */
 
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 import TeamSelectionService from "./teamSelection.service";
 import ChangeDirection from "../../../model/changeDirection.model";
 import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";
-import {ADD_HOMETEAM} from "../../../reducers/match.reducer";
+import {ADD_HOMETEAM, ADD_AWAYTEAM} from "../../../reducers/match.reducer";
 
 @Component({
   selector: 'team-selection',
@@ -16,6 +16,7 @@ import {ADD_HOMETEAM} from "../../../reducers/match.reducer";
 export default class TeamSelectionComponent {
 
   private counter: number = 0;
+  @Input() isHometeam: boolean;
 
   constructor(private teamSelectionService: TeamSelectionService, private store: Store<match>) {
   }
@@ -33,7 +34,8 @@ export default class TeamSelectionComponent {
   }
 
   _addMatchToStore() {
+    let actionType = this.isHometeam ? ADD_HOMETEAM : ADD_AWAYTEAM;
     let team = this.teamSelectionService.teams[this.counter];
-    this.store.dispatch({type: ADD_HOMETEAM, payload: team});
+    this.store.dispatch({type: actionType, payload: team});
   }
 }

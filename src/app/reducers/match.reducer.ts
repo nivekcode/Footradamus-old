@@ -22,7 +22,7 @@ export const matchReducer: ActionReducer<match> = (state: match = initialMatch, 
     case ADD_AWAYTEAM:
       return {
         homeTeam: state.homeTeam,
-        awayTeam: state.awayTeam
+        awayTeam: action.payload
       };
     default:
       return state;

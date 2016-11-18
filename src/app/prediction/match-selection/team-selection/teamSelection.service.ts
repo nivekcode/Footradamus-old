@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 10.11.16.
  */
 
-import {Injectable} from "@angular/core";
+import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
 import team from "../../../model/team.model";
 import 'rxjs/add/operator/map'
@@ -14,8 +14,8 @@ export default class TeamSelectionService {
   private URL_TWO = 'https://hdlogo.files.wordpress.com/2011/08/';
   teams: Array<team> = [];
 
-  constructor(private http: Http) {
-    this.http.get('http://api.football-api.com/2.0/standings/1204?Authorization=565ec012251f932ea4000001393b4115a8bf4bf551672b0543e35683')
+  constructor(private http: Http, @Inject('config') private config) {
+    this.http.get(`${this.config.backendUrl}standings/1204${this.config.authParam}`)
       .map(res => {
         return res.json()
           .map(res => {

@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 13.11.16.
  */
 import {Component} from "@angular/core";
-import PredictionService from "../prediction.service";
+import StatisticService from "../statstics.service";
 
 @Component({
   selector: 'match-selection',
@@ -10,7 +10,7 @@ import PredictionService from "../prediction.service";
 })
 export default class MatchSelectionComponent{
 
-  constructor(private predictionService: PredictionService){
+  constructor(private statisticService: StatisticService){
 
   }
 

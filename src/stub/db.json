@@ -1,0 +1,19 @@
+{
+  "games": [
+    {
+      "id": 1,
+      "title": "test",
+      "author": "typ"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

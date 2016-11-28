@@ -3,15 +3,23 @@
  */
 
 import {Injectable} from "@angular/core";
-import {Store} from "@ngrx/store";
-import match from "../model/match.model";
+import StatisticService from "./statstics.service";
 
 @Injectable()
 export default class PredictionService {
 
-  constructor(private store: Store<match>) {
-    this.store.select('match').subscribe(match => {
-      console.log('Das kommt aus dem Store', match);
-    })
+  constructor(private statsService: StatisticService) {
+    this.statsService.$stats
+      .subscribe(stats => {
+          let homeTeamStats = stats[0].json().statistics;
+          let awayTeamStats = stats[1].json().statistics;
+
+          console.log('HomeTeamStats', homeTeamStats);
+          console.log('AwayTeamStats', awayTeamStats);
+        },
+          (error) => {
+            console.log('Unfortunatelly we were not able to get the team statistics');
+          }
+      );
   }
 }

@@ -3,10 +3,15 @@
  */
 
 import {Component} from "@angular/core";
+import PredictionService from "./prediction.service";
 
 @Component({
   selector: 'prediction',
   templateUrl: './prediction.html'
 })
 export default class PredictionComponent{
+
+  //TODO kk: Remove predictionservice because it does not belonge here
+  constructor(private preditcionService: PredictionService){
+  }
 }

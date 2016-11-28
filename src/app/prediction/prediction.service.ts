@@ -10,9 +10,16 @@ export default class PredictionService {
 
   constructor(private statsService: StatisticService) {
     this.statsService.$stats
-      .subscribe(stats => console.log('Die Statistiken beider Teams', stats),
-        (error) => {
-          console.log('Error');
-        });
+      .subscribe(stats => {
+          let homeTeamStats = stats[0].json().statistics;
+          let awayTeamStats = stats[1].json().statistics;
+
+          console.log('HomeTeamStats', homeTeamStats);
+          console.log('AwayTeamStats', awayTeamStats);
+        },
+          (error) => {
+            console.log('Unfortunatelly we were not able to get the team statistics');
+          }
+      );
   }
 }

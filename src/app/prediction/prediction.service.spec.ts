@@ -3,25 +3,24 @@
  */
 
 import PredictionService from './prediction.service';
+import {TestBed, inject} from "@angular/core/testing";
+import StatisticService from "./statstics.service";
 
-fdescribe('Prediction Service', () => {
-
-  let createService;
-
+describe('Prediction Service', () => {
   beforeEach(() => {
     let statisticServiceMock = {
       $stats: {
         subscribe: () => {}
       }
     }
-    createService = () => {
-      return new PredictionService(statisticServiceMock);
-    }
+    TestBed.configureTestingModule({
+      providers:[PredictionService, { provide: StatisticService, useValue: statisticServiceMock }]
+    });
   });
 
-  fit('Must detect a win from Chelsea the leader vs Sunderland the taillight', () => {
+  it('Must detect a win from Chelsea the leader vs Sunderland the taillight',
+    inject([PredictionService], (sut) => {
     //given
-    let sut = createService();
     let chelseaStats = {
       "rank": "1",
       "wins": "9",
@@ -130,16 +129,13 @@ fdescribe('Prediction Service', () => {
 
     //then
     expect(willHomeTeamWin).toBeTruthy();
-  })
+  }));
 
-  it('Must return a percentage as a number', () => {
-      //given
-      let sut = createService();
-
+  it('Must return a percentage as a number',
+    inject([PredictionService], (sut) => {
       //when
       let actualNumber = sut._extractNumberFromPercentage('9.1%');
-
       //then
       expect(actualNumber).toBe(9.1);
-  });
+  }));
 });

@@ -1,3 +1,5 @@
 {
-  "/standings/1204": "/standings"
+  "/standings/1204": "/standings",
+  "/team/9092": "/chelseaTeamStats",
+  "/team/9249": "/liverpoolTeamStats"
 }

@@ -1,6 +1,6 @@
 export const PROD_CONFIG = {
   backendUrl: 'http://api.football-api.com/2.0/',
-  authParam: '?Authorization=565ec012251f932ea4000001393b4115a8bf4bf551672b0543e35683'
+  authParam: '?Authorization=565ec012251f932ea4000001fa542ae9d994470e73fdb314a8a56d76'
 }
 
 export const DEV_CONFIG = {

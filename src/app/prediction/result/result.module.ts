@@ -3,9 +3,10 @@
  */
 import {NgModule} from "@angular/core";
 import ResultComponent from "./result.component";
+import WinnerLogoComponent from "./winner-logo/winnerLogo.component";
 
 @NgModule({
-  declarations: [ResultComponent],
+  declarations: [ResultComponent, WinnerLogoComponent],
   exports: [ResultComponent]
 })
 export default class ResultModule {

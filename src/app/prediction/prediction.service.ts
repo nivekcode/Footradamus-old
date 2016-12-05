@@ -4,9 +4,12 @@
 
 import {Injectable} from "@angular/core";
 import StatisticService from "./statstics.service";
+import {Subject} from "rxjs";
 
 @Injectable()
 export default class PredictionService {
+
+  public $winner: Subject<string> = new Subject<string>();
 
   constructor(private statsService: StatisticService) {
     this.statsService.$stats
@@ -17,7 +20,7 @@ export default class PredictionService {
           let awayTeamName = stats[1].json().name;
 
           let willHomeTeamWin = this._predictResult(homeTeamStats, awayTeamStats);
-          return willHomeTeamWin ? homeTeamName : awayTeamName;
+          this.$winner.next(willHomeTeamWin ? homeTeamName : awayTeamName);
         },
         () => {
           console.log('Unfortunatelly we were not able to get the team statistics');

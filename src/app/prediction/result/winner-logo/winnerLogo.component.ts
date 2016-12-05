@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 05.12.16.
  */
 
-import {Component} from "@angular/core";
+import {Component, Input} from "@angular/core";
 
 @Component({
   selector: 'winner-logo',
@@ -10,4 +10,5 @@ import {Component} from "@angular/core";
 })
 export default class WinnerLogoComponent {
 
+  @Input() private logoUrl;
 }

@@ -7,10 +7,11 @@ import MatchSelectionModule from "./match-selection/matchSelection.module";
 import PredictionService from "./prediction.service";
 import StatisticService from "./statstics.service";
 import ResultModule from "./result/result.module";
+import LogosServiceModule from "./logos/logos.module";
 
 @NgModule({
   declarations: [PredictionComponent],
-  imports: [MatchSelectionModule, ResultModule],
+  imports: [MatchSelectionModule, ResultModule, LogosServiceModule],
   exports: [PredictionComponent],
   providers: [PredictionService, StatisticService]
 })

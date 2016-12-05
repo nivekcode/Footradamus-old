@@ -6,10 +6,11 @@ import PredictionComponent from "./prediction.component";
 import MatchSelectionModule from "./match-selection/matchSelection.module";
 import PredictionService from "./prediction.service";
 import StatisticService from "./statstics.service";
+import ResultModule from "./result/result.module";
 
 @NgModule({
   declarations: [PredictionComponent],
-  imports: [MatchSelectionModule],
+  imports: [MatchSelectionModule, ResultModule],
   exports: [PredictionComponent],
   providers: [PredictionService, StatisticService]
 })

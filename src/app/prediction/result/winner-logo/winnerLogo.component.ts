@@ -6,7 +6,8 @@ import {Component, Input} from "@angular/core";
 
 @Component({
   selector: 'winner-logo',
-  templateUrl: 'winnerLogo.html'
+  templateUrl: 'winnerLogo.html',
+  styleUrls: ['winnerLogo.css']
 })
 export default class WinnerLogoComponent {
 

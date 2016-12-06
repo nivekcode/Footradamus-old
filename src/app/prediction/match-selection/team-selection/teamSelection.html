@@ -1,6 +1,6 @@
 <div class="jumbotron">
     <selector (onClubChange)="changeClub($event)"
-              [clubTitle]="teamSelectionService.teams[counter]?.name">
+              [clubTitle]="teams[counter]?.name">
     </selector>
-    <club-logo [logoUrl]="teamSelectionService.teams[counter]?.clubLogo"></club-logo>
+    <club-logo [logoUrl]="teams[counter]?.clubLogo"></club-logo>
 </div>

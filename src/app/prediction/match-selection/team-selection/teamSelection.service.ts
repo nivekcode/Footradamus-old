@@ -7,10 +7,11 @@ import {Http} from "@angular/http";
 import team from "../../../model/team.model";
 import 'rxjs/add/operator/map'
 import LogoService from "../../logos/logoDispatcher.service";
+import {Subject} from "rxjs";
 
 @Injectable()
 export default class TeamSelectionService {
-  teams: Array<team> = [];
+  public $teams: Subject<Array<team>> = new Subject<Array<team>>();
 
   constructor(private http: Http, @Inject('config') private config, private logoService: LogoService) {
     this.http.get(`${this.config.backendUrl}standings/1204${this.config.authParam}`)
@@ -25,7 +26,7 @@ export default class TeamSelectionService {
           });
       })
       .subscribe(res => {
-        this.teams = res;
+        this.$teams.next(res);
       });
   }
 }

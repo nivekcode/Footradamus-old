@@ -13,21 +13,19 @@ import match from "../model/match.model";
 export default class StatisticService {
 
   public $teamStats: Subject<any> = new Subject<any>();
-  private teamStatistics: any = null;
+  private match: match = null;
 
   constructor(private http: Http, private store: Store<match>, @Inject('config') private config) {
     this.store.select('match').subscribe((match: match) => {
-      if (match.homeTeam && match.awayTeam) {
-        Observable.zip(this._getTeamStats(match.homeTeam), this._getTeamStats(match.awayTeam))
-          .subscribe(res => {
-            this.teamStatistics = res;
-          });
-      }
+      this.match = match;
     });
   }
 
   streamStats() {
-    this.$teamStats.next(this.teamStatistics);
+    Observable.zip(this._getTeamStats(this.match.homeTeam), this._getTeamStats(this.match.awayTeam))
+      .subscribe(res => {
+        this.$teamStats.next(res);
+      });
   }
 
   _getTeamStats(team: team) {

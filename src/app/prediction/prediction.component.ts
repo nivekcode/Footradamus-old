@@ -3,7 +3,7 @@
  */
 
 import {Component} from "@angular/core";
-import PredictionService from "./prediction.service";
+import StatisticService from "./statstics.service";
 
 @Component({
   selector: 'prediction',
@@ -12,6 +12,6 @@ import PredictionService from "./prediction.service";
 export default class PredictionComponent{
 
   //TODO kk: Remove predictionservice because it does not belonge here
-  constructor(private preditcionService: PredictionService){
+  constructor(private statisticService: StatisticService){
   }
 }

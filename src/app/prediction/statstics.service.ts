@@ -21,7 +21,7 @@ export default class StatisticService {
     });
   }
 
-  streamStats() {
+  getStatistics() {
     Observable.zip(this._getTeamStats(this.match.homeTeam), this._getTeamStats(this.match.awayTeam))
       .subscribe(res => {
         this.$teamStats.next(res);

@@ -12,7 +12,7 @@ export default class PredictionService {
   public $winner: Subject<string> = new Subject<string>();
 
   constructor(private statsService: StatisticService) {
-    this.statsService.$stats
+    this.statsService.$teamStats
       .subscribe(stats => {
           let homeTeamStats = stats[0].json().statistics[0];
           let homeTeamName = stats[0].json().name;

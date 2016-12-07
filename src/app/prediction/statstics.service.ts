@@ -12,19 +12,25 @@ import match from "../model/match.model";
 @Injectable()
 export default class StatisticService {
 
-  public $stats: Subject<any> = new Subject<any>();
+  public $teamStats: Subject<any> = new Subject<any>();
+  private teamStatistics: any = null;
 
-  constructor(private http: Http, private store: Store<match>, @Inject('config')private config) {
-  }
-
-  getStats() {
+  constructor(private http: Http, private store: Store<match>, @Inject('config') private config) {
     this.store.select('match').subscribe((match: match) => {
-      Observable.zip(this._getTeamStats(match.homeTeam), this._getTeamStats(match.awayTeam))
-        .subscribe(res => this.$stats.next(res));
+      if (match.homeTeam && match.awayTeam) {
+        Observable.zip(this._getTeamStats(match.homeTeam), this._getTeamStats(match.awayTeam))
+          .subscribe(res => {
+            this.teamStatistics = res;
+          });
+      }
     });
   }
 
-  _getTeamStats(team: team){
+  streamStats() {
+    this.$teamStats.next(this.teamStatistics);
+  }
+
+  _getTeamStats(team: team) {
     let teamId = team.id;
     return this.http.get(`${this.config.backendUrl}team/${teamId}${this.config.authParam}`);
   }

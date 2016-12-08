@@ -12,8 +12,18 @@ import {Subject} from "rxjs";
 @Injectable()
 export default class TeamSelectionService {
   public $teams: Subject<Array<team>> = new Subject<Array<team>>();
+  public $leagues: Subject<Array<team>> = new Subject<Array<team>>();
 
   constructor(private http: Http, @Inject('config') private config, private logoService: LogoService) {
+
+  }
+
+  _getLeagues() {
+    this.http.get(`${this.config.backendUrl}competitions${this.config.authParam}`)
+      .map(res => res.json());
+  }
+
+  _getTeams() {
     this.http.get(`${this.config.backendUrl}standings/1204${this.config.authParam}`)
       .map(res => {
         return res.json()

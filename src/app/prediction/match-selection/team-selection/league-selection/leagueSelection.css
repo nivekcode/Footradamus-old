@@ -1,3 +1,5 @@
 .row{
-  margin-bottom: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+  border-bottom: groove lightgray 0.5px;
 }

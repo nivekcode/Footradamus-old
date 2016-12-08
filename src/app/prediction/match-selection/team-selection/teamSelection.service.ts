@@ -12,13 +12,8 @@ import league from "../../../model/league.model";
 
 @Injectable()
 export default class TeamSelectionService {
-  //TODO kk: Muss das ein Subject sein
-  public $teams: Subject<Array<team>> = new Subject<Array<team>>();
-  public $leagues: Subject<Array<league>> = new Subject<Array<league>>();
 
   constructor(private http: Http, @Inject('config') private config, private logoService: LogoService) {
-    this._getLeagues();
-    this._getTeams();
   }
 
   _getLeagues() {
@@ -26,8 +21,8 @@ export default class TeamSelectionService {
       .map(res => res.json());
   }
 
-  _getTeams() {
-    this.$teams = this.http.get(`${this.config.backendUrl}standings/1204${this.config.authParam}`)
+  public getTeams() {
+    return this.http.get(`${this.config.backendUrl}standings/1204${this.config.authParam}`)
       .map(res => {
         return res.json()
           .map(res => {

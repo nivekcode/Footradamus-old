@@ -13,6 +13,7 @@ import team from "../../../model/team.model";
 @Component({
   selector: 'team-selection',
   templateUrl: 'teamSelection.html',
+  styleUrls: ['teamSelection.css']
 })
 export default class TeamSelectionComponent implements OnInit{
 
@@ -24,7 +25,7 @@ export default class TeamSelectionComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.teamSelectionService.$teams
+    this.teamSelectionService.getTeams()
       .subscribe((res: Array<team>) => {
         this.teams = res;
         if(!this.isHometeam){

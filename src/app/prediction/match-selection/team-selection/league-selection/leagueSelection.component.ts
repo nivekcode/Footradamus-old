@@ -3,6 +3,8 @@
  */
 
 import {Component} from "@angular/core";
+import TeamSelectionService from "../teamSelection.service";
+import league from "../../../../model/league.model";
 
 @Component({
   selector: 'league-selection',
@@ -11,4 +13,13 @@ import {Component} from "@angular/core";
 })
 export default class LeagueSelectionComponent {
 
+  private leagues: Array<league> = [];
+  private counter: number = 0;
+
+  constructor(private teamSelectionService: TeamSelectionService){
+    this.teamSelectionService.getLeagues()
+      .subscribe((res: Array<league>) => {
+        this.leagues = res;
+      });
+  }
 }

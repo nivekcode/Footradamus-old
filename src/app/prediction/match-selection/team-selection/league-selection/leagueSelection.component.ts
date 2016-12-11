@@ -16,10 +16,18 @@ export default class LeagueSelectionComponent {
   private leagues: Array<league> = [];
   private counter: number = 0;
 
-  constructor(private teamSelectionService: TeamSelectionService){
+  constructor(private teamSelectionService: TeamSelectionService) {
     this.teamSelectionService.getLeagues()
       .subscribe((res: Array<league>) => {
         this.leagues = res;
       });
+  }
+
+  public getPreviousLeague(): void {
+    this.counter === 0 ? this.counter = this.leagues.length - 1 : this.counter--;
+  }
+
+  public getNextLeague(): void {
+    this.counter === this.leagues.length - 1 ? this.counter = 0 : this.counter++;
   }
 }

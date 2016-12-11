@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import PredictionModule from "./prediction/prediction.module";
 import {StoreModule} from "@ngrx/store";
 import {matchReducer} from "./reducers/match.reducer";
-import {DEV_CONFIG} from "./app.config";
+import {PROD_CONFIG} from "./app.config";
 
 
 @NgModule({
@@ -22,7 +22,7 @@ import {DEV_CONFIG} from "./app.config";
     StoreModule.provideStore({ match: matchReducer})
   ],
   providers: [
-    { provide: 'config', useValue: DEV_CONFIG }
+    { provide: 'config', useValue: PROD_CONFIG }
   ],
   bootstrap: [AppComponent]
 })

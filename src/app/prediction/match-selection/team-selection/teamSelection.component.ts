@@ -26,7 +26,7 @@ export default class TeamSelectionComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.teamSelectionService.getTeams()
+    this.teamSelectionService.getTeams('1204')
       .subscribe((res: Array<team>) => {
         this.teams = res;
         if(!this.isHometeam){
@@ -50,7 +50,8 @@ export default class TeamSelectionComponent implements OnInit{
   }
 
   loadClubsForLeague(league: league){
-    console.log('Test', league);
+    this.teamSelectionService.getTeams(league.id)
+      .subscribe(res => this.teams = res);
   }
 
   _addMatchToStore() {

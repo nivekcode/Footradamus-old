@@ -21,8 +21,8 @@ export default class TeamSelectionService {
       .map(res => res.json());
   }
 
-  public getTeams(): Observable<Array<team>> {
-    return this.http.get(`${this.config.backendUrl}standings/1204${this.config.authParam}`)
+  public getTeams(leagueId: string): Observable<Array<team>> {
+    return this.http.get(`${this.config.backendUrl}standings/${leagueId}${this.config.authParam}`)
       .map(res => {
         return res.json()
           .map(res => {

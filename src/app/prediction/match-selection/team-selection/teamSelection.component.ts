@@ -9,6 +9,7 @@ import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";
 import {ADD_HOMETEAM, ADD_AWAYTEAM} from "../../../reducers/match.reducer";
 import team from "../../../model/team.model";
+import league from "../../../model/league.model";
 
 @Component({
   selector: 'team-selection',
@@ -46,6 +47,10 @@ export default class TeamSelectionComponent implements OnInit{
         this._addMatchToStore();
         break;
     }
+  }
+
+  loadClubsForLeague(league: league){
+    console.log('Test', league);
   }
 
   _addMatchToStore() {

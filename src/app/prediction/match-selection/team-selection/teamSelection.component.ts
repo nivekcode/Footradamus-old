@@ -9,12 +9,14 @@ import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";
 import {ADD_HOMETEAM, ADD_AWAYTEAM} from "../../../reducers/match.reducer";
 import team from "../../../model/team.model";
+import league from "../../../model/league.model";
 
 @Component({
   selector: 'team-selection',
   templateUrl: 'teamSelection.html',
+  styleUrls: ['teamSelection.css']
 })
-export default class TeamSelectionComponent implements OnInit{
+export default class TeamSelectionComponent implements OnInit {
 
   private counter: number = 0;
   private teams: Array<team> = [];
@@ -24,13 +26,17 @@ export default class TeamSelectionComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.teamSelectionService.$teams
-      .subscribe((res: Array<team>) => {
-        this.teams = res;
-        if(!this.isHometeam){
-          this.counter++;
-        }
-        this._addMatchToStore();
+    this.teamSelectionService.getLeagues()
+      .subscribe(leagues => {
+        let initialLeagueId = leagues[0].id;
+        this.teamSelectionService.getTeams(initialLeagueId)
+          .subscribe((res: Array<team>) => {
+            this.teams = res;
+            if (!this.isHometeam) {
+              this.counter++;
+            }
+            this._addMatchToStore();
+          });
       })
   }
 
@@ -45,6 +51,11 @@ export default class TeamSelectionComponent implements OnInit{
         this._addMatchToStore();
         break;
     }
+  }
+
+  loadClubsForLeague(league: league) {
+    this.teamSelectionService.getTeams(league.id)
+      .subscribe(res => this.teams = res);
   }
 
   _addMatchToStore() {

@@ -1,4 +1,5 @@
 <div class="jumbotron">
+    <league-selection (onLeagueChange)="loadClubsForLeague($event)"></league-selection>
     <selector (onClubChange)="changeClub($event)"
               [clubTitle]="teams[counter]?.name">
     </selector>

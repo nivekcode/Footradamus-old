@@ -7,7 +7,7 @@ import ChangeDirection from "../../../../model/changeDirection.model";
 
 @Component({
   selector: 'selector',
-  templateUrl: 'selector.html'
+  templateUrl: 'teamSelector.html'
 })
 export default class SelectorComponent{
 

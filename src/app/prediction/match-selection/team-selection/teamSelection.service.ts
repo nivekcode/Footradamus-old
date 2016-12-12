@@ -17,7 +17,7 @@ export default class TeamSelectionService {
 
   private PREMIER_LEAGUE = 'Premier League';
   private PRIMERA_DIVISION = 'Primera División';
-  private CHAMPIONS_LEAGUE = 'UEFA Champions League';
+  private BUNDESLIGA = 'Bundesliga';
 
   constructor(private http: Http, @Inject('config') private config, private logoService: LogoService) {
   }
@@ -33,7 +33,7 @@ export default class TeamSelectionService {
 
   private _getFilteredLeagues(leagues){
     return leagues.filter(league => (league.name === this.PREMIER_LEAGUE && league.region === 'England') ||
-    league.name === this.PRIMERA_DIVISION || league.name === this.CHAMPIONS_LEAGUE);
+    league.name === this.PRIMERA_DIVISION || (league.name === this.BUNDESLIGA && league.region === 'Germany'));
   }
 
   public getTeams(leagueId: string): Observable<Array<team>> {

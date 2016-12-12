@@ -16,7 +16,7 @@ import league from "../../../model/league.model";
   templateUrl: 'teamSelection.html',
   styleUrls: ['teamSelection.css']
 })
-export default class TeamSelectionComponent implements OnInit{
+export default class TeamSelectionComponent implements OnInit {
 
   private counter: number = 0;
   private teams: Array<team> = [];
@@ -26,13 +26,17 @@ export default class TeamSelectionComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.teamSelectionService.getTeams('1204')
-      .subscribe((res: Array<team>) => {
-        this.teams = res;
-        if(!this.isHometeam){
-          this.counter++;
-        }
-        this._addMatchToStore();
+    this.teamSelectionService.getLeagues()
+      .subscribe(leagues => {
+        let initialLeagueId = leagues[0].id;
+        this.teamSelectionService.getTeams(initialLeagueId)
+          .subscribe((res: Array<team>) => {
+            this.teams = res;
+            if (!this.isHometeam) {
+              this.counter++;
+            }
+            this._addMatchToStore();
+          });
       })
   }
 
@@ -49,7 +53,7 @@ export default class TeamSelectionComponent implements OnInit{
     }
   }
 
-  loadClubsForLeague(league: league){
+  loadClubsForLeague(league: league) {
     this.teamSelectionService.getTeams(league.id)
       .subscribe(res => this.teams = res);
   }

@@ -1,5 +1,7 @@
 {
   "/standings/1204": "/premierLeagueStandings",
+  "/standings/1229": "/bundesligaStandings",
+  "/standings/1399": "/laligaStandings",
   "/standings/1005": "/championsLeagueStandings",
   "/team/9092": "/chelseaTeamStats",
   "/team/9249": "/liverpoolTeamStats"

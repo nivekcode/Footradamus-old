@@ -44,7 +44,7 @@ export default class TeamSelectionService {
             return {
               name: res.team_name,
               id: res.team_id,
-              clubLogo: this.logoService.getLogo(1204, res.team_name)
+              clubLogo: this.logoService.getLogo(parseInt(leagueId), res.team_name)
             }
           });
       });

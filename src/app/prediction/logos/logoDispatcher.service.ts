@@ -5,22 +5,29 @@
 import {Injectable} from "@angular/core";
 import PremierLeagueLogos from "./premierLeagueLogos.service";
 import LaLigaLogos from "./laLigaLogos.service";
+import BundesligaLogos from "./bundesligaLogos.service";
 
 @Injectable()
 export default class LogoService{
 
+  private PREMIER_LEAGUE_ID: number = 1204;
+  private LALIGA_LEAGUE_ID: number = 1399;
+  private BUNDESLIGA_LEAGUE_ID: number = 1229;
+
   constructor(private premierLeagueLogos: PremierLeagueLogos,
-              private laLigaLogos: LaLigaLogos){
+              private laLigaLogos: LaLigaLogos, private bundesligaLogos: BundesligaLogos){
   }
 
   getLogo(leagueID: number, teamName: string){
     switch (leagueID){
-      case 1204:
+      case this.PREMIER_LEAGUE_ID:
         return this.premierLeagueLogos.getLogoUrl(teamName);
-      case 1399:
+      case this.LALIGA_LEAGUE_ID:
         return this.laLigaLogos.getLogoUrl(teamName);
+      case this.BUNDESLIGA_LEAGUE_ID:
+        return this.bundesligaLogos.getLogoUrl(teamName);
       default:
-        return '';
+        return null;
     }
   }
 }

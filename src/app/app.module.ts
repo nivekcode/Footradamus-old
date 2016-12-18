@@ -1,13 +1,13 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
-import { AppComponent } from './app.component';
-import PredictionModule from "./prediction/prediction.module";
+import {AppComponent} from './app.component';
 import {StoreModule} from "@ngrx/store";
 import {matchReducer} from "./reducers/match.reducer";
 import {DEV_CONFIG} from "./app.config";
+import appRoutes from './app.routes';
 
 
 @NgModule({
@@ -18,12 +18,13 @@ import {DEV_CONFIG} from "./app.config";
     BrowserModule,
     FormsModule,
     HttpModule,
-    PredictionModule,
-    StoreModule.provideStore({ match: matchReducer})
+    StoreModule.provideStore({match: matchReducer}),
+    appRoutes
   ],
   providers: [
-    { provide: 'config', useValue: DEV_CONFIG }
+    {provide: 'config', useValue: DEV_CONFIG}
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

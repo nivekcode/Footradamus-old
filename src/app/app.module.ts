@@ -8,11 +8,12 @@ import {StoreModule} from "@ngrx/store";
 import {matchReducer} from "./reducers/match.reducer";
 import {DEV_CONFIG} from "./app.config";
 import appRoutes from './app.routes';
+import NavbarComponent from "./navbar/navabar.component";
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, NavbarComponent
   ],
   imports: [
     BrowserModule,

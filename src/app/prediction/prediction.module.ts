@@ -8,11 +8,13 @@ import PredictionService from "./prediction.service";
 import StatisticService from "./statstics.service";
 import ResultModule from "./result/result.module";
 import LogosServiceModule from "./logos/logos.module";
+import predictionRoutes from './prediction.routes';
 
 @NgModule({
   declarations: [PredictionComponent],
-  imports: [MatchSelectionModule, ResultModule, LogosServiceModule],
+  imports: [MatchSelectionModule, ResultModule, LogosServiceModule, predictionRoutes],
   exports: [PredictionComponent],
   providers: [PredictionService, StatisticService]
 })
-export default class PredictionModule{}
+export default class PredictionModule {
+}

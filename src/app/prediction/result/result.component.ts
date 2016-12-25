@@ -14,9 +14,11 @@ import LogoService from "../logos/logoDispatcher.service";
 export default class ResultComponent {
 
   imageUrl: string = null;
+  winningTeam: string = null;
 
   constructor(private predictionService: PredictionService, private logoService: LogoService){
      predictionService.$winner.subscribe((winningTeam) => {
+       this.winningTeam = winningTeam;
        this.imageUrl = this.logoService.getLogo(1204, winningTeam);
      })
   }

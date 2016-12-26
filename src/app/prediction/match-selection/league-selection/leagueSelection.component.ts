@@ -3,8 +3,8 @@
  */
 
 import {Component, Output, EventEmitter} from "@angular/core";
-import TeamSelectionService from "../teamSelection.service";
-import league from "../../../../model/league.model";
+import TeamSelectionService from "../matchSelection.service";
+import league from "../../../model/league.model";
 
 @Component({
   selector: 'league-selection',

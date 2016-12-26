@@ -3,7 +3,7 @@
  */
 
 import {Component, Input, OnInit} from "@angular/core";
-import TeamSelectionService from "./teamSelection.service";
+import TeamSelectionService from "../matchSelection.service";
 import ChangeDirection from "../../../model/changeDirection.model";
 import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";

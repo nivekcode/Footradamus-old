@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 10.11.16.
  */
 
-import TeamSelectionService from "./teamSelection.service";
+import TeamSelectionService from "./matchSelection.service";
 import {TestBed, inject} from "@angular/core/testing";
 import {Http, BaseRequestOptions, XHRBackend, HttpModule} from "@angular/http";
 import {MockBackend} from "@angular/http/testing";

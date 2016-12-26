@@ -4,12 +4,12 @@
 
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
-import team from "../../../model/team.model";
-import LogoService from "../../logos/logoDispatcher.service";
-import league from "../../../model/league.model";
+import LogoService from "../logos/logoDispatcher.service";
 
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map'
+import team from "../../model/team.model";
+import league from "../../model/league.model";
 
 
 @Injectable()

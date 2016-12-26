@@ -1,4 +1,7 @@
 <div class="row">
+  <league-selection (onLeagueChange)="loadClubsOnTeamSelection($event)"></league-selection>
+</div>
+<div class="row">
   <div class="col-md-6">
     <team-selection [isHometeam]="true"></team-selection>
   </div>

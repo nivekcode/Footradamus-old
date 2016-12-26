@@ -7,8 +7,8 @@ import MatchSelectionComponent from "./matchSelection.component";
 import TeamSelectionComponent from "./team-selection/teamSelection.component";
 import SelectorComponent from "./team-selection/team-selector/teamSelector.component";
 import ClubLogoComponent from "./team-selection/club-logo/clubLogo.component";
-import TeamSelectionService from "./team-selection/teamSelection.service";
-import LeagueSelectionComponent from "./team-selection/league-selection/leagueSelection.component";
+import TeamSelectionService from "./matchSelection.service";
+import LeagueSelectionComponent from "./league-selection/leagueSelection.component";
 
 @NgModule({
   imports: [CommonModule],

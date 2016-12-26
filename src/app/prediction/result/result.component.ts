@@ -4,7 +4,7 @@
 
 import {Component} from "@angular/core";
 import PredictionService from "../prediction.service";
-import LogoService from "../logos/logoDispatcher.service";
+import LogoService from "../logos/clubs/logoDispatcher.service";
 
 @Component({
   selector: 'result',

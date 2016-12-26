@@ -3,3 +3,8 @@
   margin-bottom: 20px;
   border-bottom: groove lightgray 0.5px;
 }
+
+img {
+  max-width: 800px;
+  max-height: 64px;
+}

@@ -5,3 +5,7 @@ li {
 a.active {
   font-weight: bold;
 }
+
+nav {
+  margin-bottom: 0px;
+}

@@ -10,15 +10,15 @@ import BundesligaLogos from "./bundesligaLogos.service";
 @Injectable()
 export default class LogoService{
 
-  private PREMIER_LEAGUE_ID: number = 1204;
-  private LALIGA_LEAGUE_ID: number = 1399;
-  private BUNDESLIGA_LEAGUE_ID: number = 1229;
+  private PREMIER_LEAGUE_ID: string = '1204';
+  private LALIGA_LEAGUE_ID: string = '1399';
+  private BUNDESLIGA_LEAGUE_ID: string = '1229';
 
   constructor(private premierLeagueLogos: PremierLeagueLogos,
               private laLigaLogos: LaLigaLogos, private bundesligaLogos: BundesligaLogos){
   }
 
-  getLogo(leagueID: number, teamName: string){
+  getLogo(leagueID: string, teamName: string){
     switch (leagueID){
       case this.PREMIER_LEAGUE_ID:
         return this.premierLeagueLogos.getLogoUrl(teamName);

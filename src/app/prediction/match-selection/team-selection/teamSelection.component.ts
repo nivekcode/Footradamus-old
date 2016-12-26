@@ -21,6 +21,7 @@ export default class TeamSelectionComponent implements OnInit {
   private counter: number = 0;
   private teams: Array<team> = [];
   @Input() isHometeam: boolean;
+  private league: league = null;
 
   constructor(private teamSelectionService: TeamSelectionService, private store: Store<match>) {
   }
@@ -28,8 +29,8 @@ export default class TeamSelectionComponent implements OnInit {
   ngOnInit(): void {
     this.teamSelectionService.getLeagues()
       .subscribe(leagues => {
-        let initialLeagueId = leagues[0].id;
-        this.teamSelectionService.getTeams(initialLeagueId)
+        this.league = leagues[0]; //Initial League
+        this.teamSelectionService.getTeams(this.league.id)
           .subscribe((res: Array<team>) => {
             this.teams = res;
             if (!this.isHometeam) {
@@ -54,6 +55,7 @@ export default class TeamSelectionComponent implements OnInit {
   }
 
   loadClubsForLeague(league: league) {
+    this.league = league;
     this.teamSelectionService.getTeams(league.id)
       .subscribe(res => this.teams = res);
   }
@@ -61,6 +63,9 @@ export default class TeamSelectionComponent implements OnInit {
   _addMatchToStore() {
     let actionType = this.isHometeam ? ADD_HOMETEAM : ADD_AWAYTEAM;
     let team = this.teams[this.counter];
-    this.store.dispatch({type: actionType, payload: team});
+    this.store.dispatch({
+      type: actionType,
+      payload: {team: team, leagueId: this.league.id}
+    });
   }
 }

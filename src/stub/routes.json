@@ -4,5 +4,9 @@
   "/standings/1399": "/laligaStandings",
   "/standings/1005": "/championsLeagueStandings",
   "/team/9092": "/chelseaTeamStats",
-  "/team/9249": "/liverpoolTeamStats"
+  "/team/9249": "/liverpoolTeamStats",
+  "/team/10442": "/hoffenheimTeamStats",
+  "/team/10303": "/bvbTeamStats",
+  "/team/16270": "/villarealTeamStats",
+  "/team/16117": "/realSociedadTeamStats"
 }

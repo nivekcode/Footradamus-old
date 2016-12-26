@@ -5,7 +5,7 @@
     </button>
   </div>
   <div class="col-md-8 text-center">
-    <label><strong>{{ leagues[counter]?.name }}</strong></label>
+    <img [src]="leagueLogoService.getLogoUrl(leagues[counter]?.id)" />
   </div>
   <div class="col-md-2">
     <button class="btn pull-right" (click)="getNextLeague()">

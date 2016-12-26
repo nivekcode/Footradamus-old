@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 05.12.16.
  */
 import {Injectable} from "@angular/core";
-import LogoServiceBase from "./logoService.interface";
+import LogoServiceBase from "../logoService.interface";
 
 @Injectable()
 export default class PremierLeagueLogos implements LogoServiceBase{

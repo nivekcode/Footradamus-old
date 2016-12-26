@@ -5,6 +5,7 @@ import match from "../model/match.model";
  */
 
 let initialMatch: match = {
+  leagueId: undefined,
   homeTeam: undefined,
   awayTeam: undefined
 }
@@ -16,13 +17,15 @@ export const matchReducer: ActionReducer<match> = (state: match = initialMatch, 
   switch (action.type) {
     case ADD_HOMETEAM:
       return {
-        homeTeam: action.payload,
+        leagueId: action.payload.leagueId,
+        homeTeam: action.payload.team,
         awayTeam: state.awayTeam
       };
     case ADD_AWAYTEAM:
       return {
+        leagueId: action.payload.leagueId,
         homeTeam: state.homeTeam,
-        awayTeam: action.payload
+        awayTeam: action.payload.team
       };
     default:
       return state;

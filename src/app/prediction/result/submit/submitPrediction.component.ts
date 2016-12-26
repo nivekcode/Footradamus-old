@@ -17,19 +17,20 @@ export default class SubmitComponent {
   private matchDate;
   private homeTeam: team;
   private awayTeam: team;
+  private leagueId: string;
 
   constructor(private store: Store<match>){
     store.select('match')
       .subscribe((match: match) => {
+        this.leagueId = match.leagueId;
         this.homeTeam = match.homeTeam;
         this.awayTeam = match.awayTeam;
     });
   }
 
   submitPrediction() {
-
     let prediction: prediction = {
-      leagueID: '1204',
+      leagueID: this.leagueId,
       homeTeam: this.homeTeam.name,
       awayTeam: this.awayTeam.name,
       winner: this.winner,

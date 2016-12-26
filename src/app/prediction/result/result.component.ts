@@ -5,6 +5,8 @@
 import {Component} from "@angular/core";
 import PredictionService from "../prediction.service";
 import LogoService from "../logos/clubs/logoDispatcher.service";
+import {Store} from "@ngrx/store";
+import match from "../../model/match.model";
 
 @Component({
   selector: 'result',
@@ -16,10 +18,17 @@ export default class ResultComponent {
   imageUrl: string = null;
   winningTeam: string = null;
 
-  constructor(private predictionService: PredictionService, private logoService: LogoService){
-     predictionService.$winner.subscribe((winningTeam) => {
-       this.winningTeam = winningTeam;
-       this.imageUrl = this.logoService.getLogo(1204, winningTeam);
-     })
+  constructor(private predictionService: PredictionService, private logoService: LogoService,
+              private store: Store<match>) {
+    let leagueId: string = null;
+
+    this.store.select('match').subscribe((match: match) => {
+      leagueId = match.leagueId;
+    })
+
+    predictionService.$winner.subscribe((winningTeam) => {
+      this.winningTeam = winningTeam;
+      this.imageUrl = this.logoService.getLogo(leagueId, winningTeam);
+    })
   }
 }

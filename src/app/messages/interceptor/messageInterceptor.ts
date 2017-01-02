@@ -6,7 +6,7 @@ import {Interceptor, InterceptedRequest, InterceptedResponse} from "ng2-intercep
 import {Injectable} from "@angular/core";
 
 @Injectable()
-export default class HttpInterceptor implements Interceptor{
+export default class MessageInterceptor implements Interceptor{
 
   public interceptBefore(request: InterceptedRequest): InterceptedRequest {
     // Do whatever with request: get info or edit it
@@ -16,7 +16,7 @@ export default class HttpInterceptor implements Interceptor{
 
   public interceptAfter(response: InterceptedResponse): InterceptedResponse {
     // Do whatever with response: get info or edit it
-    console.log('Die Response im Interceptro', response);
+    console.log('Der Status der Antwort', response.response.status);
     return response;
   }
 }

@@ -7,6 +7,7 @@ import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";
 import team from "../../../model/team.model";
 import {Http} from "@angular/http";
+import * as moment from 'moment';
 
 @Component({
   selector: 'submit-prediction',
@@ -37,7 +38,7 @@ export default class SubmitComponent {
       awayTeam: this.awayTeam.name,
       awayTeamId: this.awayTeam.id,
       winner: this.winner,
-      matchDate: this.matchDate.formatted
+      matchDate: moment(this.matchDate.formatted, 'YYYY-MM-DD').format('DD.MM.YYYY')
     };
 
     this.http.post(this.config.predictionBackendUrl, prediction)

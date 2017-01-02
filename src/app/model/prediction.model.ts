@@ -5,7 +5,9 @@
 interface prediction {
   leagueID: string
   homeTeam: string,
+  homeTeamId: number,
   awayTeam: string,
+  awayTeamId: number,
   winner: string,
   matchDate: string
 }

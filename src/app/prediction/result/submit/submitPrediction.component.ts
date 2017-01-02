@@ -1,11 +1,13 @@
 /**
  * Created by kevinkreuzer on 24.12.16.
  */
-import {Component, Input} from "@angular/core";
+import {Component, Input, Inject} from "@angular/core";
 import prediction from "../../../model/prediction.model";
 import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";
 import team from "../../../model/team.model";
+import {Http} from "@angular/http";
+import * as moment from 'moment';
 
 @Component({
   selector: 'submit-prediction',
@@ -19,23 +21,28 @@ export default class SubmitComponent {
   private awayTeam: team;
   private leagueId: string;
 
-  constructor(private store: Store<match>){
+  constructor(private store: Store<match>, private http: Http, @Inject('config') private config) {
     store.select('match')
       .subscribe((match: match) => {
         this.leagueId = match.leagueId;
         this.homeTeam = match.homeTeam;
         this.awayTeam = match.awayTeam;
-    });
+      });
   }
 
   submitPrediction() {
     let prediction: prediction = {
       leagueID: this.leagueId,
       homeTeam: this.homeTeam.name,
+      homeTeamId: this.homeTeam.id,
       awayTeam: this.awayTeam.name,
+      awayTeamId: this.awayTeam.id,
       winner: this.winner,
-      matchDate: this.matchDate.formatted
+      matchDate: moment(this.matchDate.formatted, 'YYYY-MM-DD').format('DD.MM.YYYY')
     };
-    console.table([prediction]);
+
+    this.http.post(this.config.predictionBackendUrl, prediction)
+      .subscribe(() => console.log('Successfully added'),
+        () => console.log('An error occured'));
   }
 }

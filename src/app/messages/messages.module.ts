@@ -7,8 +7,10 @@ import MessagesComponent from "./messages.component";
 import MessageInterceptor from "./interceptor/messageInterceptor";
 import {Http, XHRBackend, RequestOptions} from "@angular/http";
 import messageInterceptorFactory from "./interceptor/messageInterceptor.factory";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
+  imports: [CommonModule],
   declarations: [MessagesComponent],
   exports: [MessagesComponent],
   providers: [

@@ -1,3 +1,5 @@
-<div class="alert alert-success">
-  <strong>Success!</strong> Indicates a successful or positive action.
+<div class="alert alert-danger" *ngIf="messageInterceptor.$errors | async">
+  <span class="glyphicon glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+  <strong>Oupsi!</strong>
+  Something went wrong
 </div>

@@ -2,7 +2,8 @@
  * Created by kevinkreuzer on 02.01.17.
  */
 
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import MessageInterceptor from "./interceptor/messageInterceptor";
 
 @Component({
   selector: 'messages',
@@ -10,4 +11,6 @@ import {Component} from "@angular/core";
 })
 export default class MessagesComponent{
 
+  constructor(private messageInterceptor: MessageInterceptor){
+  }
 }

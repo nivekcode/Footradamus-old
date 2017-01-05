@@ -9,7 +9,7 @@ import {matchReducer} from "./reducers/match.reducer";
 import {DEV_CONFIG} from "./app.config";
 import appRoutes from './app.routes';
 import NavbarComponent from "./navbar/navabar.component";
-
+import MessagesModule from "./messages/messages.module";
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import NavbarComponent from "./navbar/navabar.component";
     BrowserModule,
     FormsModule,
     HttpModule,
+    MessagesModule,
     StoreModule.provideStore({match: matchReducer}),
     appRoutes
   ],

@@ -11,7 +11,7 @@
     "e2e": "protractor",
     "stub": "json-server ./src/stub/db.json --routes ./src/stub/routes.json",
     "predictionStorage": "json-server --watch ./src/predictionStorage/db.json --port 3004",
-    "setupDevEnv": "concurrently --kill-others \"ng serve\" \"npm run stub\""
+    "setupDevEnv": "concurrently --kill-others \"ng serve\" \"npm run stub\" \"npm run predictionStorage\""
   },
   "private": true,
   "dependencies": {

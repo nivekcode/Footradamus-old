@@ -26,4 +26,8 @@ export default class MessageInterceptor implements Interceptor{
     }
     return response;
   }
+
+  hideError(){
+    this.$errors.next(null);
+  }
 }

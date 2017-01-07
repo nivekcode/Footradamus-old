@@ -13,7 +13,7 @@ import league from "../../model/league.model";
 
 
 @Injectable()
-export default class TeamSelectionService {
+export default class MatchSelectionService {
 
   private PREMIER_LEAGUE = 'Premier League';
   private PRIMERA_DIVISION = 'Primera División';

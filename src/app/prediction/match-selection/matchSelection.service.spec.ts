@@ -1,41 +1,73 @@
 /**
- * Created by kevinkreuzer on 10.11.16.
+ * Created by kevinkreuzer on 07.01.17.
  */
 
-import TeamSelectionService from "./matchSelection.service";
 import {TestBed, inject} from "@angular/core/testing";
-import {Http, BaseRequestOptions, XHRBackend, HttpModule} from "@angular/http";
+import {HttpModule, Http, BaseRequestOptions, ResponseOptions, Response} from "@angular/http";
+import MatchSelectionService from "./matchSelection.service";
 import {MockBackend} from "@angular/http/testing";
-import {FormsModule} from "@angular/forms";
+import PremierLeagueLogos from "../logos/clubs/premierLeagueLogos.service";
+import LogoService from "../logos/clubs/logoDispatcher.service";
+import LaLigaLogos from "../logos/clubs/laLigaLogos.service";
+import BundesligaLogos from "../logos/clubs/bundesligaLogos.service";
 
-describe('TeamSelection Service Test', () => {
+describe('Match Selection Service', () => {
+
   beforeEach(() => {
-    let myMockConfig = {
-      backendUrl: 'http://test.com/',
-      authParam: '?blub'
-    }
     TestBed.configureTestingModule({
-      providers: [TeamSelectionService, MockBackend, BaseRequestOptions,
+      imports: [HttpModule],
+      providers: [
+        {provide: 'config', useValue: 'http://unitTest:3000/'},
+        LogoService,
+        LaLigaLogos,
+        BundesligaLogos,
+        PremierLeagueLogos,
+        MatchSelectionService,
         {
           provide: Http,
-          deps: [MockBackend, BaseRequestOptions],
-          useFactory: (backend: XHRBackend, defaultOptions: BaseRequestOptions) => {
-            return new Http(backend, defaultOptions);
-          },
+          useFactory: (mockBackend, options) => new Http(mockBackend, options),
           deps: [MockBackend, BaseRequestOptions]
         },
-        { provide: 'config', useValue: myMockConfig }
-      ],
-      imports: [FormsModule, HttpModule]
-    });
-    TestBed.compileComponents();
+        MockBackend,
+        BaseRequestOptions
+      ]
+    })
+    ;
   });
 
-  it('should create the correct logo url',
-    inject([TeamSelectionService], (sut) => {
-    //when
-    let logoUrl = sut._createLogoUrl('Chelsea');
-    //then
-    expect(logoUrl).toBe('https://hdlogo.files.wordpress.com/2013/11/chelsea.png');
-  }));
+  it('should get the leagues and filter them to Bundesliga, Premier League and Primera Division',
+    inject([MatchSelectionService, MockBackend], (sut, mockBackend) => {
+
+      let expectedLeague = {id: '1399', name: 'Primera División', region: 'Spain'};
+
+      const mockResponse = [
+        {
+          "id": "1399",
+          "name": "Primera División",
+          "region": "Spain"
+        },
+        {
+          "id": "1408",
+          "name": "Super League",
+          "region": "Switzerland"
+        },
+        {
+          "id": "1425",
+          "name": "Süper Lig",
+          "region": "Turkey"
+        }
+      ];
+
+      mockBackend.connections.subscribe((connection) => {
+        connection.mockRespond(new Response(new ResponseOptions({
+          body: JSON.stringify(mockResponse)
+        })));
+      });
+
+      sut.getLeagues()
+        .subscribe(res => {
+          let actualLeague = res[0];
+          expect(expectedLeague).toEqual(actualLeague);
+        });
+    }));
 });

@@ -3,7 +3,7 @@
  */
 
 import {Component, Output, EventEmitter} from "@angular/core";
-import TeamSelectionService from "../matchSelection.service";
+import MatchSelectionService from "../matchSelection.service";
 import league from "../../../model/league.model";
 import LeagueLogoService from "../../logos/leagues/leagueLogos.service";
 
@@ -18,8 +18,8 @@ export default class LeagueSelectionComponent {
   private counter: number = 0;
   @Output() onLeagueChange = new EventEmitter<league>();
 
-  constructor(private teamSelectionService: TeamSelectionService, private leagueLogoService: LeagueLogoService) {
-    this.teamSelectionService.getLeagues()
+  constructor(private matchSelectionService: MatchSelectionService, private leagueLogoService: LeagueLogoService) {
+    this.matchSelectionService.getLeagues()
       .subscribe((res: Array<league>) => {
           this.leagues = res;
       });

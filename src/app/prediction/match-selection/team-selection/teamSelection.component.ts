@@ -3,13 +3,13 @@
  */
 
 import {Component, Input, OnInit} from "@angular/core";
-import TeamSelectionService from "../matchSelection.service";
 import ChangeDirection from "../../../model/changeDirection.model";
 import {Store} from "@ngrx/store";
 import match from "../../../model/match.model";
 import {ADD_HOMETEAM, ADD_AWAYTEAM} from "../../../reducers/match.reducer";
 import team from "../../../model/team.model";
 import league from "../../../model/league.model";
+import MatchSelectionService from "../matchSelection.service";
 
 @Component({
   selector: 'team-selection',
@@ -23,14 +23,14 @@ export default class TeamSelectionComponent implements OnInit {
   @Input() isHometeam: boolean;
   private league: league = null;
 
-  constructor(private teamSelectionService: TeamSelectionService, private store: Store<match>) {
+  constructor(private matchSelectionService: MatchSelectionService, private store: Store<match>) {
   }
 
   ngOnInit(): void {
-    this.teamSelectionService.getLeagues()
+    this.matchSelectionService.getLeagues()
       .subscribe(leagues => {
         this.league = leagues[0]; //Initial League
-        this.teamSelectionService.getTeams(this.league.id)
+        this.matchSelectionService.getTeams(this.league.id)
           .subscribe((res: Array<team>) => {
             this.teams = res;
             if (!this.isHometeam) {
@@ -56,7 +56,7 @@ export default class TeamSelectionComponent implements OnInit {
 
   loadClubsForLeague(league: league) {
     this.league = league;
-    this.teamSelectionService.getTeams(league.id)
+    this.matchSelectionService.getTeams(league.id)
       .subscribe(res => this.teams = res);
   }
 

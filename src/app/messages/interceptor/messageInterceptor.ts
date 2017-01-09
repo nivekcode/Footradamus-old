@@ -17,10 +17,11 @@ export default class MessageInterceptor implements Interceptor{
   }
 
   public interceptAfter(response: InterceptedResponse): InterceptedResponse {
-    let statusCode = response.response.status;
-    if(statusCode !== 200) {
+    let isRequestOk = response.response.ok;
+
+    if(!isRequestOk) {
       this.$errors.next({
-        statusCode: statusCode,
+        statusCode: response.response.status,
         message: response.response.statusText
       });
     }

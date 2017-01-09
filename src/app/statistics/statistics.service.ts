@@ -6,11 +6,13 @@ import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
 import prediction from "../model/prediction.model";
 import predictionStatistics from "../model/predictionStatistics.model";
+import {Subject} from "rxjs";
 
 @Injectable()
 export default class StatisticsService {
 
   private predictionStatistics: predictionStatistics;
+  private $statistics: Subject<predictionStatistics> = new Subject<predictionStatistics>();
 
   constructor(private http: Http, @Inject('config') private config) {
     this.predictionStatistics = {
@@ -26,9 +28,11 @@ export default class StatisticsService {
           this._getMatchStatistics(prediction)
             .subscribe(matchStatistics => {
               this._calculateStats(prediction, matchStatistics[0]);
+              this.$statistics.next(this.predictionStatistics);
             })
         })
       });
+    return this.$statistics;
   }
 
   private _calculateStats(prediction: prediction, matchStatistics){
@@ -38,7 +42,7 @@ export default class StatisticsService {
       this.predictionStatistics.predictedCorrectly++;
     }
     else{
-      this.predictionStatistics.predictedFalsy;
+      this.predictionStatistics.predictedFalsy++;
     }
   }
 

@@ -4,6 +4,7 @@
 
 import {Component} from "@angular/core";
 import StatisticsService from "./statistics.service";
+import predictionStatistics from "../model/predictionStatistics.model";
 
 @Component({
   selector: 'statistics',
@@ -12,12 +13,18 @@ import StatisticsService from "./statistics.service";
 export default class StatisticsComponent {
 
   // Doughnut
-  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData:number[] = [350, 450, 100];
+  public doughnutChartLabels:string[] = ['Correct Predictions', 'False Predictions'];
+  public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
 
   constructor(private statisticsService: StatisticsService){
-    this.statisticsService.getStatistics();
+    this.statisticsService.getStatistics()
+      .subscribe((predictionStats: predictionStatistics) => {
+        this.doughnutChartData = [
+          predictionStats.predictedCorrectly,
+          predictionStats.predictedFalsy
+        ];
+      })
   }
 
   // events

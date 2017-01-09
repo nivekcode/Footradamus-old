@@ -7,11 +7,13 @@ import {CommonModule} from "@angular/common";
 import StatisticsComponent from "./statistics.component";
 import routes from './statistics.routes';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
+import StatisticsService from "./statistics.service";
 
 @NgModule({
   imports: [CommonModule, routes, ChartsModule],
   declarations: [StatisticsComponent],
-  exports: [StatisticsComponent]
+  exports: [StatisticsComponent],
+  providers: [StatisticsService]
 })
 export default class StatisticModule {
 

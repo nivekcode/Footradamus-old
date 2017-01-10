@@ -3,7 +3,8 @@
  */
 
 interface prediction {
-  leagueID: string
+  leagueID: string,
+  leagueName: string,
   homeTeam: string,
   homeTeamId: number,
   awayTeam: string,

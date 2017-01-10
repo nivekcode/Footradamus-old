@@ -20,9 +20,10 @@ export default class StatisticsComponent {
   constructor(private statisticsService: StatisticsService){
     this.statisticsService.getStatistics()
       .subscribe((predictionStats: predictionStatistics) => {
+        console.log('This are the stats', predictionStats);
         this.doughnutChartData = [
-          predictionStats.predictedCorrectly,
-          predictionStats.predictedFalsy
+          predictionStats.totalCorrectPredictions,
+          predictionStats.totalFalsePredictions
         ];
       })
   }

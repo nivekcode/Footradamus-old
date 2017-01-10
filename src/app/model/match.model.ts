@@ -4,6 +4,7 @@ import team from "./team.model";
  */
 interface match {
   leagueId: string,
+  leagueName: string,
   homeTeam: team,
   awayTeam: team
 }

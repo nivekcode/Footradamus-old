@@ -65,7 +65,11 @@ export default class TeamSelectionComponent implements OnInit {
     let team = this.teams[this.counter];
     this.store.dispatch({
       type: actionType,
-      payload: {team: team, leagueId: this.league.id}
+      payload: {
+        team: team,
+        leagueId: this.league.id,
+        leagueName: this.league.name
+      }
     });
   }
 }

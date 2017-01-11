@@ -44,7 +44,7 @@ export default class StatisticsService {
     this._calculateLeagueStats(prediction, wasPredictionCorrect);
   }
 
-  private _calculateLeagueStats(prediction: prediction, wasPredictionCorrect: boolean) {
+  private _calculateLeagueStats (prediction: prediction, wasPredictionCorrect: boolean) {
     let leaguePredStats = this.predictionStatistics.statisticsPerLeague.find((stat: leaguePredictions) => stat.leagueId === prediction.leagueID);
 
     if (!leaguePredStats) {

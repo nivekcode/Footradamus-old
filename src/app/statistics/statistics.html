@@ -1,10 +1,8 @@
-<div class="col-md-offset-3 col-md-6">
-  <div style="display: block">
-    <canvas baseChart
-            [data]="doughnutChartData"
-            [labels]="doughnutChartLabels"
-            [chartType]="doughnutChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-  </div>
+<div class="col-md-4" style="display: block">
+  <canvas baseChart
+          [data]="doughnutChartData.data"
+          [labels]="doughnutChartData.labels"
+          [chartType]="DOUGHNUT_CHART_TYPE"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
 </div>

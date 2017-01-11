@@ -1,11 +1,13 @@
-import {ActionReducer, Action} from "@ngrx/store";
-import match from "../model/match.model";
 /**
  * Created by kevinkreuzer on 16.11.16.
  */
 
+import {ActionReducer, Action} from "@ngrx/store";
+import match from "../model/match.model";
+
 let initialMatch: match = {
   leagueId: undefined,
+  leagueName: undefined,
   homeTeam: undefined,
   awayTeam: undefined
 }
@@ -18,12 +20,14 @@ export const matchReducer: ActionReducer<match> = (state: match = initialMatch, 
     case ADD_HOMETEAM:
       return {
         leagueId: action.payload.leagueId,
+        leagueName: action.payload.leagueName,
         homeTeam: action.payload.team,
         awayTeam: state.awayTeam
       };
     case ADD_AWAYTEAM:
       return {
         leagueId: action.payload.leagueId,
+        leagueName: action.payload.leagueName,
         homeTeam: state.homeTeam,
         awayTeam: action.payload.team
       };

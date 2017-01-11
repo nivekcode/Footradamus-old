@@ -20,10 +20,12 @@ export default class SubmitComponent {
   private homeTeam: team;
   private awayTeam: team;
   private leagueId: string;
+  private leagueName: string;
 
   constructor(private store: Store<match>, private http: Http, @Inject('config') private config) {
     store.select('match')
       .subscribe((match: match) => {
+        this.leagueName = match.leagueName;
         this.leagueId = match.leagueId;
         this.homeTeam = match.homeTeam;
         this.awayTeam = match.awayTeam;
@@ -33,6 +35,7 @@ export default class SubmitComponent {
   submitPrediction() {
     let prediction: prediction = {
       leagueID: this.leagueId,
+      leagueName: this.leagueName,
       homeTeam: this.homeTeam.name,
       homeTeamId: this.homeTeam.id,
       awayTeam: this.awayTeam.name,

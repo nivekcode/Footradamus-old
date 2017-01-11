@@ -7,6 +7,7 @@ import {Http} from "@angular/http";
 import prediction from "../model/prediction.model";
 import predictionStatistics from "../model/predictionStatistics.model";
 import {Subject} from "rxjs";
+import {leaguePredictions} from "../model/predictionStatistics.model";
 
 @Injectable()
 export default class StatisticsService {
@@ -16,8 +17,9 @@ export default class StatisticsService {
 
   constructor(private http: Http, @Inject('config') private config) {
     this.predictionStatistics = {
-      predictedCorrectly: 0,
-      predictedFalsy: 0
+      totalCorrectPredictions: 0,
+      totalFalsePredictions: 0,
+      statisticsPerLeague: []
     };
   }
 
@@ -35,30 +37,50 @@ export default class StatisticsService {
     return this.$statistics;
   }
 
-  private _calculateStats(prediction: prediction, matchStatistics){
+  private _calculateStats(prediction: prediction, matchStatistics) {
     let actualWinner = this._getWinningTeam(matchStatistics);
     let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
-    if(wasPredictionCorrect){
-      this.predictionStatistics.predictedCorrectly++;
+    this._calculateTotals(wasPredictionCorrect, this.predictionStatistics);
+    this._calculateLeagueStats(prediction, wasPredictionCorrect);
+  }
+
+  private _calculateLeagueStats (prediction: prediction, wasPredictionCorrect: boolean) {
+    let leaguePredStats = this.predictionStatistics.statisticsPerLeague.find((stat: leaguePredictions) => stat.leagueId === prediction.leagueID);
+
+    if (!leaguePredStats) {
+      leaguePredStats = {
+        leagueId: prediction.leagueID,
+        leagueName: prediction.leagueName,
+        totalCorrectPredictions: 0,
+        totalFalsePredictions: 0
+      }
+      this.predictionStatistics.statisticsPerLeague.push(leaguePredStats);
     }
-    else{
-      this.predictionStatistics.predictedFalsy++;
+    this._calculateTotals(wasPredictionCorrect, leaguePredStats);
+  }
+
+  private _calculateTotals(wasPredictionCorrect: boolean, stats) {
+    if (wasPredictionCorrect) {
+      stats.totalCorrectPredictions++;
+    }
+    else {
+      stats.totalFalsePredictions++;
     }
   }
 
-  private _getWinningTeam(matchStatistics){
+  private _getWinningTeam(matchStatistics) {
     let homeTeamScore: number = parseInt(matchStatistics.localteam_score);
     let awayTeamScore: number = parseInt(matchStatistics.visitorteam_score);
 
-    if(awayTeamScore > homeTeamScore){
+    if (awayTeamScore > homeTeamScore) {
       return matchStatistics.localteam_name;
     }
-    else{
+    else {
       return matchStatistics.visitorteam_name;
     }
   }
 
-  private _wasPredictionCorrect(predictedWinner, actualWinner){
+  private _wasPredictionCorrect(predictedWinner, actualWinner) {
     return predictedWinner.toLowerCase() === actualWinner.toLowerCase();
   }
 

@@ -2,6 +2,7 @@
   "predictions": [
     {
       "leagueID": "1204",
+      "leagueName": "Premier League",
       "homeTeam": "Chelsea",
       "homeTeamId": "9092",
       "awayTeam": "Liverpool",
@@ -12,11 +13,34 @@
     },
     {
       "leagueID": "1229",
+      "leagueName": "Bundesliga",
       "homeTeam": "Hoffenheim",
       "homeTeamId": "10442",
       "awayTeam": "Dortmund",
       "awayTeamId": "10303",
       "winner": "Hoffenheim",
+      "matchDate": "16.12.2016",
+      "id": 2
+    },
+    {
+      "leagueID": "1229",
+      "leagueName": "Bundesliga",
+      "homeTeam": "Hoffenheim",
+      "homeTeamId": "10442",
+      "awayTeam": "Dortmund",
+      "awayTeamId": "10303",
+      "winner": "Hoffenheim",
+      "matchDate": "16.12.2016",
+      "id": 2
+    },
+    {
+      "leagueID": "1229",
+      "leagueName": "Bundesliga",
+      "homeTeam": "Hoffenheim",
+      "homeTeamId": "10442",
+      "awayTeam": "Dortmund",
+      "awayTeamId": "10303",
+      "winner": "Dortmund",
       "matchDate": "16.12.2016",
       "id": 2
     }

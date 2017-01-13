@@ -15,13 +15,32 @@ export default class BarChartService implements ChartService{
     scaleShowVerticalLines: false,
     responsive: true
   };
+  public chartColors: Array<any> = [
+    {
+      backgroundColor: '#84C1E6',
+      borderColor: 'rgba(148,159,177,1)',
+      pointBackgroundColor: 'rgba(148,159,177,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+    },
+    {
+      backgroundColor: '#FE9EAD',
+      borderColor: 'rgba(77,83,96,1)',
+      pointBackgroundColor: 'rgba(77,83,96,1)',
+      pointBorderColor: '#fff',
+      pointHoverBackgroundColor: '#fff',
+      pointHoverBorderColor: 'rgba(77,83,96,1)'
+    }
+  ];
 
   getChartProperties(predictionStatistics: predictionStatistics): chartOptions {
     return {
       labels: this._getLabels(predictionStatistics),
       data: this._getChartData(predictionStatistics),
       options: this.BARCHART_OPTIONS,
-      legend: this.HAS_LEGEND
+      legend: this.HAS_LEGEND,
+      chartColors: this.chartColors
     };
   }
 

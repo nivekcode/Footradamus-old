@@ -7,7 +7,7 @@ import predictionStatistics from "../../model/predictionStatistics.model";
 
 export default class DoughnutChartService implements ChartService {
 
-  private readonly CHART_LABELS: string[] = ['Correct Predictions', 'False Predictions'];
+  private readonly CHART_LABELS: string[] = ['False Predictions', 'Correct Predictions'];
   public doughnutChartData: number[] = [];
 
   getChartProperties(predictionStatistics: predictionStatistics): chartOptions {
@@ -19,8 +19,8 @@ export default class DoughnutChartService implements ChartService {
 
   private _createChartData(predictionStats: predictionStatistics){
     return [
-      predictionStats.totalCorrectPredictions,
-      predictionStats.totalFalsePredictions
+      predictionStats.totalFalsePredictions,
+      predictionStats.totalCorrectPredictions
     ];
   }
 }

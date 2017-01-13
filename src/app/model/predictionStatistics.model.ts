@@ -11,9 +11,9 @@ export interface leaguePredictions{
 
 
 interface predictionStatistics {
-  totalCorrectPredictions: number,
   totalFalsePredictions: number,
-  statisticsPerLeague: Array<leaguePredictions>
+  totalCorrectPredictions: number,
+  statisticsPerLeague: Array<leaguePredictions>,
 }
 
 export default predictionStatistics;

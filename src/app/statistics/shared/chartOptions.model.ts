@@ -6,7 +6,8 @@ interface chartOptions{
   labels: Array<string>,
   data: Array<any>,
   options ?: any,
-  legend ?: boolean
+  legend ?: boolean,
+  chartColors ?: Array<any>
 }
 
 export default chartOptions;

@@ -7,7 +7,8 @@ import StatisticService from "./statstics.service";
 
 @Component({
   selector: 'prediction',
-  templateUrl: './prediction.html'
+  templateUrl: './prediction.html',
+  styleUrls: ['./prediction.css']
 })
 export default class PredictionComponent{
 

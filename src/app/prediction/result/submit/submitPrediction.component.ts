@@ -11,7 +11,8 @@ import * as moment from 'moment';
 
 @Component({
   selector: 'submit-prediction',
-  templateUrl: 'submitPrediction.html'
+  templateUrl: 'submitPrediction.html',
+  styleUrls: ['./submitPrediction.css']
 })
 export default class SubmitComponent {
 

@@ -30,6 +30,6 @@ export default class StatisticService {
 
   _getTeamStats(team: team) {
     let teamId = team.id;
-    return this.http.get(`${this.config.backendUrl}team/${teamId}${this.config.authParam}`);
+    return this.http.get(`${this.config.backendUrl}team/${teamId}?${this.config.authParam}`);
   }
 }

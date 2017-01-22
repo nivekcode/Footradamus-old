@@ -23,7 +23,7 @@ export default class MatchSelectionService {
   }
 
   public getLeagues(): Observable<Array<league>> {
-    return this.http.get(`${this.config.backendUrl}competitions${this.config.authParam}`)
+    return this.http.get(`${this.config.backendUrl}competitions?${this.config.authParam}`)
       .map(res => res.json())
       .map(res => {
           return this._getFilteredLeagues(res);
@@ -37,7 +37,7 @@ export default class MatchSelectionService {
   }
 
   public getTeams(leagueId: string): Observable<Array<team>> {
-    return this.http.get(`${this.config.backendUrl}standings/${leagueId}${this.config.authParam}`)
+    return this.http.get(`${this.config.backendUrl}standings/${leagueId}?${this.config.authParam}`)
       .map(res => {
         return res.json()
           .map(res => {

@@ -4,10 +4,14 @@
 import {NgModule} from "@angular/core";
 import PredictionListComponent from "./predictionList.component";
 import routes from './predictionList.routes';
+import PredictionListService from "./predictionList.service";
+import { Ng2TableModule } from 'ng2-table/ng2-table';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-  imports: [routes],
-  declarations: [PredictionListComponent]
+  imports: [CommonModule, routes, Ng2TableModule],
+  declarations: [PredictionListComponent],
+  providers: [PredictionListService]
 })
 export default class PredictionListModule {
 }

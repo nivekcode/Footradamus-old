@@ -2,11 +2,12 @@
  * Created by kevinkreuzer on 18.12.16.
  */
 
-import {RouterModule} from "@angular/router";
+import {RouterModule, Route} from "@angular/router";
 
-const routes = [
+const routes: Array<Route> = [
   {path: '', loadChildren: 'app/prediction/prediction.module'},
-  {path: 'statistics', loadChildren: 'app/statistics/statistics.module'}
+  {path: 'statistics', loadChildren: 'app/statistics/statistics.module'},
+  {path: 'predictionList', loadChildren: 'app/predictionList/predictionList.module'}
 ];
 
 export default RouterModule.forRoot(routes);

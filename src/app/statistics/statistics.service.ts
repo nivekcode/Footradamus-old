@@ -27,6 +27,7 @@ export default class StatisticsService {
     this._getStoredPredictions()
       .subscribe((predictions: Array<prediction>) => {
         predictions.forEach((prediction: prediction) => {
+          console.log('Prediction', prediction);
           this._getMatchStatistics(prediction)
             .subscribe(matchStatistics => {
               this._calculateStats(prediction, matchStatistics[0]);
@@ -90,7 +91,7 @@ export default class StatisticsService {
   }
 
   private _getMatchStatistics(prediction: prediction) {
-    return this.http.get(`${this.config.backendUrl}matches?comp_id=${prediction.leagueID}&team_id=${prediction.homeTeamId}&match_date=${prediction.matchDate}`)
+    return this.http.get(`${this.config.backendUrl}matches?comp_id=${prediction.leagueID}&team_id=${prediction.homeTeamId}&match_date=${prediction.matchDate}&${this.config.authParam}`)
       .map(res => res.json());
   }
 }

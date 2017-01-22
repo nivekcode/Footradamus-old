@@ -19,8 +19,8 @@ export default class DoughnutChartService implements ChartService {
 
   private _createChartData(predictionStats: predictionStatistics){
     return [
-      predictionStats.totalFalsePredictions,
-      predictionStats.totalCorrectPredictions
+      predictionStats.totalCorrectPredictions,
+      predictionStats.totalFalsePredictions
     ];
   }
 }

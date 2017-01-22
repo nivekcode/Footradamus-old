@@ -27,7 +27,6 @@ export default class StatisticsService {
     this._getStoredPredictions()
       .subscribe((predictions: Array<prediction>) => {
         predictions.forEach((prediction: prediction) => {
-          console.log('Prediction', prediction);
           this._getMatchStatistics(prediction)
             .subscribe(matchStatistics => {
               this._calculateStats(prediction, matchStatistics[0]);

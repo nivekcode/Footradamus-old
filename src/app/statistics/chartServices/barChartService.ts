@@ -53,8 +53,8 @@ export default class BarChartService implements ChartService{
       correctPredictionsBarsData.data.push(statsPerLeague.totalCorrectPredictions);
       falsePredictionsBarsData.data.push(statsPerLeague.totalFalsePredictions);
     });
-    chartData.push(correctPredictionsBarsData);
     chartData.push(falsePredictionsBarsData);
+    chartData.push(correctPredictionsBarsData);
     return chartData;
   }
 

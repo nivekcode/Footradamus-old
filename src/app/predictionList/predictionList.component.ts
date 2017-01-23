@@ -2,7 +2,8 @@
  * Created by kevinkreuzer on 22.01.17.
  */
 import {Component} from "@angular/core";
-import {TableData} from './table-data';
+import PredictionListService from "./predictionList.service";
+import predictionTableEntry from "./predictionTableEntry.model";
 
 @Component({
   selector: 'prediction-list',
@@ -36,10 +37,15 @@ export default class PredictionListComponent {
     className: ['table-striped', 'table-bordered']
   };
 
-  private data: Array<any> = TableData;
+  private data: Array<any> = [];
 
-  public constructor() {
+  public constructor(private predictionListService: PredictionListService) {
     this.length = this.data.length;
+    this.predictionListService.getPredictionTableData()
+      .subscribe((predictionTableData: Array<predictionTableEntry>) => {
+        this.data = predictionTableData;
+        this.onChangeTable(this.config);
+      });
   }
 
   public ngOnInit(): void {

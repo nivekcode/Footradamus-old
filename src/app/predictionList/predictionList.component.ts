@@ -12,17 +12,16 @@ export default class PredictionListComponent {
 
   public rows: Array<any> = [];
   public columns: Array<any> = [
-    {title: 'Name', name: 'name', filtering: {filterString: '', placeholder: 'Filter by name'}},
+    {title: 'League', name: 'leagueName', filtering: {filterString: '', placeholder: 'Filter by League'}},
     {
-      title: 'Position',
-      name: 'position',
+      title: 'Hometeam',
+      name: 'homeTeam',
       sort: false,
-      filtering: {filterString: '', placeholder: 'Filter by position'}
+      filtering: {filterString: '', placeholder: 'Filter by HomeTeam'}
     },
-    {title: 'Office', className: ['office-header', 'text-success'], name: 'office', sort: 'asc'},
-    {title: 'Extn.', name: 'ext', sort: '', filtering: {filterString: '', placeholder: 'Filter by extn.'}},
-    {title: 'Start date', className: 'text-warning', name: 'startDate'},
-    {title: 'Salary ($)', name: 'salary'}
+    {title: 'AwayTeam', name: 'awayTeam', sort: 'asc'},
+    {title: 'Predicted Winner', name: 'winner', sort: '', filtering: {filterString: '', placeholder: 'Filter by winner.'}},
+    {title: 'Match date', className: 'text-warning', name: 'matchDate'}
   ];
   public page: number = 1;
   public itemsPerPage: number = 10;
@@ -129,6 +128,8 @@ export default class PredictionListComponent {
       Object.assign(this.config.sorting, config.sorting);
     }
 
+    console.log('Data', this.data);
+    console.log('Config', this.config);
     let filteredData = this.changeFilter(this.data, this.config);
     let sortedData = this.changeSort(filteredData, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;

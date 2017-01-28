@@ -24,14 +24,20 @@ export default class PredictionListService {
 
     predictions.forEach((prediction: prediction) => {
       tableData.push({
+        id: prediction.id,
         leagueName: prediction.leagueName,
         homeTeam: prediction.homeTeam,
         awayTeam: prediction.awayTeam,
         winner: prediction.winner,
-        matchDate: prediction.matchDate
+        matchDate: prediction.matchDate,
+        actions: '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'
       });
     });
 
     return tableData;
+  }
+
+  public deletePrediction(id: number){
+    return this.http.delete(`${this.config.predictionBackendUrl}/${id}`);
   }
 }

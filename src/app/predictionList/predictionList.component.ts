@@ -1,7 +1,7 @@
 /**
  * Created by kevinkreuzer on 22.01.17.
  */
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import PredictionListService from "./predictionList.service";
 import predictionTableEntry from "./predictionTableEntry.model";
 
@@ -9,20 +9,17 @@ import predictionTableEntry from "./predictionTableEntry.model";
   selector: 'prediction-list',
   templateUrl: './predictionList.html'
 })
-export default class PredictionListComponent {
+export default class PredictionListComponent implements OnInit{
 
+  private readonly ACTION_COLUMN_NAME: string = 'actions';
   public rows: Array<any> = [];
   public columns: Array<any> = [
     {title: 'League', name: 'leagueName', filtering: {filterString: '', placeholder: 'Filter by League'}},
-    {
-      title: 'Hometeam',
-      name: 'homeTeam',
-      sort: false,
-      filtering: {filterString: '', placeholder: 'Filter by HomeTeam'}
-    },
+    {title: 'Hometeam', name: 'homeTeam', filtering: {filterString: '', placeholder: 'Filter by HomeTeam'}},
     {title: 'AwayTeam', name: 'awayTeam', sort: 'asc'},
     {title: 'Predicted Winner', name: 'winner', sort: '', filtering: {filterString: '', placeholder: 'Filter by winner.'}},
-    {title: 'Match date', className: 'text-warning', name: 'matchDate'}
+    {title: 'Match date', className: 'text-warning', name: 'matchDate'},
+    {title: 'Actions', className: 'text-warning', name: 'actions'},
   ];
   public page: number = 1;
   public itemsPerPage: number = 10;
@@ -37,7 +34,7 @@ export default class PredictionListComponent {
     className: ['table-striped', 'table-bordered']
   };
 
-  private data: Array<any> = [];
+  private data: Array<predictionTableEntry> = [];
 
   public constructor(private predictionListService: PredictionListService) {
     this.length = this.data.length;
@@ -133,9 +130,6 @@ export default class PredictionListComponent {
     if (config.sorting) {
       Object.assign(this.config.sorting, config.sorting);
     }
-
-    console.log('Data', this.data);
-    console.log('Config', this.config);
     let filteredData = this.changeFilter(this.data, this.config);
     let sortedData = this.changeSort(filteredData, this.config);
     this.rows = page && config.paging ? this.changePage(page, sortedData) : sortedData;
@@ -143,6 +137,19 @@ export default class PredictionListComponent {
   }
 
   public onCellClick(data: any): any {
-    console.log(data);
+    let column = data.column;
+    if(column === this.ACTION_COLUMN_NAME){
+      let id = data.row.id;
+      this.predictionListService.deletePrediction(id)
+        .subscribe(() => {
+          let indexToSplice = this.getIndexOfElement(id);
+          this.data.splice(indexToSplice, 1);
+          this.onChangeTable(this.config);
+        });
+    }
+  }
+
+  private getIndexOfElement(id: number){
+    return this.data.findIndex((prediction: predictionTableEntry) => prediction.id === id);
   }
 }

@@ -15,6 +15,7 @@ export default class StatisticsService {
 
   private predictionStatistics: predictionStatistics;
   private $statistics: Subject<predictionStatistics> = new Subject<predictionStatistics>();
+  private predictionsCache: Array<prediction> = [];
 
   constructor(private http: Http, @Inject('config') private config) {
     this.predictionStatistics = {
@@ -30,18 +31,34 @@ export default class StatisticsService {
       .subscribe((alreadyPredictedGames: Array<number>) => {
         this._getStoredPredictions()
           .subscribe((predictions: Array<prediction>) => {
-            predictions.forEach((prediction: prediction) => {
+            this.predictionsCache = predictions;
+
+            predictions.forEach((prediction: prediction, index: number) => {
               if(!alreadyPredictedGames.includes(prediction.id)){
               this._getMatchStatistics(prediction)
                 .subscribe(matchStatistics => {
-                  this._calculateStats(prediction, matchStatistics[0]);
+                  let actualWinner = this._getWinningTeam(matchStatistics[0]);
+                  let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+                  this._calculateStats(wasPredictionCorrect, prediction);
                   this.$statistics.next(this.predictionStatistics);
-                })
+                  this.predictionsCache[index].wasPredictionCorrect = wasPredictionCorrect;
+                  console.log('PredictionCache', this.predictionsCache);
+
+                  this.testingThePut();
+
+                });
               }
-            })
+            });
           });
       });
     return this.$statistics;
+  }
+
+  testingThePut(){
+    this.predictionsCache.forEach(prediction => {
+    this.http.put(`${this.config.predictionBackendUrl}/predictions/${prediction.id}`, prediction)
+      .subscribe(res => console.log(res), (err) => console.log('Error'));
+    });
   }
 
   private _getPredictionCache() {
@@ -50,9 +67,7 @@ export default class StatisticsService {
       .map((predictionCache: predictionCache) => predictionCache.alreadyPredictedMatches);
   }
 
-  private _calculateStats(prediction: prediction, matchStatistics) {
-    let actualWinner = this._getWinningTeam(matchStatistics);
-    let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+  private _calculateStats(wasPredictionCorrect: boolean, prediction: prediction) {
     this._calculateTotals(wasPredictionCorrect, this.predictionStatistics);
     this._calculateLeagueStats(prediction, wasPredictionCorrect);
   }

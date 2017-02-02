@@ -17,7 +17,8 @@
       "awayTeamId": "9249",
       "winner": "Chelsea",
       "matchDate": "16.09.2016",
-      "id": 1
+      "id": "1",
+      "wasPredictionCorrect": true
     },
     {
       "leagueID": "1204",
@@ -28,7 +29,8 @@
       "awayTeamId": "9249",
       "winner": "Chelsea",
       "matchDate": "16.09.2016",
-      "id": 2
+      "id": "2",
+      "wasPredictionCorrect": true
     },
     {
       "leagueID": "1229",
@@ -39,7 +41,8 @@
       "awayTeamId": "10303",
       "winner": "Hoffenheim",
       "matchDate": "16.12.2016",
-      "id": 3
+      "id": "3",
+      "wasPredictionCorrect": false
     },
     {
       "leagueID": "1229",
@@ -50,7 +53,8 @@
       "awayTeamId": "10303",
       "winner": "Hoffenheim",
       "matchDate": "16.12.2016",
-      "id": 4
+      "id": "4",
+      "wasPredictionCorrect": false
     },
     {
       "leagueID": "1229",
@@ -61,7 +65,8 @@
       "awayTeamId": "10303",
       "winner": "Dortmund",
       "matchDate": "16.12.2016",
-      "id": 5
+      "id": "5",
+      "wasPredictionCorrect": true
     }
   ]
 }

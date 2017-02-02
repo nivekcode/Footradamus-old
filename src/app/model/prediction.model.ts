@@ -12,7 +12,8 @@ interface prediction {
   awayTeam: string,
   awayTeamId: number,
   winner: string,
-  matchDate: string
+  matchDate: string,
+  wasPredictionCorrect ?: boolean
 }
 
 export default prediction;

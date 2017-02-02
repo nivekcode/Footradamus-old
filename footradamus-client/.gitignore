@@ -26,8 +26,8 @@ testem.log
 /typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/footradamus-client/e2e/*.js
+/footradamus-client/e2e/*.map
 
 #System Files
 .DS_Store

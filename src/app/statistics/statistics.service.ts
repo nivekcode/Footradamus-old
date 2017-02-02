@@ -8,6 +8,7 @@ import prediction from "../model/prediction.model";
 import predictionStatistics from "../model/predictionStatistics.model";
 import {Subject} from "rxjs";
 import {leaguePredictions} from "../model/predictionStatistics.model";
+import predictionCache from './shared/predictionCache.model';
 
 @Injectable()
 export default class StatisticsService {
@@ -24,17 +25,29 @@ export default class StatisticsService {
   }
 
   getStatistics() {
-    this._getStoredPredictions()
-      .subscribe((predictions: Array<prediction>) => {
-        predictions.forEach((prediction: prediction) => {
-          this._getMatchStatistics(prediction)
-            .subscribe(matchStatistics => {
-              this._calculateStats(prediction, matchStatistics[0]);
-              this.$statistics.next(this.predictionStatistics);
+    //TODO kk: RXJS Operatoren verwenden
+    this._getPredictionCache()
+      .subscribe((alreadyPredictedGames: Array<number>) => {
+        this._getStoredPredictions()
+          .subscribe((predictions: Array<prediction>) => {
+            predictions.forEach((prediction: prediction) => {
+              if(!alreadyPredictedGames.includes(prediction.id)){
+              this._getMatchStatistics(prediction)
+                .subscribe(matchStatistics => {
+                  this._calculateStats(prediction, matchStatistics[0]);
+                  this.$statistics.next(this.predictionStatistics);
+                })
+              }
             })
-        })
+          });
       });
     return this.$statistics;
+  }
+
+  private _getPredictionCache() {
+    return this.http.get(`${this.config.predictionBackendUrl}/predictionCache`)
+      .map(res => res.json())
+      .map((predictionCache: predictionCache) => predictionCache.alreadyPredictedMatches);
   }
 
   private _calculateStats(prediction: prediction, matchStatistics) {
@@ -44,7 +57,7 @@ export default class StatisticsService {
     this._calculateLeagueStats(prediction, wasPredictionCorrect);
   }
 
-  private _calculateLeagueStats (prediction: prediction, wasPredictionCorrect: boolean) {
+  private _calculateLeagueStats(prediction: prediction, wasPredictionCorrect: boolean) {
     let leaguePredStats = this.predictionStatistics.statisticsPerLeague.find((stat: leaguePredictions) => stat.leagueId === prediction.leagueID);
 
     if (!leaguePredStats) {
@@ -85,11 +98,12 @@ export default class StatisticsService {
   }
 
   private _getStoredPredictions() {
-    return this.http.get(this.config.predictionBackendUrl)
+    return this.http.get(`${this.config.predictionBackendUrl}/predictions`)
       .map(res => res.json());
   }
 
   private _getMatchStatistics(prediction: prediction) {
+    console.log('Get Match stats');
     return this.http.get(`${this.config.backendUrl}matches?comp_id=${prediction.leagueID}&team_id=${prediction.homeTeamId}&match_date=${prediction.matchDate}&${this.config.authParam}`)
       .map(res => res.json());
   }

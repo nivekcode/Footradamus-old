@@ -1,4 +1,4 @@
-const predictionBackendUrl = 'http://localhost:3004/predictions';
+const predictionBackendUrl = 'http://localhost:3004';
 
 export const PROD_CONFIG = {
   backendUrl: 'http://api.football-api.com/2.0/',

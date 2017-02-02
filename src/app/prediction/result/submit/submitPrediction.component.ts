@@ -45,7 +45,7 @@ export default class SubmitComponent {
       matchDate: moment(this.matchDate.formatted, 'YYYY-MM-DD').format('DD.MM.YYYY')
     };
 
-    this.http.post(this.config.predictionBackendUrl, prediction)
+    this.http.post(`${this.config.predictionBackendUrl}/predictions`, prediction)
       .subscribe(() => console.log('Successfully added'),
         () => console.log('An error occured'));
   }

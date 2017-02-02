@@ -1,4 +1,12 @@
 {
+  "predictionCache": {
+    "id": 1,
+    "alreadyPredictedMatches": [
+      1,
+      2,
+      3
+    ]
+  },
   "predictions": [
     {
       "leagueID": "1204",

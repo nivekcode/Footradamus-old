@@ -14,7 +14,7 @@ export default class PredictionListService {
   }
 
   public getPredictionTableData(): Observable<Array<predictionTableEntry>> {
-    return this.http.get(this.config.predictionBackendUrl)
+    return this.http.get(`${this.config.predictionBackendUrl}/predictions`)
       .map(res => res.json())
       .map((predictions: Array<prediction>) => this.createTableData(predictions));
   }
@@ -38,6 +38,6 @@ export default class PredictionListService {
   }
 
   public deletePrediction(id: number){
-    return this.http.delete(`${this.config.predictionBackendUrl}/${id}`);
+    return this.http.delete(`${this.config.predictionBackendUrl}/predictions/${id}`);
   }
 }

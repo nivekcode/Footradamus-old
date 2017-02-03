@@ -5,9 +5,7 @@ let predictions = require('./predictions.json').predictions;
 
 let app = express();
 
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 app.get('/predictions', (request, response) => {
@@ -20,10 +18,10 @@ app.put('/predictions/:id', (request, response) => {
     let id = request.params.id;
 
     predictions.forEach((predcition, index) => {
-      if(parseInt(id) === predcition.id){
-        let predictionToUpdate = predictions[index];
-        predictions[index] = Object.assign({}, predictionToUpdate, updatedPrediction);
-      }
+        if (parseInt(id) === predcition.id) {
+            let predictionToUpdate = predictions[index];
+            predictions[index] = Object.assign({}, predictionToUpdate, updatedPrediction);
+        }
     });
     writePrediction(predictions);
 
@@ -32,16 +30,32 @@ app.put('/predictions/:id', (request, response) => {
 });
 
 app.post('/predictions', (request, response) => {
-  let newPrediction = request.body;
-  predictions.push(newPrediction);
-  writePrediction(predictions);
+    let newPrediction = request.body;
+    predictions.push(newPrediction);
+    writePrediction(predictions);
 
-  response.setHeader('Content-Type', 'application/json');
-  response.send(newPrediction);
+    response.setHeader('Content-Type', 'application/json');
+    response.send(newPrediction);
 });
 
-writePrediction = function(predictions){
-  fs.writeFileSync('./predictions.json', JSON.stringify({predictions: predictions}));
+app.delete('/predictions/:id', (request, response) => {
+    let id = request.params.id;
+    let deletedPrediction;
+
+    predictions.forEach((prediction, index) => {
+        if (parseInt(id) === prediction.id) {
+            deletedPrediction = prediction;
+            predictions.splice(index, 1);
+        }
+    });
+    writePrediction(predictions);
+
+    response.setHeader('Content-Type', 'application/json');
+    response.send(deletedPrediction);
+});
+
+writePrediction = function(predictions) {
+    fs.writeFileSync('./predictions.json', JSON.stringify({predictions: predictions}));
 }
 
 app.listen(3004, () => console.log('Server is up and running'));

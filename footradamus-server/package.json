@@ -1,0 +1,32 @@
+{
+  "name": "footradamus-server",
+  "version": "1.0.0",
+  "description": "Server for the foootradamus client",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kreuzerk/Footradamus.git"
+  },
+  "keywords": [
+    "Football",
+    "Prediction",
+    "Node",
+    "Express"
+  ],
+  "author": "Kevin Kreuzer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kreuzerk/Footradamus/issues"
+  },
+  "homepage": "https://github.com/kreuzerk/Footradamus#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "nodemon": "^1.11.0"
+  }
+}

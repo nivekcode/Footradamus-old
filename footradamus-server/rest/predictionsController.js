@@ -17,9 +17,10 @@ app.put('/predictions/:id', (request, response) => {
     let updatedPrediction = request.body;
     let id = request.params.id;
 
-    predictions.forEach((predcition, index) => {
-        if (parseInt(id) === predcition.id) {
+    predictions.forEach((prediction, index) => {
+        if (parseInt(id) === prediction.id) {
             let predictionToUpdate = predictions[index];
+            updatedPrediction.id = prediction.id;
             predictions[index] = Object.assign({}, predictionToUpdate, updatedPrediction);
         }
     });
@@ -31,9 +32,10 @@ app.put('/predictions/:id', (request, response) => {
 
 app.post('/predictions', (request, response) => {
     let newPrediction = request.body;
+    newPrediction.id = parseInt(predictions[predictions.length-1].id) + 1;
     predictions.push(newPrediction);
-    writePrediction(predictions);
 
+    writePrediction(predictions);
     response.setHeader('Content-Type', 'application/json');
     response.send(newPrediction);
 });

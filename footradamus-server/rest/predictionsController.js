@@ -16,23 +16,28 @@ app.get('/predictions', (request, response) => {
 app.put('/predictions/:id', (request, response) => {
     let updatedPrediction = request.body;
     let id = request.params.id;
+    let predictionToUpdate;
 
     predictions.forEach((prediction, index) => {
         if (parseInt(id) === prediction.id) {
-            let predictionToUpdate = predictions[index];
+            predictionToUpdate = predictions[index];
             updatedPrediction.id = prediction.id;
             predictions[index] = Object.assign({}, predictionToUpdate, updatedPrediction);
         }
     });
     writePrediction(predictions);
 
-    response.setHeader('Content-Type', 'application/json');
-    response.send(updatedPrediction);
+    if (predictionToUpdate) {
+        response.setHeader('Content-Type', 'application/json');
+        response.send(updatedPrediction);
+    } else {
+        response.status(404).send(`Unfortunatley no prediction with id ${id} was found`);
+    }
 });
 
 app.post('/predictions', (request, response) => {
     let newPrediction = request.body;
-    newPrediction.id = parseInt(predictions[predictions.length-1].id) + 1;
+    newPrediction.id = parseInt(predictions[predictions.length - 1].id) + 1;
     predictions.push(newPrediction);
 
     writePrediction(predictions);
@@ -53,8 +58,12 @@ app.delete('/predictions/:id', (request, response) => {
 
     writePrediction(predictions);
 
-    response.setHeader('Content-Type', 'application/json');
-    response.send(deletedPrediction);
+    if (deletedPrediction) {
+        response.setHeader('Content-Type', 'application/json');
+        response.send(deletedPrediction);
+    } else {
+        response.status(404).send(`Unfortunatley no prediction with id ${id} was found`);
+    }
 });
 
 writePrediction = function(predictions) {

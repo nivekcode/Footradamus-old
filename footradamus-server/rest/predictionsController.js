@@ -1,5 +1,6 @@
 let express = require('express');
 let bodyParser = require('body-parser');
+let cors = require('express-cors');
 let fs = require('fs');
 let predictions = require('./predictions.json').predictions;
 
@@ -7,6 +8,12 @@ let app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+
+app.use(cors({
+    allowedOrigins: [
+        'localhost:4200'
+    ]
+}));
 
 app.get('/predictions', (request, response) => {
     response.setHeader('Content-Type', 'application/json');

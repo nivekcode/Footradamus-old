@@ -139,6 +139,7 @@ export default class PredictionListComponent implements OnInit{
   public onCellClick(data: any): any {
     let column = data.column;
     if(column === this.ACTION_COLUMN_NAME){
+      console.log('DataRow', data.row);
       let id = data.row.id;
       this.predictionListService.deletePrediction(id)
         .subscribe(() => {

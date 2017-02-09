@@ -139,7 +139,6 @@ export default class PredictionListComponent implements OnInit{
   public onCellClick(data: any): any {
     let column = data.column;
     if(column === this.ACTION_COLUMN_NAME){
-      console.log('DataRow', data.row);
       let id = data.row.id;
       this.predictionListService.deletePrediction(id)
         .subscribe(() => {
@@ -153,4 +152,3 @@ export default class PredictionListComponent implements OnInit{
   private getIndexOfElement(id: number){
     return this.data.findIndex((prediction: predictionTableEntry) => prediction.id === id);
   }
-}

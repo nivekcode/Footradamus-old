@@ -1,19 +1,28 @@
 let uri = 'mongodb://localhost:27017/footradamus';
-let mongoClient = require('mongodb').MongoClient;
+let mongoose = require('mongoose');
 
-let findPredictions = function(db, callback) {
-    let cursor = db.collection('predictions').find();
-    cursor.each((err, doc) => {
-        if (doc != null) {
-            console.log(doc);
-        } else {
-            callback();
-        }
-    })
-}
+mongoose.connect(uri);
+let db = mongoose.connection;
 
-mongoClient.connect(uri, (err, db) => {
-  findPredictions(db, () => {
-    db.close();
-  });
+db.on('error', () => console.log('An error occured'));
+db.once('open', () => console.log('Successfully connected to the database'));
+
+let predictionSchema = mongoose.Schema({
+  leagueID: String,
+  leagueName: String,
+  homeTeam: String,
+  homeTeamId: String,
+  awayTeam: String,
+  awayTeamId: String,
+  winner: String,
+  matchDate: String,
+  id: Number
 });
+
+/*
+predictionModel.find({}, (error, prediction) => {
+  console.log('Prediction', prediction);
+});
+*/
+
+exports.Predictions = mongoose.model('Prediction', predictionSchema);

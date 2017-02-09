@@ -2,7 +2,8 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let cors = require('express-cors');
 let fs = require('fs');
-let predictions = require('./predictions.json').predictions;
+//let predictions = require('./predictions.json').predictions;
+let predictionsModel = require('./db.js').Predictions;
 
 let app = express();
 
@@ -16,8 +17,10 @@ app.use(cors({
 }));
 
 app.get('/predictions', (request, response) => {
+  predictionsModel.find({}, (error, predictions) => {
     response.setHeader('Content-Type', 'application/json');
     response.send(predictions);
+  });
 });
 
 app.put('/predictions/:id', (request, response) => {

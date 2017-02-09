@@ -24,7 +24,7 @@ export default class PredictionListService {
 
     predictions.forEach((prediction: prediction) => {
       tableData.push({
-        id: prediction.id,
+        id: prediction._id,
         leagueName: prediction.leagueName,
         homeTeam: prediction.homeTeam,
         awayTeam: prediction.awayTeam,

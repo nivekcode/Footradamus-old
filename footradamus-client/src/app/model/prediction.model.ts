@@ -4,7 +4,7 @@
 
 interface prediction {
   //ID is optional because it gets generated in the Backend
-  id ?: number,
+  _id ?: number,
   leagueID: string,
   leagueName: string,
   homeTeam: string,

@@ -19,10 +19,4 @@ let predictionSchema = mongoose.Schema({
   id: Number
 });
 
-/*
-predictionModel.find({}, (error, prediction) => {
-  console.log('Prediction', prediction);
-});
-*/
-
 exports.Predictions = mongoose.model('Prediction', predictionSchema);

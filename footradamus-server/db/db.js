@@ -15,8 +15,7 @@ let predictionSchema = mongoose.Schema({
   awayTeam: String,
   awayTeamId: String,
   winner: String,
-  matchDate: String,
-  id: Number
+  matchDate: String
 });
 
 exports.Predictions = mongoose.model('Prediction', predictionSchema);

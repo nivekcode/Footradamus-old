@@ -72,7 +72,7 @@ export default class StatisticsService {
     let homeTeamScore: number = parseInt(matchStatistics.localteam_score);
     let awayTeamScore: number = parseInt(matchStatistics.visitorteam_score);
 
-    if (awayTeamScore > homeTeamScore) {
+    if (homeTeamScore > awayTeamScore) {
       return matchStatistics.localteam_name;
     }
     else {

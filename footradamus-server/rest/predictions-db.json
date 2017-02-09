@@ -6,8 +6,7 @@
     "awayTeam": "Benfica",
     "awayTeamId": "9249",
     "winner": "Chelsea",
-    "matchDate": "16.09.2016",
-    "id": 1
+    "matchDate": "16.09.2016"
 }
 {
     "leagueID": "1204",
@@ -17,8 +16,7 @@
     "awayTeam": "Liverpool",
     "awayTeamId": "9249",
     "winner": "Chelsea",
-    "matchDate": "16.09.2016",
-    "id": 2
+    "matchDate": "16.09.2016"
 }
 {
     "leagueID": "1229",
@@ -28,8 +26,7 @@
     "awayTeam": "Dortmund",
     "awayTeamId": "10303",
     "winner": "Hoffenheim",
-    "matchDate": "16.12.2016",
-    "id": 3
+    "matchDate": "16.12.2016"
 }
 {
     "leagueID": "1229",
@@ -39,8 +36,7 @@
     "awayTeam": "Dortmund",
     "awayTeamId": "10303",
     "winner": "Hoffenheim",
-    "matchDate": "16.12.2016",
-    "id": 4
+    "matchDate": "16.12.2016"
 }
 {
     "leagueID": "1204",
@@ -50,6 +46,5 @@
     "awayTeam": "Liverpool",
     "awayTeamId": "9249",
     "winner": "Chelsea",
-    "matchDate": "06.02.2017",
-    "id": 5
+    "matchDate": "06.02.2017"
 }

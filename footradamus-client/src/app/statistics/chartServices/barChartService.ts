@@ -8,12 +8,20 @@ import chartOptions from "../shared/chartOptions.model";
 
 export default class BarChartService implements ChartService{
 
+  private readonly CHART_LABELS = ['Premier League', 'Bundesliga', 'LaLiga'];
   private readonly CORRECT_PREDICTION_LABEL = 'Correct Predictions';
   private readonly FALSE_PREDICTION_LABEL = 'False Predictions';
   private readonly HAS_LEGEND: boolean = true;
   private readonly BARCHART_OPTIONS: any = {
     scaleShowVerticalLines: false,
-    responsive: true
+    responsive: true,
+    scales: {
+            yAxes: [{
+                ticks: {
+                    stepSize: 1,
+                }
+            }]
+        }
   };
   public chartColors: Array<any> = [
     {
@@ -36,7 +44,7 @@ export default class BarChartService implements ChartService{
 
   getChartProperties(predictionStatistics: predictionStatistics): chartOptions {
     return {
-      labels: this._getLabels(predictionStatistics),
+      labels: this.CHART_LABELS,
       data: this._getChartData(predictionStatistics),
       options: this.BARCHART_OPTIONS,
       legend: this.HAS_LEGEND,
@@ -53,16 +61,8 @@ export default class BarChartService implements ChartService{
       correctPredictionsBarsData.data.push(statsPerLeague.totalCorrectPredictions);
       falsePredictionsBarsData.data.push(statsPerLeague.totalFalsePredictions);
     });
-    chartData.push(falsePredictionsBarsData);
     chartData.push(correctPredictionsBarsData);
+    chartData.push(falsePredictionsBarsData);
     return chartData;
-  }
-
-  private _getLabels(predictionStatistics: predictionStatistics): Array<string>{
-    let labels: Array<string> = [];
-    predictionStatistics.statisticsPerLeague.forEach(statsPerLeague => {
-      labels.push(statsPerLeague.leagueName);
-    });
-    return labels;
   }
 }

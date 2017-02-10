@@ -53,4 +53,20 @@ app.delete('/predictions/:id', (request, response) => {
     });
 });
 
+app.patch('/predictions/', (request, response) => {
+
+    let predictions = request.body;
+
+    predictions.forEach(prediction => {
+      console.log('Prediction', prediction);
+      predictionsModel.findOneAndUpdate({_id: prediction._id}, prediction, (error, updatedPrediction) => {
+        if(!error){
+          console.log('updatedPrediction', updatedPrediction);
+        }
+      });
+    });
+
+    response.send('Oki');
+});
+
 app.listen(3004, () => console.log('Server is up and running'));

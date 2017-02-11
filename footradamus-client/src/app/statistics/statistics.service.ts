@@ -16,14 +16,11 @@ export default class StatisticsService {
   private $statistics: Subject<predictionStatistics> = new Subject<predictionStatistics>();
 
   constructor(private http: Http, @Inject('config') private config) {
-    this.predictionStatistics = {
-      totalCorrectPredictions: 0,
-      totalFalsePredictions: 0,
-      statisticsPerLeague: []
-    };
+    this.initPredictionStatistics();
   }
 
   getStatistics() {
+    this.initPredictionStatistics();
     this._getStoredPredictions()
       .subscribe((predictions: Array<prediction>) => {
         predictions.forEach((prediction: prediction) => {
@@ -31,6 +28,14 @@ export default class StatisticsService {
         });
       });
     return this.$statistics;
+  }
+
+  private initPredictionStatistics() {
+    this.predictionStatistics = {
+      totalCorrectPredictions: 0,
+      totalFalsePredictions: 0,
+      statisticsPerLeague: []
+    };
   }
 
   private calculateStatsForPrediction(prediction: prediction) {

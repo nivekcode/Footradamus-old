@@ -53,25 +53,4 @@ app.delete('/predictions/:id', (request, response) => {
     });
 });
 
-app.patch('/predictions/', (request, response) => {
-
-    let predictions = request.body;
-    let updatedPredictions = [];
-    response.setHeader('Content-Type', 'application/json');
-
-    predictions.forEach((prediction, index) => {
-      predictionsModel.findOneAndUpdate({_id: prediction._id}, prediction, (error, updatedPrediction) => {
-        if(!error){
-          updatedPredictions.push(updatedPrediction);
-          if(index === predictions.length - 1){
-            response.send(updatedPredictions);
-          }
-        }
-        else{
-          response.status(404).send(error);
-        }
-      });
-    });
-});
-
 app.listen(3004, () => console.log('Server is up and running'));

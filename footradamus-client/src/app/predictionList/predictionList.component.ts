@@ -149,7 +149,7 @@ export default class PredictionListComponent implements OnInit{
     }
   }
 
-  private getIndexOfElement(id: number){
+  private getIndexOfElement(id: string){
     return this.data.findIndex((prediction: predictionTableEntry) => prediction.id === id);
   }
 }

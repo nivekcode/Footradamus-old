@@ -14,6 +14,7 @@ export default class StatisticsService {
 
   private predictionStatistics: predictionStatistics;
   private $statistics: Subject<predictionStatistics> = new Subject<predictionStatistics>();
+  private predictionsToPatch: Array<string> = [];
 
   constructor(private http: Http, @Inject('config') private config) {
     this.predictionStatistics = {
@@ -35,18 +36,28 @@ export default class StatisticsService {
 
   private calculateStatsForPrediction(prediction: prediction) {
     if (this.isAlreadyPredicted(prediction)) {
-      let wasPredictionCorrect = prediction.predictionHistory.correctlyPredicted;
-      this.calculateStats(prediction, wasPredictionCorrect);
+      this.addStatsForCachedPredictions(prediction);
     }
     else {
-      this._getMatchStatistics(prediction)
-        .subscribe(matchStatistics => {
-          let actualWinner = this._getWinningTeam(matchStatistics[0]);
-          let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
-          this.calculateStats(prediction, wasPredictionCorrect);
-          this.$statistics.next(this.predictionStatistics);
-        });
+      this.addStatsForNewPredictions(prediction);
     }
+  }
+
+  private addStatsForCachedPredictions(prediction: prediction){
+    let wasPredictionCorrect = prediction.predictionHistory.correctlyPredicted;
+    this.calculateStats(prediction, wasPredictionCorrect);
+    this.$statistics.next(this.predictionStatistics);
+  }
+
+  private addStatsForNewPredictions(prediction: prediction){
+    this._getMatchStatistics(prediction)
+      .subscribe(matchStatistics => {
+        let actualWinner = this._getWinningTeam(matchStatistics[0]);
+        let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+        this.calculateStats(prediction, wasPredictionCorrect);
+        this.predictionsToPatch.push(prediction._id);
+        this.$statistics.next(this.predictionStatistics);
+      });
   }
 
   private calculateStats(prediction: prediction, wasPredictionCorrect: boolean) {
@@ -55,10 +66,7 @@ export default class StatisticsService {
   }
 
   private isAlreadyPredicted(prediction: prediction) {
-    if (!prediction.predictionHistory) {
-      return false;
-    }
-    return true;
+    return !prediction.predictionHistory ? false : true;
   }
 
   private _calculateLeagueStats(prediction: prediction, wasPredictionCorrect: boolean) {

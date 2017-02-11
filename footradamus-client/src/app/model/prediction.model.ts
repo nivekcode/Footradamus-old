@@ -7,8 +7,8 @@ interface predictionHistory {
 }
 
 interface prediction {
-  //ID is optional because it gets generated in the Backend
-  _id ?: number,
+  //ID is optional for Posts - it gets generated in the Backend
+  _id ?: string,
   leagueID: string,
   leagueName: string,
   homeTeam: string,

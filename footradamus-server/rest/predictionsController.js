@@ -24,12 +24,12 @@ app.get('/predictions', (request, response) => {
 
 app.put('/predictions/:id', (request, response) => {
     let id = request.params.id;
+    response.setHeader('Content-Type', 'application/json');
     predictionsModel.findOneAndUpdate({_id: id}, request.body, (error, prediciton) => {
       if (!error) {
-          response.setHeader('Content-Type', 'application/json');
           response.send(request.body);
       } else {
-          response.status(404).send(`Unfortunatley no prediction with id ${id} was found`);
+          response.status(404).send(error);
       }
     });
 });
@@ -43,13 +43,32 @@ app.post('/predictions', (request, response) => {
 
 app.delete('/predictions/:id', (request, response) => {
     let id = request.params.id;
+    response.setHeader('Content-Type', 'application/json');
     predictionsModel.findOneAndRemove({_id: id}, (error, deletedPrediction) => {
       if (!error) {
-          response.setHeader('Content-Type', 'application/json');
           response.send(deletedPrediction);
       } else {
-          response.status(404).send(`Unfortunatley no prediction with id ${id} was found`);
+          response.status(404).send(error);
       }
+    });
+});
+
+app.patch('/predictions/', (request, response) => {
+
+    let predictions = request.body;
+    let updatedPredictions = [];
+    response.setHeader('Content-Type', 'application/json');
+
+    predictions.forEach(prediction => {
+      predictionsModel.findOneAndUpdate({_id: prediction._id}, prediction, (error, updatedPrediction) => {
+        if(!error){
+          updatedPredictions.push(updatedPrediction);
+          response.send(updatedPredictions);
+        }
+        else{
+          response.status(404).send(error);
+        }
+      });
     });
 });
 

@@ -15,7 +15,11 @@ let predictionSchema = mongoose.Schema({
   awayTeam: String,
   awayTeamId: String,
   winner: String,
-  matchDate: String
+  matchDate: String,
+  prediction: {
+    alreadyPredicted: Boolean,
+    correctlyPredicted: Boolean
+  }
 });
 
 exports.Predictions = mongoose.model('Prediction', predictionSchema);

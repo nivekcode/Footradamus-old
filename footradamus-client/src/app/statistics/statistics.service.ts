@@ -27,24 +27,41 @@ export default class StatisticsService {
     this._getStoredPredictions()
       .subscribe((predictions: Array<prediction>) => {
         predictions.forEach((prediction: prediction) => {
-          this._getMatchStatistics(prediction)
-            .subscribe(matchStatistics => {
-              this._calculateStats(prediction, matchStatistics[0]);
-              this.$statistics.next(this.predictionStatistics);
-            })
-        })
+          this.calculateStatsForPrediction(prediction);
+        });
       });
     return this.$statistics;
   }
 
-  private _calculateStats(prediction: prediction, matchStatistics) {
-    let actualWinner = this._getWinningTeam(matchStatistics);
-    let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+  private calculateStatsForPrediction(prediction: prediction) {
+    if (this.isAlreadyPredicted(prediction)) {
+      let wasPredictionCorrect = prediction.predictionHistory.correctlyPredicted;
+      this.calculateStats(prediction, wasPredictionCorrect);
+    }
+    else {
+      this._getMatchStatistics(prediction)
+        .subscribe(matchStatistics => {
+          let actualWinner = this._getWinningTeam(matchStatistics[0]);
+          let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+          this.calculateStats(prediction, wasPredictionCorrect);
+          this.$statistics.next(this.predictionStatistics);
+        });
+    }
+  }
+
+  private calculateStats(prediction: prediction, wasPredictionCorrect: boolean) {
     this._calculateTotals(wasPredictionCorrect, this.predictionStatistics);
     this._calculateLeagueStats(prediction, wasPredictionCorrect);
   }
 
-  private _calculateLeagueStats (prediction: prediction, wasPredictionCorrect: boolean) {
+  private isAlreadyPredicted(prediction: prediction) {
+    if (!prediction.predictionHistory) {
+      return false;
+    }
+    return true;
+  }
+
+  private _calculateLeagueStats(prediction: prediction, wasPredictionCorrect: boolean) {
     let leaguePredStats = this.predictionStatistics.statisticsPerLeague.find((stat: leaguePredictions) => stat.leagueId === prediction.leagueID);
 
     if (!leaguePredStats) {

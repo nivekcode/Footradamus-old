@@ -59,11 +59,13 @@ app.patch('/predictions/', (request, response) => {
     let updatedPredictions = [];
     response.setHeader('Content-Type', 'application/json');
 
-    predictions.forEach(prediction => {
+    predictions.forEach((prediction, index) => {
       predictionsModel.findOneAndUpdate({_id: prediction._id}, prediction, (error, updatedPrediction) => {
         if(!error){
           updatedPredictions.push(updatedPrediction);
-          response.send(updatedPredictions);
+          if(index === predictions.length - 1){
+            response.send(updatedPredictions);
+          }
         }
         else{
           response.status(404).send(error);

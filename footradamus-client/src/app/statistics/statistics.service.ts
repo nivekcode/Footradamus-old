@@ -27,24 +27,57 @@ export default class StatisticsService {
     this._getStoredPredictions()
       .subscribe((predictions: Array<prediction>) => {
         predictions.forEach((prediction: prediction) => {
-          this._getMatchStatistics(prediction)
-            .subscribe(matchStatistics => {
-              this._calculateStats(prediction, matchStatistics[0]);
-              this.$statistics.next(this.predictionStatistics);
-            })
-        })
+          this.calculateStatsForPrediction(prediction);
+        });
       });
     return this.$statistics;
   }
 
-  private _calculateStats(prediction: prediction, matchStatistics) {
-    let actualWinner = this._getWinningTeam(matchStatistics);
-    let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+  private calculateStatsForPrediction(prediction: prediction) {
+    if (this.isAlreadyPredicted(prediction)) {
+      this.addStatsForCachedPredictions(prediction);
+    }
+    else {
+      this.addStatsForNewPredictions(prediction);
+    }
+  }
+
+  private addStatsForCachedPredictions(prediction: prediction) {
+    let wasPredictionCorrect = prediction.predictionHistory.correctlyPredicted;
+    this.calculateStats(prediction, wasPredictionCorrect);
+    this.$statistics.next(this.predictionStatistics);
+  }
+
+  private addStatsForNewPredictions(prediction: prediction) {
+    this._getMatchStatistics(prediction)
+      .subscribe(matchStatistics => {
+        let actualWinner = this._getWinningTeam(matchStatistics[0]);
+        let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+        this.calculateStats(prediction, wasPredictionCorrect);
+        this.addPredictionToCache(prediction, wasPredictionCorrect);
+        this.$statistics.next(this.predictionStatistics);
+      });
+  }
+
+  private addPredictionToCache(prediction: prediction, wasPredictionCorrect: boolean) {
+    let predictionHistory = {
+      'predictionHistory': {
+        'correctlyPredicted': wasPredictionCorrect
+      }
+    }
+    this.http.put(`${this.config.predictionBackendUrl}/${prediction._id}`, predictionHistory).subscribe();
+  }
+
+  private calculateStats(prediction: prediction, wasPredictionCorrect: boolean) {
     this._calculateTotals(wasPredictionCorrect, this.predictionStatistics);
     this._calculateLeagueStats(prediction, wasPredictionCorrect);
   }
 
-  private _calculateLeagueStats (prediction: prediction, wasPredictionCorrect: boolean) {
+  private isAlreadyPredicted(prediction: prediction) {
+    return !prediction.predictionHistory ? false : true;
+  }
+
+  private _calculateLeagueStats(prediction: prediction, wasPredictionCorrect: boolean) {
     let leaguePredStats = this.predictionStatistics.statisticsPerLeague.find((stat: leaguePredictions) => stat.leagueId === prediction.leagueID);
 
     if (!leaguePredStats) {

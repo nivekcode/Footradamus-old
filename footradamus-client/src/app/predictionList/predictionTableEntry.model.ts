@@ -3,7 +3,7 @@
  */
 
 interface predictionTableEntry {
-  id: number,
+  id: string,
   leagueName: string,
   homeTeam: string,
   awayTeam: string,

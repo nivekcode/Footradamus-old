@@ -53,4 +53,4 @@ app.delete('/predictions/:id', (request, response) => {
     });
 });
 
-app.listen(3004, () => console.log('Server is up and running'));
+app.listen(process.env.PORT || 3004, () => console.log('Server is up and running'));

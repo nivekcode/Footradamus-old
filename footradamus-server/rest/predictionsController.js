@@ -11,7 +11,8 @@ app.use(bodyParser.json());
 
 app.use(cors({
     allowedOrigins: [
-        'localhost:4200'
+        'localhost:4200',
+        'https://footradamus.firebaseapp.com/'
     ]
 }));
 

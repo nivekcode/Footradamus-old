@@ -4,7 +4,7 @@
 
 import {Component} from "@angular/core";
 import StatisticsService from "./statistics.service";
-import predictionStatistics from "../model/predictionStatistics.model";
+import predictionStatistics from "../shared/model/predictionStatistics.model";
 import chartOptions from "./shared/chartOptions.model";
 import DoughnutChartService from "./chartServices/doughnutChartService";
 import BarChartService from "./chartServices/barChartService";

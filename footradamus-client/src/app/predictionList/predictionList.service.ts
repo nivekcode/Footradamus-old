@@ -3,7 +3,7 @@
  */
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
-import prediction from "../model/prediction.model";
+import prediction from "../shared/model/prediction.model";
 import predictionTableEntry from "./predictionTableEntry.model";
 import {Observable} from "rxjs";
 

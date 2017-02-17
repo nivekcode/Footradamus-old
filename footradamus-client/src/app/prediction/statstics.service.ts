@@ -4,10 +4,10 @@
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
 import {Store} from "@ngrx/store";
-import team from "../model/team.model";
+import team from "../shared/model/team.model";
 import {Observable, Subject} from "rxjs";
 import 'rxjs/add/operator/zip'
-import match from "../model/match.model";
+import match from "../shared/model/match.model";
 
 @Injectable()
 export default class StatisticService {

@@ -8,8 +8,8 @@ import LogoService from "../logos/clubs/logoDispatcher.service";
 
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map'
-import team from "../../model/team.model";
-import league from "../../model/league.model";
+import team from "../../shared/model/team.model";
+import league from "../../shared/model/league.model";
 
 
 @Injectable()

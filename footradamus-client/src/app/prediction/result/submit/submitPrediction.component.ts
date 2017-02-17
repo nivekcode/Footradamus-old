@@ -2,10 +2,10 @@
  * Created by kevinkreuzer on 24.12.16.
  */
 import {Component, Input, Inject} from "@angular/core";
-import prediction from "../../../model/prediction.model";
+import prediction from "../../../shared/model/prediction.model";
 import {Store} from "@ngrx/store";
-import match from "../../../model/match.model";
-import team from "../../../model/team.model";
+import match from "../../../shared/model/match.model";
+import team from "../../../shared/model/team.model";
 import {Http} from "@angular/http";
 import * as moment from 'moment';
 

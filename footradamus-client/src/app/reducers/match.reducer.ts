@@ -3,7 +3,7 @@
  */
 
 import {ActionReducer, Action} from "@ngrx/store";
-import match from "../model/match.model";
+import match from "../shared/model/match.model";
 
 let initialMatch: match = {
   leagueId: undefined,

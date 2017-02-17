@@ -3,12 +3,12 @@
  */
 
 import {Component, Input, OnInit} from "@angular/core";
-import ChangeDirection from "../../../model/changeDirection.model";
+import ChangeDirection from "../../../shared/model/changeDirection.model";
 import {Store} from "@ngrx/store";
-import match from "../../../model/match.model";
+import match from "../../../shared/model/match.model";
 import {ADD_HOMETEAM, ADD_AWAYTEAM} from "../../../reducers/match.reducer";
-import team from "../../../model/team.model";
-import league from "../../../model/league.model";
+import team from "../../../shared/model/team.model";
+import league from "../../../shared/model/league.model";
 import MatchSelectionService from "../matchSelection.service";
 
 @Component({

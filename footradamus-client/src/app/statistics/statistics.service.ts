@@ -4,10 +4,10 @@
 
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
-import prediction from "../model/prediction.model";
-import predictionStatistics from "../model/predictionStatistics.model";
+import prediction from "../shared/model/prediction.model";
+import predictionStatistics from "../shared/model/predictionStatistics.model";
 import {Subject} from "rxjs";
-import {leaguePredictions} from "../model/predictionStatistics.model";
+import {leaguePredictions} from "../shared/model/predictionStatistics.model";
 
 @Injectable()
 export default class StatisticsService {

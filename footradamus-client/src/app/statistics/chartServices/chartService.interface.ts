@@ -1,4 +1,4 @@
-import predictionStatistics from "../../model/predictionStatistics.model";
+import predictionStatistics from "../../shared/model/predictionStatistics.model";
 import chartOptions from "../shared/chartOptions.model";
 /**
  * Created by kevinkreuzer on 11.01.17.

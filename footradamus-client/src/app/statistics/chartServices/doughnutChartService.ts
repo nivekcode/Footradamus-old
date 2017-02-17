@@ -1,6 +1,6 @@
 import ChartService from "./chartService.interface";
 import chartOptions from "../shared/chartOptions.model";
-import predictionStatistics from "../../model/predictionStatistics.model";
+import predictionStatistics from "../../shared/model/predictionStatistics.model";
 /**
  * Created by kevinkreuzer on 11.01.17.
  */

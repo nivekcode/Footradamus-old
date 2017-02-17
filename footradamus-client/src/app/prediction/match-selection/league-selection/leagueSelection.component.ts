@@ -4,7 +4,7 @@
 
 import {Component, Output, EventEmitter} from "@angular/core";
 import MatchSelectionService from "../matchSelection.service";
-import league from "../../../model/league.model";
+import league from "../../../shared/model/league.model";
 import LeagueLogoService from "../../logos/leagues/leagueLogos.service";
 
 @Component({

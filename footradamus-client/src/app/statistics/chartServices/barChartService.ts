@@ -3,7 +3,7 @@
  */
 
 import ChartService from "./chartService.interface";
-import predictionStatistics from "../../model/predictionStatistics.model";
+import predictionStatistics from "../../shared/model/predictionStatistics.model";
 import chartOptions from "../shared/chartOptions.model";
 
 export default class BarChartService implements ChartService{

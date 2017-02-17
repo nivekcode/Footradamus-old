@@ -6,7 +6,7 @@ import {Component} from "@angular/core";
 import PredictionService from "../prediction.service";
 import LogoService from "../logos/clubs/logoDispatcher.service";
 import {Store} from "@ngrx/store";
-import match from "../../model/match.model";
+import match from "../../shared/model/match.model";
 
 @Component({
   selector: 'result',

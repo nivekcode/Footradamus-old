@@ -5,7 +5,7 @@
 import {Interceptor, InterceptedRequest, InterceptedResponse} from "ng2-interceptors";
 import {Injectable} from "@angular/core";
 import {Subject, BehaviorSubject} from "rxjs";
-import error from "../../shared/model/error.model";
+import error from "../../../shared/model/error.model";
 
 @Injectable()
 export default class MessageInterceptor implements Interceptor{

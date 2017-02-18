@@ -8,7 +8,6 @@ import {StoreModule} from "@ngrx/store";
 import {matchReducer} from "./reducers/match.reducer";
 import {environment} from "../environments/environment";
 import appRoutes from './app.routes';
-import MessagesModule from "./messages/messages.module";
 import CoreModule from "./core/core.module";
 
 @NgModule({
@@ -17,10 +16,9 @@ import CoreModule from "./core/core.module";
   ],
   imports: [
     BrowserModule,
-    CoreModule,
     FormsModule,
     HttpModule,
-    MessagesModule,
+    CoreModule,
     StoreModule.provideStore({match: matchReducer}),
     appRoutes
   ],

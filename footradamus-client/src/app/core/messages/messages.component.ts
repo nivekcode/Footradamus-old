@@ -7,7 +7,7 @@ import MessageInterceptor from "./interceptor/messageInterceptor";
 
 @Component({
   selector: 'messages',
-  templateUrl: './messages.html'
+  templateUrl: 'messages.html'
 })
 export default class MessagesComponent{
 

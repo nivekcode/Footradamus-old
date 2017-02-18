@@ -3,7 +3,7 @@
  */
 
 import {Component, OnInit} from "@angular/core";
-import MessageInterceptor from "./interceptor/messageInterceptor";
+import MessageInterceptor from "./messageInterceptor";
 
 @Component({
   selector: 'messages',

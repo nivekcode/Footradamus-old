@@ -8,7 +8,7 @@ import {Subject, BehaviorSubject} from "rxjs";
 import error from "../../shared/model/error.model";
 
 @Injectable()
-export default class MessageInterceptor implements Interceptor{
+export default class HttpInterceptor implements Interceptor{
 
   public $errors: Subject<error> = new BehaviorSubject<error>(null);
 

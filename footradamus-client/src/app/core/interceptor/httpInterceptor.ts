@@ -6,11 +6,16 @@ import {Interceptor, InterceptedRequest, InterceptedResponse} from "ng2-intercep
 import {Injectable} from "@angular/core";
 import {Subject, BehaviorSubject} from "rxjs";
 import error from "../../shared/model/error.model";
+import MessageService from "../../shared/message/message.service";
 
 @Injectable()
 export default class HttpInterceptor implements Interceptor{
 
   public $errors: Subject<error> = new BehaviorSubject<error>(null);
+
+  constructor(private messageService: MessageService){
+    this.messageService.showSuccessMessage();
+  }
 
   public interceptBefore(request: InterceptedRequest): InterceptedRequest {
     return request;
@@ -20,10 +25,9 @@ export default class HttpInterceptor implements Interceptor{
     let isRequestOk = response.response.ok;
 
     if(!isRequestOk) {
-      this.$errors.next({
-        statusCode: response.response.status,
-        message: response.response.statusText
-      });
+      let errorTitile = `Oups!! A ${response.response.status} occured`;
+      let errorContent = response.response.statusText;
+      this.messageService.showErrorMessage(errorTitile, errorContent);
     }
     return response;
   }

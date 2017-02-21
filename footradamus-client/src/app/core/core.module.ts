@@ -10,9 +10,10 @@ import NavbarComponent from "./navbar/navabar.component";
 import HttpInterceptor from "./interceptor/httpInterceptor";
 import httpInterceptorFactory from "./interceptor/httpInterceptor.factory";
 import MessagesComponent from "./interceptor/messages.component";
+import SharedModule from "../shared/shared.model";
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, SharedModule],
   declarations: [NavbarComponent, MessagesComponent],
   exports: [NavbarComponent, MessagesComponent],
   providers: [

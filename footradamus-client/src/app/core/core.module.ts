@@ -3,23 +3,24 @@
  */
 import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
-import NavbarComponent from "./navbar/navabar.component";
 import {CommonModule} from "@angular/common";
-import MessageInterceptor from "./messages/messageInterceptor";
 import {Http, XHRBackend, RequestOptions} from "@angular/http";
-import messageInterceptorFactory from "./messages/messageInterceptor.factory";
-import MessagesComponent from "./messages/messages.component";
+
+import NavbarComponent from "./navbar/navabar.component";
+import HttpInterceptor from "./interceptor/httpInterceptor";
+import httpInterceptorFactory from "./interceptor/httpInterceptor.factory";
+import SharedModule from "../shared/shared.model";
 
 @NgModule({
-  imports: [CommonModule, RouterModule],
-  declarations: [NavbarComponent, MessagesComponent],
-  exports: [NavbarComponent, MessagesComponent],
+  imports: [CommonModule, RouterModule, SharedModule],
+  declarations: [NavbarComponent],
+  exports: [NavbarComponent],
   providers: [
-    MessageInterceptor,
+    HttpInterceptor,
     {
       provide: Http,
-      useFactory: messageInterceptorFactory,
-      deps: [XHRBackend, RequestOptions, MessageInterceptor]
+      useFactory: httpInterceptorFactory,
+      deps: [XHRBackend, RequestOptions, HttpInterceptor]
     }
   ]
 })

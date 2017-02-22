@@ -3,10 +3,10 @@
  */
 
 import {XHRBackend, RequestOptions} from "@angular/http";
-import MessageInterceptor from "./messageInterceptor";
+import HttpInterceptor from "./httpInterceptor";
 import {InterceptorService} from "ng2-interceptors";
 
-export default function messageInterceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions, httpInterceptor: MessageInterceptor) {
+export default function httpInterceptorFactory(xhrBackend: XHRBackend, requestOptions: RequestOptions, httpInterceptor: HttpInterceptor) {
   let service = new InterceptorService(xhrBackend, requestOptions);
   service.addInterceptor(httpInterceptor);
   return service;

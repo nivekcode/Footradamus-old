@@ -9,6 +9,7 @@ import {matchReducer} from "./reducers/match.reducer";
 import {environment} from "../environments/environment";
 import appRoutes from './app.routes';
 import CoreModule from "./core/core.module";
+import SharedModule from "./shared/shared.model";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import CoreModule from "./core/core.module";
     FormsModule,
     HttpModule,
     CoreModule,
+    SharedModule,
     StoreModule.provideStore({match: matchReducer}),
     appRoutes
   ],

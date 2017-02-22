@@ -12,11 +12,18 @@ export default class MessageService {
 
   }
 
-  public showSuccessMessage(): void {
-    console.log('Hier');
+  public showSuccessMessage(title: string, content: string): void {
+    this.notificationService.success(title, content);
   }
 
   public showErrorMessage(title: string, content: string): void {
+    //kk: Can not be done in default param - empty string does not get assigned
+    if(!title){
+      title = 'Oupps!!'
+    }
+    if(!content){
+      content = 'A unexpected error occured'
+    }
     this.notificationService.error(title, content);
   }
 }

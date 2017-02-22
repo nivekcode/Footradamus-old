@@ -9,13 +9,12 @@ import {Http, XHRBackend, RequestOptions} from "@angular/http";
 import NavbarComponent from "./navbar/navabar.component";
 import HttpInterceptor from "./interceptor/httpInterceptor";
 import httpInterceptorFactory from "./interceptor/httpInterceptor.factory";
-import MessagesComponent from "./interceptor/messages.component";
 import SharedModule from "../shared/shared.model";
 
 @NgModule({
   imports: [CommonModule, RouterModule, SharedModule],
-  declarations: [NavbarComponent, MessagesComponent],
-  exports: [NavbarComponent, MessagesComponent],
+  declarations: [NavbarComponent],
+  exports: [NavbarComponent],
   providers: [
     HttpInterceptor,
     {

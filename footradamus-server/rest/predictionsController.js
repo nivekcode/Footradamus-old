@@ -39,6 +39,7 @@ app.post('/predictions', (request, response) => {
     let newPrediction = request.body;
     predictionsModel.create(newPrediction);
     response.setHeader('Content-Type', 'application/json');
+    response.status(201);
     response.send(newPrediction);
 });
 

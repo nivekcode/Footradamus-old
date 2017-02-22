@@ -10,7 +10,7 @@ import {Component} from "@angular/core";
 export default class MessageComponent {
 
   readonly options = {
-    timeOut: 5000,
+    timeOut: 7000,
     animate: 'scale'
   }
 

@@ -9,7 +9,6 @@ import {NotificationsService} from "angular2-notifications/lib/notifications.ser
 export default class MessageService {
 
   constructor(private notificationService: NotificationsService){
-
   }
 
   public showSuccessMessage(title: string, content: string): void {

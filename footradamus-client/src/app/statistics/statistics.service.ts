@@ -26,6 +26,7 @@ export default class StatisticsService {
         predictions.forEach((prediction: prediction) => {
           this.calculateStatsForPrediction(prediction);
         });
+        this.$statistics.next(this.predictionStatistics);
       });
     return this.$statistics;
   }
@@ -50,7 +51,6 @@ export default class StatisticsService {
   private addStatsForCachedPredictions(prediction: prediction) {
     let wasPredictionCorrect = prediction.predictionHistory.correctlyPredicted;
     this.calculateStats(prediction, wasPredictionCorrect);
-    this.$statistics.next(this.predictionStatistics);
   }
 
   private addStatsForNewPredictions(prediction: prediction) {
@@ -60,7 +60,6 @@ export default class StatisticsService {
         let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
         this.calculateStats(prediction, wasPredictionCorrect);
         this.addPredictionToCache(prediction, wasPredictionCorrect);
-        this.$statistics.next(this.predictionStatistics);
       });
   }
 

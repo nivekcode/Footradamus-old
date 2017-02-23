@@ -6,9 +6,9 @@ import ChartService from "./chartService.interface";
 import predictionStatistics from "../../shared/model/predictionStatistics.model";
 import chartOptions from "../shared/chartOptions.model";
 
-export default class BarChartService implements ChartService{
+export default class BarChartService implements ChartService {
 
-  private readonly CHART_LABELS = ['Premier League', 'Bundesliga', 'LaLiga'];
+  private readonly CHART_LABELS = ['Premier League', 'Bundesliga', 'Primera División'];
   private readonly CORRECT_PREDICTION_LABEL = 'Correct Predictions';
   private readonly FALSE_PREDICTION_LABEL = 'False Predictions';
   private readonly HAS_LEGEND: boolean = true;
@@ -16,12 +16,12 @@ export default class BarChartService implements ChartService{
     scaleShowVerticalLines: false,
     responsive: true,
     scales: {
-            yAxes: [{
-                ticks: {
-                    stepSize: 1,
-                }
-            }]
+      yAxes: [{
+        ticks: {
+          stepSize: 1,
         }
+      }]
+    }
   };
   public chartColors: Array<any> = [
     {
@@ -52,15 +52,24 @@ export default class BarChartService implements ChartService{
     };
   }
 
-  private _getChartData(predictionStatistics: predictionStatistics){
+  private _getChartData(predictionStatistics: predictionStatistics) {
     let chartData: Array<any> = [];
     let correctPredictionsBarsData = {data: [], label: this.CORRECT_PREDICTION_LABEL};
     let falsePredictionsBarsData = {data: [], label: this.FALSE_PREDICTION_LABEL};
 
-    predictionStatistics.statisticsPerLeague.forEach(statsPerLeague => {
-      correctPredictionsBarsData.data.push(statsPerLeague.totalCorrectPredictions);
-      falsePredictionsBarsData.data.push(statsPerLeague.totalFalsePredictions);
-    });
+    this.CHART_LABELS.forEach(league => {
+      let stats = predictionStatistics.statisticsPerLeague.filter(statistics => statistics.leagueName === league);
+      if (stats.length === 0) {
+        correctPredictionsBarsData.data.push(0);
+        falsePredictionsBarsData.data.push(0);
+      }
+      else {
+        stats.forEach(statistic => {
+          correctPredictionsBarsData.data.push(statistic.totalCorrectPredictions);
+          falsePredictionsBarsData.data.push(statistic.totalFalsePredictions);
+        });
+      }
+    })
     chartData.push(correctPredictionsBarsData);
     chartData.push(falsePredictionsBarsData);
     return chartData;

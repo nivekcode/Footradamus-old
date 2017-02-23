@@ -1,5 +1,5 @@
-let uri = 'mongodb://localhost:27017/footradamus';
-//let uri = 'mongodb://footradmin:footradmin@ds046549.mlab.com:46549/footradamus';
+//let uri = 'mongodb://localhost:27017/footradamus';
+let uri = 'mongodb://footradmin:footradmin@ds046549.mlab.com:46549/footradamus';
 let mongoose = require('mongoose');
 
 mongoose.connect(uri);

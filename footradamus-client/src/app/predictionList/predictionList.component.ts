@@ -1,13 +1,24 @@
 /**
  * Created by kevinkreuzer on 22.01.17.
  */
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import PredictionListService from "./predictionList.service";
 import predictionTableEntry from "./predictionTableEntry.model";
 
 @Component({
   selector: 'prediction-list',
-  templateUrl: './predictionList.html'
+  templateUrl: './predictionList.html',
+  styles: [`
+       .prediction-table {
+           background-color: white;
+       }
+       
+       .prediction-table th {
+           background-color: mediumseagreen;
+           color: white;
+       }
+  `],
+  encapsulation: ViewEncapsulation.None
 })
 export default class PredictionListComponent implements OnInit{
 
@@ -22,16 +33,15 @@ export default class PredictionListComponent implements OnInit{
     {title: 'Actions', className: 'text-warning', name: 'actions'},
   ];
   public page: number = 1;
-  public itemsPerPage: number = 10;
+  public itemsPerPage: number = 1000;
   public maxSize: number = 5;
   public numPages: number = 1;
   public length: number = 0;
 
   public config: any = {
-    paging: true,
     sorting: {columns: this.columns},
     filtering: {filterString: ''},
-    className: ['table-striped', 'table-bordered']
+    className: ['prediction-table', 'table-striped', 'table-bordered']
   };
 
   private data: Array<predictionTableEntry> = [];

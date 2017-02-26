@@ -31,6 +31,7 @@
     "http-proxy": "^1.16.2",
     "mongodb": "^2.2.22",
     "mongoose": "^4.8.1",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "request": "^2.79.0"
   }
 }

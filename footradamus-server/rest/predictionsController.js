@@ -1,58 +1,43 @@
-let express = require('express');
-let bodyParser = require('body-parser');
-let cors = require('express-cors');
-let fs = require('fs');
 let predictionsModel = require('../db/db.js').Predictions;
 
-let app = express();
+module.exports = (footradamus) => {
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
-app.use(cors({
-    allowedOrigins: [
-        'localhost:4200',
-        'https://footradamus.firebaseapp.com'
-    ]
-}));
-
-app.get('/predictions', (request, response) => {
-  predictionsModel.find({}, (error, predictions) => {
-    response.setHeader('Content-Type', 'application/json');
-    response.send(predictions);
-  });
-});
-
-app.put('/predictions/:id', (request, response) => {
-    let id = request.params.id;
-    response.setHeader('Content-Type', 'application/json');
-    predictionsModel.findOneAndUpdate({_id: id}, request.body, (error, prediciton) => {
-      if (!error) {
-          response.send(request.body);
-      } else {
-          response.status(404).send(error);
-      }
+    footradamus.get('/predictions', (request, response) => {
+        predictionsModel.find({}, (error, predictions) => {
+            response.setHeader('Content-Type', 'application/json');
+            response.send(predictions);
+        });
     });
-});
 
-app.post('/predictions', (request, response) => {
-    let newPrediction = request.body;
-    predictionsModel.create(newPrediction);
-    response.setHeader('Content-Type', 'application/json');
-    response.status(201);
-    response.send(newPrediction);
-});
-
-app.delete('/predictions/:id', (request, response) => {
-    let id = request.params.id;
-    response.setHeader('Content-Type', 'application/json');
-    predictionsModel.findOneAndRemove({_id: id}, (error, deletedPrediction) => {
-      if (!error) {
-          response.send(deletedPrediction);
-      } else {
-          response.status(404).send(error);
-      }
+    footradamus.put('/predictions/:id', (request, response) => {
+        let id = request.params.id;
+        response.setHeader('Content-Type', 'application/json');
+        predictionsModel.findOneAndUpdate({_id: id}, request.body, (error) => {
+            if (!error) {
+                response.send(request.body);
+            } else {
+                response.status(404).send(error);
+            }
+        });
     });
-});
 
-app.listen(process.env.PORT || 3004, () => console.log('Server is up and running'));
+    footradamus.post('/predictions', (request, response) => {
+        let newPrediction = request.body;
+        predictionsModel.create(newPrediction);
+        response.setHeader('Content-Type', 'application/json');
+        response.status(201);
+        response.send(newPrediction);
+    });
+
+    footradamus.delete('/predictions/:id', (request, response) => {
+        let id = request.params.id;
+        response.setHeader('Content-Type', 'application/json');
+        predictionsModel.findOneAndRemove({_id: id}, (error, deletedPrediction) => {
+            if (!error) {
+                response.send(deletedPrediction);
+            } else {
+                response.status(404).send(error);
+            }
+        });
+    });
+}

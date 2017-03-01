@@ -23,10 +23,23 @@ module.exports = (footradamus) => {
 
     footradamus.post('/predictions', (request, response) => {
         let newPrediction = request.body;
-        predictionsModel.create(newPrediction);
-        response.setHeader('Content-Type', 'application/json');
-        response.status(201);
-        response.send(newPrediction);
+        predictionsModel.findOne({
+            homeTeam: newPrediction.homeTeam,
+            awayTeam: newPrediction.awayTeam,
+            matchDate: newPrediction.matchDate
+        }, (error, found) => {
+            if (found === null) {
+                predictionsModel.create(newPrediction);
+                response.setHeader('Content-Type', 'application/json');
+                response.status(201);
+                response.send(newPrediction);
+            }
+            else{
+                response.status(400);
+                response.send(`There is already a prediction for the game between 
+                ${newPrediction.homeTeam} and ${newPrediction.awayTeam} on ${newPrediction.matchDate}`);
+            }
+        });
     });
 
     footradamus.delete('/predictions/:id', (request, response) => {

@@ -2,7 +2,8 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let cors = require('express-cors');
 let createPredictionsController = require('./rest/predictionsController');
-let createReverseProxy = require('./rest/footballAPI.reverseProxy');
+let createReverseProxy = require('./rest/footballAPI.reverseProxy.js');
+let configLoader = require('../environments/environmentConfig.loader');
 
 let footradamus = express();
 
@@ -18,5 +19,7 @@ footradamus.use(cors({
 
 createPredictionsController(footradamus);
 createReverseProxy(footradamus);
+
+console.log('Environment', configLoader.loadEnvironment());
 
 footradamus.listen(process.env.PORT || 3004, () => console.log('Server is up and running'));

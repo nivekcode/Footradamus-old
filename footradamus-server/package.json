@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node footradamus.backend.js",
-    "dev": "nodemon footradamus.backend.js"
+    "dev": "NODE_ENV=dev nodemon ./src/app/footradamus.backend.js"
   },
   "repository": {
     "type": "git",

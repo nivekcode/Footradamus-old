@@ -17,6 +17,4 @@ let loadEnvironments = () => {
     }
 }
 
-module.exports = {
-    loadEnvironment: loadEnvironments
-}
+module.exports = loadEnvironments;

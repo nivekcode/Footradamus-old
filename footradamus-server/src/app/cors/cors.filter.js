@@ -12,6 +12,4 @@ let createCorsFilter = footradamus => {
     }));
 }
 
-module.exports = {
-    createCorsFilter: createCorsFilter
-}
+module.exports = createCorsFilter;

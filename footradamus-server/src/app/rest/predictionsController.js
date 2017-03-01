@@ -1,6 +1,6 @@
-let predictionsModel = require('../db/db.js').Predictions;
+let predictionsModel = require('../db/schemas/prediction.schema.js').Predictions;
 
-module.exports = (footradamus) => {
+let createPredictionsController = (footradamus) => {
 
     footradamus.get('/predictions', (request, response) => {
         predictionsModel.find({}, (error, predictions) => {
@@ -53,3 +53,5 @@ module.exports = (footradamus) => {
         });
     });
 }
+
+module.exports = createPredictionsController;

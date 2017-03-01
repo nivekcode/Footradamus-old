@@ -25,4 +25,8 @@ export default class MessageService {
     }
     this.notificationService.error(title, content);
   }
+
+  public showInfoMessage(title: string, content: string): void{
+    this.notificationService.info(title, content);
+  }
 }

@@ -35,9 +35,8 @@ module.exports = (footradamus) => {
                 response.send(newPrediction);
             }
             else{
-                response.status(400);
-                response.send(`There is already a prediction for the game between 
-                ${newPrediction.homeTeam} and ${newPrediction.awayTeam} on ${newPrediction.matchDate}`);
+                let errorMessage = `There is already a prediction for the game between ${newPrediction.homeTeam} and ${newPrediction.awayTeam} on ${newPrediction.matchDate}`;
+                response.status(409).send({error: errorMessage});
             }
         });
     });

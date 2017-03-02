@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node footradamus.backend.js",
+    "start": "NODE_ENV=prod nodemon ./src/app/footradamus.backend.js",
     "dev": "NODE_ENV=dev nodemon ./src/app/footradamus.backend.js",
     "prod": "NODE_ENV=prod nodemon ./src/app/footradamus.backend.js"
   },

@@ -25,7 +25,7 @@ export default class LogoService {
     switch (leagueID) {
       case this.PREMIER_LEAGUE_ID:
         let imageName = `${teamName.replace(/ /g, "-").toLowerCase()}.png`;
-        return `http://localhost:3004/${this.PREMIER_LEAGUE_BASE_URL}/${imageName}`;
+        return `${this.config.predictionBackendUrl}${this.PREMIER_LEAGUE_BASE_URL}/${imageName}`;
       case this.LALIGA_LEAGUE_ID:
         return this.laLigaLogos.getLogoUrl(teamName);
       case this.BUNDESLIGA_LEAGUE_ID:

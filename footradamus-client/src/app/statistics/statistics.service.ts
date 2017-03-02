@@ -69,7 +69,7 @@ export default class StatisticsService {
         'correctlyPredicted': wasPredictionCorrect
       }
     }
-    this.http.put(`${this.config.predictionBackendUrl}/${prediction._id}`, predictionHistory).subscribe();
+    this.http.put(`${this.config.predictionBackendUrl}predictions/${prediction._id}`, predictionHistory).subscribe();
   }
 
   private calculateStats(prediction: prediction, wasPredictionCorrect: boolean) {
@@ -122,7 +122,7 @@ export default class StatisticsService {
   }
 
   private _getStoredPredictions() {
-    return this.http.get(this.config.predictionBackendUrl)
+    return this.http.get(`${this.config.predictionBackendUrl}predictions`)
       .map(res => res.json());
   }
 

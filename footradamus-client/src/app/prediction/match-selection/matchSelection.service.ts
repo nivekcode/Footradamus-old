@@ -25,10 +25,7 @@ export default class MatchSelectionService {
   public getLeagues(): Observable<Array<league>> {
     return this.http.get(`${this.config.backendUrl}competitions?${this.config.authParam}`)
       .map(res => res.json())
-      .map(res => {
-          return this._getFilteredLeagues(res);
-        }
-      );
+      .map(res => this._getFilteredLeagues(res));
   }
 
   private _getFilteredLeagues(leagues){

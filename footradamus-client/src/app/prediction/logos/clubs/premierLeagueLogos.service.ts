@@ -22,7 +22,7 @@ export default class PremierLeagueLogos implements LogoServiceBase{
         return `${this.URL_TWO}watford-fc.png`;
       case 'southampton':
         return `${this.URL_ONE}southampton-fc.png`;
-      case 'west brom':
+      case 'westbrom':
         return `${this.URL_ONE}west-bromwich-albion-hd-logo.png`;
       case 'bournemouth':
         return `${this.URL_TWO}afc-bournemouth.png`;

@@ -10,6 +10,7 @@ let env = loadEnvironment();
 let footradamus = express();
 footradamus.use(bodyParser.urlencoded({extended: true}));
 footradamus.use(bodyParser.json());
+footradamus.use(express.static('src/images'));
 
 corsFilter(footradamus);
 createPredictionsController(footradamus);

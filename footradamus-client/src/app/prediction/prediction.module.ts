@@ -22,7 +22,6 @@ import MatchSelectionService from './match-selection/matchSelection.service';
 import LeagueLogoService from './logos/leagues/leagueLogos.service';
 import BundesligaLogos from './logos/clubs/bundesligaLogos.service';
 import LaLigaLogos from './logos/clubs/laLigaLogos.service';
-import PremierLeagueLogos from './logos/clubs/premierLeagueLogos.service';
 import LogoService from './logos/clubs/logoDispatcher.service';
 
 @NgModule({
@@ -49,7 +48,6 @@ import LogoService from './logos/clubs/logoDispatcher.service';
     StatisticService,
     MatchSelectionService,
     LogoService,
-    PremierLeagueLogos,
     LaLigaLogos,
     BundesligaLogos,
     LeagueLogoService

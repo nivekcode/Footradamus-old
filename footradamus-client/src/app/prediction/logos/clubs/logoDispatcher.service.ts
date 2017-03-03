@@ -3,7 +3,6 @@
  */
 
 import {Injectable, Inject} from "@angular/core";
-import PremierLeagueLogos from "./premierLeagueLogos.service";
 import LaLigaLogos from "./laLigaLogos.service";
 import BundesligaLogos from "./bundesligaLogos.service";
 
@@ -15,23 +14,32 @@ export default class LogoService {
   private BUNDESLIGA_LEAGUE_ID: string = '1229';
 
   private readonly PREMIER_LEAGUE_BASE_URL = 'premier-league';
+  private readonly PRIMERA_DIVISION_BASE_URL = 'primera-division';
 
-  constructor(private premierLeagueLogos: PremierLeagueLogos,
-              private laLigaLogos: LaLigaLogos, private bundesligaLogos: BundesligaLogos,
+  constructor(private laLigaLogos: LaLigaLogos, private bundesligaLogos: BundesligaLogos,
               @Inject('config') private config) {
   }
 
   getLogo(leagueID: string, teamName: string) {
+    let imageName = this.getImageName(teamName);
     switch (leagueID) {
       case this.PREMIER_LEAGUE_ID:
-        let imageName = `${teamName.replace(/ /g, "-").toLowerCase()}.png`;
+        console.log('ImageName', imageName);
         return `${this.config.predictionBackendUrl}${this.PREMIER_LEAGUE_BASE_URL}/${imageName}`;
       case this.LALIGA_LEAGUE_ID:
-        return this.laLigaLogos.getLogoUrl(teamName);
+        return `${this.config.predictionBackendUrl}${this.PRIMERA_DIVISION_BASE_URL}/${imageName}`;
       case this.BUNDESLIGA_LEAGUE_ID:
         return this.bundesligaLogos.getLogoUrl(teamName);
       default:
         return null;
     }
+  }
+
+  private getImageName(teamName: string) {
+    let imageName = `${teamName
+      .replace(/ /g, "-")
+      .split('.').join("")
+      .toLowerCase()}.png`;
+    return imageName;
   }
 }

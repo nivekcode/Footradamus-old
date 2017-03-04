@@ -1,9 +1,7 @@
 /**
  * Created by kevinkreuzer on 05.12.16.
  */
-
 import {Injectable, Inject} from "@angular/core";
-import BundesligaLogos from "./bundesligaLogos.service";
 
 @Injectable()
 export default class LogoService {
@@ -16,8 +14,7 @@ export default class LogoService {
   private readonly PRIMERA_DIVISION_BASE_URL = 'primera-division';
   private readonly BUNDESLIGA_BASE_URL = 'bundesliga';
 
-  constructor(private bundesligaLogos: BundesligaLogos,
-              @Inject('config') private config) {
+  constructor(@Inject('config') private config) {
   }
 
   getLogo(leagueID: string, teamName: string) {

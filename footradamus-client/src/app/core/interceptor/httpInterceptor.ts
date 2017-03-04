@@ -10,6 +10,8 @@ import MessageService from "../../shared/message/message.service";
 @Injectable()
 export default class HttpInterceptor implements Interceptor {
 
+  private readonly NO_MATCHES_FOUND_MESSAGE = 'There are no matches at the moment or we did not find matches that match the provided parameters';
+
   constructor(private messageService: MessageService) {
   }
 
@@ -29,12 +31,25 @@ export default class HttpInterceptor implements Interceptor {
   }
 
   private handleNokResponses(response: InterceptedResponse) {
+
+    console.log('Nok Response', response);
+
     if (response.response.status === HTTP_STATUS_CODES.CONFLICT) {
       this.handleWarnings(response);
     }
     else {
-      this.handleErrorResponses(response);
+      let message = response.response.json().message;
+      if (this.isItANoGameFoundMessage(message)) {
+        this.handleNoGameFoundMessages(message);
+      }
+      else {
+        this.handleErrorResponses(response);
+      }
     }
+  }
+
+  private isItANoGameFoundMessage(message: string) {
+    return message === this.NO_MATCHES_FOUND_MESSAGE;
   }
 
   private handleSuccessResponses(response: InterceptedResponse): void {
@@ -62,5 +77,10 @@ export default class HttpInterceptor implements Interceptor {
     let errorTitile = `Look up!!`;
     let errorContent = response.response.json().error;
     this.messageService.showInfoMessage(errorTitile, errorContent);
+  }
+
+  private handleNoGameFoundMessages(message){
+    let errorTitile = `Look up!! One of the games was not found!!`;
+    this.messageService.showInfoMessage(errorTitile, message);
   }
 }

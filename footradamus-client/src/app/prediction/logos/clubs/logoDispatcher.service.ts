@@ -14,6 +14,7 @@ export default class LogoService {
 
   private readonly PREMIER_LEAGUE_BASE_URL = 'premier-league';
   private readonly PRIMERA_DIVISION_BASE_URL = 'primera-division';
+  private readonly BUNDESLIGA_BASE_URL = 'bundesliga';
 
   constructor(private bundesligaLogos: BundesligaLogos,
               @Inject('config') private config) {
@@ -27,7 +28,7 @@ export default class LogoService {
       case this.LALIGA_LEAGUE_ID:
         return `${this.config.predictionBackendUrl}${this.PRIMERA_DIVISION_BASE_URL}/${imageName}`;
       case this.BUNDESLIGA_LEAGUE_ID:
-        return this.bundesligaLogos.getLogoUrl(teamName);
+        return `${this.config.predictionBackendUrl}${this.BUNDESLIGA_BASE_URL}/${imageName}`;
       default:
         return null;
     }

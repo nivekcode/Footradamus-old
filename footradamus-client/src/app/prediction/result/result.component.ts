@@ -4,7 +4,7 @@
 
 import {Component} from "@angular/core";
 import PredictionService from "../prediction.service";
-import LogoService from "../logos/clubs/logoDispatcher.service";
+import ClubLogoService from "../logos/clubs/clubLogo.service";
 import {Store} from "@ngrx/store";
 import match from "../../shared/model/match.model";
 
@@ -18,7 +18,7 @@ export default class ResultComponent {
   imageUrl: string = null;
   winningTeam: string = null;
 
-  constructor(private predictionService: PredictionService, private logoService: LogoService,
+  constructor(private predictionService: PredictionService, private logoService: ClubLogoService,
               private store: Store<match>) {
     let leagueId: string = null;
 

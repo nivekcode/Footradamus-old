@@ -4,7 +4,7 @@
 
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
-import LogoService from "../logos/clubs/logoDispatcher.service";
+import ClubLogoService from "../logos/clubs/clubLogo.service";
 
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map'
@@ -19,7 +19,7 @@ export default class MatchSelectionService {
   private PRIMERA_DIVISION = 'Primera División';
   private BUNDESLIGA = 'Bundesliga';
 
-  constructor(private http: Http, @Inject('config') private config, private logoService: LogoService) {
+  constructor(private http: Http, @Inject('config') private config, private logoService: ClubLogoService) {
   }
 
   public getLeagues(): Observable<Array<league>> {

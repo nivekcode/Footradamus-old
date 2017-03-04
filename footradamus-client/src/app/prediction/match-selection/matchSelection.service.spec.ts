@@ -6,10 +6,7 @@ import {TestBed, inject} from "@angular/core/testing";
 import {HttpModule, Http, BaseRequestOptions, ResponseOptions, Response} from "@angular/http";
 import MatchSelectionService from "./matchSelection.service";
 import {MockBackend} from "@angular/http/testing";
-import PremierLeagueLogos from "../logos/clubs/premierLeagueLogos.service";
-import LogoService from "../logos/clubs/logoDispatcher.service";
-import LaLigaLogos from "../logos/clubs/laLigaLogos.service";
-import BundesligaLogos from "../logos/clubs/bundesligaLogos.service";
+import LogoService from "../logo.service";
 
 describe('Match Selection Service', () => {
 
@@ -19,9 +16,6 @@ describe('Match Selection Service', () => {
       providers: [
         {provide: 'config', useValue: 'http://unitTest:3000/'},
         LogoService,
-        LaLigaLogos,
-        BundesligaLogos,
-        PremierLeagueLogos,
         MatchSelectionService,
         {
           provide: Http,

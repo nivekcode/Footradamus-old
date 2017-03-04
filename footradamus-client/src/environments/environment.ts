@@ -7,5 +7,5 @@ export const environment = {
   production: false,
   backendUrl: 'http://localhost:3000/',
   authParam: '',
-  predictionBackendUrl: 'http://localhost:3004/predictions'
+  predictionBackendUrl: 'http://localhost:3004/'
 }

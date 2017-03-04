@@ -5,7 +5,7 @@
 import {Component, Output, EventEmitter} from "@angular/core";
 import MatchSelectionService from "../matchSelection.service";
 import league from "../../../shared/model/league.model";
-import LeagueLogoService from "../../logos/leagues/leagueLogos.service";
+import LogoService from "../../logo.service";
 
 @Component({
   selector: 'league-selection',
@@ -18,7 +18,7 @@ export default class LeagueSelectionComponent {
   private counter: number = 0;
   @Output() onLeagueChange = new EventEmitter<league>();
 
-  constructor(private matchSelectionService: MatchSelectionService, private leagueLogoService: LeagueLogoService) {
+  constructor(private matchSelectionService: MatchSelectionService, protected logoService: LogoService) {
     this.matchSelectionService.getLeagues()
       .subscribe((res: Array<league>) => {
           this.leagues = res;

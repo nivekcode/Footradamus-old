@@ -19,11 +19,7 @@ import SelectorComponent from './match-selection/team-selection/team-selector/te
 import TeamSelectionComponent from './match-selection/team-selection/teamSelection.component';
 import MatchSelectionComponent from './match-selection/matchSelection.component';
 import MatchSelectionService from './match-selection/matchSelection.service';
-import LeagueLogoService from './logos/leagues/leagueLogos.service';
-import BundesligaLogos from './logos/clubs/bundesligaLogos.service';
-import LaLigaLogos from './logos/clubs/laLigaLogos.service';
-import PremierLeagueLogos from './logos/clubs/premierLeagueLogos.service';
-import LogoService from './logos/clubs/logoDispatcher.service';
+import LogoService from './logo.service';
 
 @NgModule({
   declarations: [
@@ -48,11 +44,7 @@ import LogoService from './logos/clubs/logoDispatcher.service';
     PredictionService,
     StatisticService,
     MatchSelectionService,
-    LogoService,
-    PremierLeagueLogos,
-    LaLigaLogos,
-    BundesligaLogos,
-    LeagueLogoService
+    LogoService
   ]
 })
 export default class PredictionModule {

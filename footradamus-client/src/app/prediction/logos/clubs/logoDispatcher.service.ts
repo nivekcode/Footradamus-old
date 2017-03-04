@@ -3,7 +3,6 @@
  */
 
 import {Injectable, Inject} from "@angular/core";
-import LaLigaLogos from "./laLigaLogos.service";
 import BundesligaLogos from "./bundesligaLogos.service";
 
 @Injectable()
@@ -16,7 +15,7 @@ export default class LogoService {
   private readonly PREMIER_LEAGUE_BASE_URL = 'premier-league';
   private readonly PRIMERA_DIVISION_BASE_URL = 'primera-division';
 
-  constructor(private laLigaLogos: LaLigaLogos, private bundesligaLogos: BundesligaLogos,
+  constructor(private bundesligaLogos: BundesligaLogos,
               @Inject('config') private config) {
   }
 
@@ -24,7 +23,6 @@ export default class LogoService {
     let imageName = this.getImageName(teamName);
     switch (leagueID) {
       case this.PREMIER_LEAGUE_ID:
-        console.log('ImageName', imageName);
         return `${this.config.predictionBackendUrl}${this.PREMIER_LEAGUE_BASE_URL}/${imageName}`;
       case this.LALIGA_LEAGUE_ID:
         return `${this.config.predictionBackendUrl}${this.PRIMERA_DIVISION_BASE_URL}/${imageName}`;

@@ -8,7 +8,7 @@ import {NotificationsService} from "angular2-notifications/lib/notifications.ser
 @Injectable()
 export default class MessageService {
 
-  constructor(private notificationService: NotificationsService){
+  constructor(private notificationService: NotificationsService) {
   }
 
   public showSuccessMessage(title: string, content: string): void {
@@ -17,16 +17,20 @@ export default class MessageService {
 
   public showErrorMessage(title: string, content: string): void {
     //kk: Can not be done in default param - empty string does not get assigned
-    if(!title){
+    if (!title) {
       title = 'Oupps!!'
     }
-    if(!content){
+    if (!content) {
       content = 'A unexpected error occured'
     }
     this.notificationService.error(title, content);
   }
 
-  public showInfoMessage(title: string, content: string): void{
+  public showInfoMessage(title: string, content: string): void {
     this.notificationService.info(title, content);
+  }
+
+  public showAlertMessage(title: string, content: string): void {
+    this.notificationService.alert(title, content);
   }
 }

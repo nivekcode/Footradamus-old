@@ -8,6 +8,7 @@ import prediction from "../shared/model/prediction.model";
 import predictionStatistics from "../shared/model/predictionStatistics.model";
 import {Subject} from "rxjs";
 import {leaguePredictions} from "../shared/model/predictionStatistics.model";
+import MessageService from "../shared/message/message.service";
 
 @Injectable()
 export default class StatisticsService {
@@ -15,7 +16,7 @@ export default class StatisticsService {
   private predictionStatistics: predictionStatistics;
   private $statistics: Subject<predictionStatistics> = new Subject<predictionStatistics>();
 
-  constructor(private http: Http, @Inject('config') private config) {
+  constructor(private http: Http, @Inject('config') private config, private messageService: MessageService) {
     this.initPredictionStatistics();
   }
 
@@ -26,7 +27,6 @@ export default class StatisticsService {
         predictions.forEach((prediction: prediction) => {
           this.calculateStatsForPrediction(prediction);
         });
-        this.$statistics.next(this.predictionStatistics);
       });
     return this.$statistics;
   }
@@ -55,12 +55,32 @@ export default class StatisticsService {
 
   private addStatsForNewPredictions(prediction: prediction) {
     this._getMatchStatistics(prediction)
-      .subscribe(matchStatistics => {
-        let actualWinner = this._getWinningTeam(matchStatistics[0]);
-        let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
-        this.calculateStats(prediction, wasPredictionCorrect);
-        this.addPredictionToCache(prediction, wasPredictionCorrect);
+      .subscribe((matchStatistics: any) => {
+        if (this.isGameAlreadyPlayed(matchStatistics[0])) {
+          this.processAlreadyPlayedGames(matchStatistics[0], prediction);
+        }
+        else {
+          this.showMessageForNotYetFinishedGames(matchStatistics[0]);
+        }
       });
+  }
+
+  private showMessageForNotYetFinishedGames(matchStatistics: any){
+    let title = 'Not all games have been played yet';
+    let message = `The game between ${matchStatistics.localteam_name} and ${matchStatistics.visitorteam_name}
+                        on ${matchStatistics.formatted_date} at ${matchStatistics.status} has not yet finished.`;
+    this.messageService.showAlertMessage(title, message);
+  }
+
+  private processAlreadyPlayedGames(matchStatistics: any, prediction: prediction) {
+    let actualWinner = this._getWinningTeam(matchStatistics);
+    let wasPredictionCorrect = this._wasPredictionCorrect(prediction.winner, actualWinner);
+    this.calculateStats(prediction, wasPredictionCorrect);
+    this.addPredictionToCache(prediction, wasPredictionCorrect);
+  }
+
+  private isGameAlreadyPlayed(matchstatistics: any) {
+    return matchstatistics.localteam_score !== '?';
   }
 
   private addPredictionToCache(prediction: prediction, wasPredictionCorrect: boolean) {
@@ -75,6 +95,7 @@ export default class StatisticsService {
   private calculateStats(prediction: prediction, wasPredictionCorrect: boolean) {
     this._calculateTotals(wasPredictionCorrect, this.predictionStatistics);
     this._calculateLeagueStats(prediction, wasPredictionCorrect);
+    this.$statistics.next(this.predictionStatistics);
   }
 
   private isAlreadyPredicted(prediction: prediction) {
@@ -108,7 +129,6 @@ export default class StatisticsService {
   private _getWinningTeam(matchStatistics) {
     let homeTeamScore: number = parseInt(matchStatistics.localteam_score);
     let awayTeamScore: number = parseInt(matchStatistics.visitorteam_score);
-
     if (homeTeamScore > awayTeamScore) {
       return matchStatistics.localteam_name;
     }

@@ -31,9 +31,6 @@ export default class HttpInterceptor implements Interceptor {
   }
 
   private handleNokResponses(response: InterceptedResponse) {
-
-    console.log('Nok Response', response);
-
     if (response.response.status === HTTP_STATUS_CODES.CONFLICT) {
       this.handleWarnings(response);
     }

@@ -19,8 +19,7 @@ import SelectorComponent from './match-selection/team-selection/team-selector/te
 import TeamSelectionComponent from './match-selection/team-selection/teamSelection.component';
 import MatchSelectionComponent from './match-selection/matchSelection.component';
 import MatchSelectionService from './match-selection/matchSelection.service';
-import LeagueLogoService from './logos/leagues/leagueLogos.service';
-import ClubLogoService from './logos/clubs/clubLogo.service';
+import LogoService from './logo.service';
 
 @NgModule({
   declarations: [
@@ -45,8 +44,7 @@ import ClubLogoService from './logos/clubs/clubLogo.service';
     PredictionService,
     StatisticService,
     MatchSelectionService,
-    ClubLogoService,
-    LeagueLogoService
+    LogoService
   ]
 })
 export default class PredictionModule {

@@ -6,7 +6,7 @@ import {TestBed, inject} from "@angular/core/testing";
 import {HttpModule, Http, BaseRequestOptions, ResponseOptions, Response} from "@angular/http";
 import MatchSelectionService from "./matchSelection.service";
 import {MockBackend} from "@angular/http/testing";
-import LogoService from "../logos/clubs/clubLogo.service";
+import LogoService from "../logo.service";
 
 describe('Match Selection Service', () => {
 

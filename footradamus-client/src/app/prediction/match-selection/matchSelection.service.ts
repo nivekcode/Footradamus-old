@@ -4,7 +4,7 @@
 
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
-import ClubLogoService from "../logos/clubs/clubLogo.service";
+import ClubLogoService from "../logo.service";
 
 import {Observable} from "rxjs";
 import 'rxjs/add/operator/map'

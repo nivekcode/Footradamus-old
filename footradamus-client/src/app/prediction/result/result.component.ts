@@ -4,7 +4,7 @@
 
 import {Component} from "@angular/core";
 import PredictionService from "../prediction.service";
-import ClubLogoService from "../logos/clubs/clubLogo.service";
+import ClubLogoService from "../logo.service";
 import {Store} from "@ngrx/store";
 import match from "../../shared/model/match.model";
 

@@ -12,25 +12,36 @@ import predictionTableEntry from "./predictionTableEntry.model";
        .prediction-table {
            background-color: white;
        }
-       
        .prediction-table th {
            background-color: mediumseagreen;
            color: white;
        }
+       
+       .sorting-table {
+            top: 0px;
+            display: table-cell;
+            cursor: pointer;
+       }
+       
+       .row-header {
+            font-family: 'Glyphicons Halflings';
+            font-style: italic;
+            font-size: larger;
+       }
   `],
   encapsulation: ViewEncapsulation.None
 })
-export default class PredictionListComponent implements OnInit{
+export default class PredictionListComponent implements OnInit {
 
   private readonly ACTION_COLUMN_NAME: string = 'actions';
   public rows: Array<any> = [];
   public columns: Array<any> = [
-    {title: 'League', name: 'leagueName', filtering: {filterString: '', placeholder: 'Filter by League'}},
-    {title: 'Hometeam', name: 'homeTeam', filtering: {filterString: '', placeholder: 'Filter by HomeTeam'}},
-    {title: 'AwayTeam', name: 'awayTeam', filtering: {filterString: '', placeholder: 'Filter by AwayTeam'}},
-    {title: 'Predicted Winner', name: 'winner', sort: '', filtering: {filterString: '', placeholder: 'Filter by winner.'}},
-    {title: 'Match date', className: 'text-warning', name: 'matchDate', filtering: {filterString: '', placeholder: 'Filter by match date.'}},
-    {title: 'Actions', className: 'text-warning', name: 'actions'},
+    {title: 'League', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'leagueName', filtering: {filterString: '', placeholder: 'Filter by League'}},
+    {title: 'Hometeam', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'homeTeam', filtering: {filterString: '', placeholder: 'Filter by HomeTeam'}},
+    {title: 'AwayTeam', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'awayTeam', filtering: {filterString: '', placeholder: 'Filter by AwayTeam'}},
+    {title: 'Pred.Winner', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'winner', filtering: {filterString: '', placeholder: 'Filter by winner.'}},
+    {title: 'Matchdate', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'matchDate', filtering: {filterString: '', placeholder: 'Filter by match date.'}},
+    {title: 'Actions', className: 'row-header', name: 'actions'},
   ];
   public page: number = 1;
   public itemsPerPage: number = 1000;
@@ -148,7 +159,7 @@ export default class PredictionListComponent implements OnInit{
 
   public onCellClick(data: any): any {
     let column = data.column;
-    if(column === this.ACTION_COLUMN_NAME){
+    if (column === this.ACTION_COLUMN_NAME) {
       let id = data.row.id;
       this.predictionListService.deletePrediction(id)
         .subscribe(() => {
@@ -159,7 +170,7 @@ export default class PredictionListComponent implements OnInit{
     }
   }
 
-  private getIndexOfElement(id: string){
+  private getIndexOfElement(id: string) {
     return this.data.findIndex((prediction: predictionTableEntry) => prediction.id === id);
   }
 }

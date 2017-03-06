@@ -27,9 +27,9 @@ export default class PredictionListComponent implements OnInit{
   public columns: Array<any> = [
     {title: 'League', name: 'leagueName', filtering: {filterString: '', placeholder: 'Filter by League'}},
     {title: 'Hometeam', name: 'homeTeam', filtering: {filterString: '', placeholder: 'Filter by HomeTeam'}},
-    {title: 'AwayTeam', name: 'awayTeam', sort: 'asc'},
+    {title: 'AwayTeam', name: 'awayTeam', filtering: {filterString: '', placeholder: 'Filter by AwayTeam'}},
     {title: 'Predicted Winner', name: 'winner', sort: '', filtering: {filterString: '', placeholder: 'Filter by winner.'}},
-    {title: 'Match date', className: 'text-warning', name: 'matchDate'},
+    {title: 'Match date', className: 'text-warning', name: 'matchDate', filtering: {filterString: '', placeholder: 'Filter by match date.'}},
     {title: 'Actions', className: 'text-warning', name: 'actions'},
   ];
   public page: number = 1;

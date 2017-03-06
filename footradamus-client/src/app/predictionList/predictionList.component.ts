@@ -130,7 +130,7 @@ export default class PredictionListComponent implements OnInit {
     filteredData.forEach((item: any) => {
       let flag = false;
       this.columns.forEach((column: any) => {
-        if (item[column.name].toString().match(this.config.filtering.filterString)) {
+        if (item[column.name].toString().toLowerCase().match(this.config.filtering.filterString)) {
           flag = true;
         }
       });
@@ -144,10 +144,10 @@ export default class PredictionListComponent implements OnInit {
   }
 
   public onChangeTable(config: any, page: any = {page: this.page, itemsPerPage: this.itemsPerPage}): any {
+    config.filtering.filterString = config.filtering.filterString.toLowerCase();
     if (config.filtering) {
       Object.assign(this.config.filtering, config.filtering);
     }
-
     if (config.sorting) {
       Object.assign(this.config.sorting, config.sorting);
     }

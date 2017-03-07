@@ -2,8 +2,8 @@
  * Created by kevinkreuzer on 07.03.17.
  */
 let jwt = require('jsonwebtoken');
-let USERNAME = 'footradminus';
-let PASSWORD = 'footradminus';
+let USERNAME = 'footradmin';
+let PASSWORD = 'footradmin';
 
 let isUserAdmin = (username, password) => {
     return username === USERNAME && password === PASSWORD

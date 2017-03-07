@@ -30,14 +30,20 @@ export default class PredictionListService {
         awayTeam: prediction.awayTeam,
         winner: prediction.winner,
         matchDate: prediction.matchDate,
+        wasPredicted: this.getGlyphiconForPrediction(prediction.predictionHistory),
         actions: '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'
       });
     });
-
     return tableData;
   }
 
-  public deletePrediction(id: number){
+  private getGlyphiconForPrediction(predictionsHistory: any) {
+    let allreadyPredictedGlypicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
+    let notYetPredictedGlypicon = '<span class="glyphicon glyphicon-remove" aria-hidden="true">';
+    return predictionsHistory ? allreadyPredictedGlypicon : notYetPredictedGlypicon;
+  }
+
+  public deletePrediction(id: number) {
     return this.http.delete(`${this.config.predictionBackendUrl}predictions/${id}`);
   }
 }

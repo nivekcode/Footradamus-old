@@ -1,9 +1,15 @@
 .prediction-table {
   background-color: white;
 }
+
 .prediction-table th {
   background-color: mediumseagreen;
   color: white;
+}
+
+/*Selects the last two childs */
+.prediction-table td:nth-last-child(-n+2) {
+  text-align: center;
 }
 
 .sorting-table {

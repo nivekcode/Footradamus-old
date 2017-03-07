@@ -31,17 +31,17 @@ export default class PredictionListService {
         awayTeam: prediction.awayTeam,
         winner: prediction.winner,
         matchDate: prediction.matchDate,
-        wasPredicted: this.getWasPredictedGlyphicon(prediction.predictionHistory),
+        wasPredicted: this.getGlyphiconForPrediction(prediction.predictionHistory),
         actions: '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'
       });
     });
     return tableData;
   }
 
-  private getWasPredictedGlyphicon(predictionsHistory: any) {
-    let wasPredictedGlypicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
+  private getGlyphiconForPrediction(predictionsHistory: any) {
+    let allreadyPredictedGlypicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
     let notYetPredictedGlypicon = '<span class="glyphicon glyphicon-remove" aria-hidden="true">';
-    return predictionsHistory ? wasPredictedGlypicon : notYetPredictedGlypicon;
+    return predictionsHistory ? allreadyPredictedGlypicon : notYetPredictedGlypicon;
   }
 
   public deletePrediction(id: number) {

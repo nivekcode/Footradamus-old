@@ -1,11 +1,28 @@
 /**
  * Created by kevinkreuzer on 07.03.17.
  */
+let jwt = require('jsonwebtoken');
+let USERNAME = 'footradminus';
+let PASSWORD = 'footradminus';
+
+let isUserAdmin = (username, password) => {
+    return username === USERNAME && password === PASSWORD
+}
+
+let getJWTToken = () => jwt.sign({
+    data: 'footradmin'
+}, 'footrecret', {expiresIn: '1h'});
 
 let createAdminLoginController = (footradamus) => {
     footradamus.post('/adminlogin', (request, response) => {
-        console.log('Im Login', request.body);
-        response.send('Okay');
+        response.setHeader('Content-Type', 'application/json');
+        if (isUserAdmin(request.body.username, request.body.password)) {
+            let token = getJWTToken();
+            response.send({token});
+        }
+        else {
+            response.status(401).send({error: 'Wrong username or password'});
+        }
     });
 }
 

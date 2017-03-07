@@ -2,6 +2,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let corsFilter = require('./cors/cors.filter');
 let database = require('./db/db');
+let createAdminLoginController = require('./rest/adminloginController');
 let createPredictionsController = require('./rest/predictionsController');
 let createReverseProxy = require('./rest/footballAPI.reverseProxy.js');
 let loadEnvironment = require('../environments/environmentConfig.loader');
@@ -13,6 +14,7 @@ footradamus.use(bodyParser.json());
 footradamus.use(express.static('src/images'));
 
 corsFilter(footradamus);
+createAdminLoginController(footradamus);
 createPredictionsController(footradamus);
 createReverseProxy(footradamus);
 

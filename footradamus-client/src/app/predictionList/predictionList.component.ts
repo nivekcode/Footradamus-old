@@ -8,27 +8,7 @@ import predictionTableEntry from "./predictionTableEntry.model";
 @Component({
   selector: 'prediction-list',
   templateUrl: './predictionList.html',
-  styles: [`
-       .prediction-table {
-           background-color: white;
-       }
-       .prediction-table th {
-           background-color: mediumseagreen;
-           color: white;
-       }
-       
-       .sorting-table {
-            top: 0px;
-            display: table-cell;
-            cursor: pointer;
-       }
-       
-       .row-header {
-            font-family: 'Glyphicons Halflings';
-            font-style: italic;
-            font-size: larger;
-       }
-  `],
+  styleUrls: ['./predictionList.css'],
   encapsulation: ViewEncapsulation.None
 })
 export default class PredictionListComponent implements OnInit {
@@ -139,7 +119,6 @@ export default class PredictionListComponent implements OnInit {
       }
     });
     filteredData = tempArray;
-
     return filteredData;
   }
 

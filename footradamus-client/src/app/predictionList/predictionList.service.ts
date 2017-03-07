@@ -23,7 +23,6 @@ export default class PredictionListService {
     let tableData: Array<predictionTableEntry> = [];
 
     predictions.forEach((prediction: prediction) => {
-      let glyphicon = 'glyphicon glyphicon-trash';
       tableData.push({
         id: prediction._id,
         leagueName: prediction.leagueName,

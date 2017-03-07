@@ -23,6 +23,7 @@ export default class PredictionListService {
     let tableData: Array<predictionTableEntry> = [];
 
     predictions.forEach((prediction: prediction) => {
+      let glyphicon = 'glyphicon glyphicon-trash';
       tableData.push({
         id: prediction._id,
         leagueName: prediction.leagueName,
@@ -30,14 +31,20 @@ export default class PredictionListService {
         awayTeam: prediction.awayTeam,
         winner: prediction.winner,
         matchDate: prediction.matchDate,
+        wasPredicted: this.getWasPredictedGlyphicon(prediction.predictionHistory),
         actions: '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'
       });
     });
-
     return tableData;
   }
 
-  public deletePrediction(id: number){
+  private getWasPredictedGlyphicon(predictionsHistory: any) {
+    let wasPredictedGlypicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
+    let notYetPredictedGlypicon = '<span class="glyphicon glyphicon-remove" aria-hidden="true">';
+    return predictionsHistory ? wasPredictedGlypicon : notYetPredictedGlypicon;
+  }
+
+  public deletePrediction(id: number) {
     return this.http.delete(`${this.config.predictionBackendUrl}predictions/${id}`);
   }
 }

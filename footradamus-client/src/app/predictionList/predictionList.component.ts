@@ -21,6 +21,7 @@ export default class PredictionListComponent implements OnInit {
     {title: 'AwayTeam', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'awayTeam', filtering: {filterString: '', placeholder: 'Filter by AwayTeam'}},
     {title: 'Pred.Winner', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'winner', filtering: {filterString: '', placeholder: 'Filter by winner.'}},
     {title: 'Matchdate', className: 'row-header sorting-table glyphicon glyphicon-sort', name: 'matchDate', filtering: {filterString: '', placeholder: 'Filter by match date.'}},
+    {title: 'Predicted', className: 'row-header', name: 'wasPredicted'},
     {title: 'Actions', className: 'row-header', name: 'actions'},
   ];
   public page: number = 1;

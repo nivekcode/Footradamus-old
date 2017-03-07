@@ -9,6 +9,7 @@ interface predictionTableEntry {
   awayTeam: string,
   winner: string,
   matchDate: string,
+  wasPredicted: string,
   actions: string
 }
 

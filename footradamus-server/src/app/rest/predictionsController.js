@@ -1,4 +1,5 @@
 let predictionsModel = require('../db/schemas/prediction.schema.js').Predictions;
+let tokenHelper = require('../authentication/token.helper');
 
 let createPredictionsController = (footradamus) => {
 
@@ -42,6 +43,10 @@ let createPredictionsController = (footradamus) => {
     });
 
     footradamus.delete('/predictions/:id', (request, response) => {
+
+        let token = request.headers['footratoken'];
+        tokenHelper.validateToken(token);
+
         let id = request.params.id;
         response.setHeader('Content-Type', 'application/json');
         predictionsModel.findOneAndRemove({_id: id}, (error, deletedPrediction) => {

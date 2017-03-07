@@ -8,6 +8,17 @@ let createJWTToken = () => jwt.sign({
     data: 'footradmin'
 }, SECRET, {expiresIn: '1h'});
 
+let validateToken = (token) => {
+    jwt.verify(token, SECRET, (err) => {
+        if(err){
+            console.log('Error');
+        }
+        else{
+            console.log('Oki');
+        }
+    });
+}
+
 module.exports = {
-    createJWTToken
+    createJWTToken, validateToken
 }

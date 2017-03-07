@@ -1,0 +1,19 @@
+.prediction-table {
+  background-color: white;
+}
+.prediction-table th {
+  background-color: mediumseagreen;
+  color: white;
+}
+
+.sorting-table {
+  top: 0px;
+  display: table-cell;
+  cursor: pointer;
+}
+
+.row-header {
+  font-family: 'Glyphicons Halflings';
+  font-style: italic;
+  font-size: larger;
+}

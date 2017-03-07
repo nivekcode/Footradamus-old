@@ -7,6 +7,7 @@
   color: white;
 }
 
+/*Selects the last two childs */
 .prediction-table td:nth-last-child(-n+2) {
   text-align: center;
 }

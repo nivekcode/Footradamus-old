@@ -5,11 +5,13 @@ import {NgModule} from "@angular/core";
 import AdminLoginComponent from "./adminLogin.component";
 import routes from './adminLogin.routes';
 import {FormsModule} from "@angular/forms";
+import AdminLoginService from "./adminLogin.service";
 
 @NgModule({
   imports: [routes, FormsModule],
   declarations: [AdminLoginComponent],
-  exports: [AdminLoginComponent]
+  exports: [AdminLoginComponent],
+  providers: [AdminLoginService]
 })
 export default class AdminLoginModule {
 }

@@ -35,7 +35,7 @@ let createPredictionsController = (footradamus) => {
                 response.status(201);
                 response.send(newPrediction);
             }
-            else{
+            else {
                 let errorMessage = `There is already a prediction for the game between ${newPrediction.homeTeam} and ${newPrediction.awayTeam} on ${newPrediction.matchDate}`;
                 response.status(409).send({error: errorMessage});
             }
@@ -46,10 +46,10 @@ let createPredictionsController = (footradamus) => {
         let token = request.headers[tokenHelper.TOKEN_NAME];
         let isTokenValid = tokenHelper.isTokenValid(token);
 
-        if(isTokenValid) {
+        if (isTokenValid) {
             deletePrediction(request, response);
         }
-        else{
+        else {
             response.status(401).send({error: 'You are not authorized to delete this resource'});
         }
     });

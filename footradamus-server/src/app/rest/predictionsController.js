@@ -1,4 +1,5 @@
 let predictionsModel = require('../db/schemas/prediction.schema.js').Predictions;
+let tokenHelper = require('../authentication/token.helper');
 
 let createPredictionsController = (footradamus) => {
 
@@ -34,7 +35,7 @@ let createPredictionsController = (footradamus) => {
                 response.status(201);
                 response.send(newPrediction);
             }
-            else{
+            else {
                 let errorMessage = `There is already a prediction for the game between ${newPrediction.homeTeam} and ${newPrediction.awayTeam} on ${newPrediction.matchDate}`;
                 response.status(409).send({error: errorMessage});
             }
@@ -42,15 +43,27 @@ let createPredictionsController = (footradamus) => {
     });
 
     footradamus.delete('/predictions/:id', (request, response) => {
-        let id = request.params.id;
-        response.setHeader('Content-Type', 'application/json');
-        predictionsModel.findOneAndRemove({_id: id}, (error, deletedPrediction) => {
-            if (!error) {
-                response.send(deletedPrediction);
-            } else {
-                response.status(404).send(error);
-            }
-        });
+        let token = request.headers[tokenHelper.TOKEN_NAME];
+        let isTokenValid = tokenHelper.isTokenValid(token);
+
+        if (isTokenValid) {
+            deletePrediction(request, response);
+        }
+        else {
+            response.status(401).send({error: 'You are not authorized to delete this resource'});
+        }
+    });
+}
+
+let deletePrediction = (request, response) => {
+    let id = request.params.id;
+    response.setHeader('Content-Type', 'application/json');
+    predictionsModel.findOneAndRemove({_id: id}, (error, deletedPrediction) => {
+        if (!error) {
+            response.send(deletedPrediction);
+        } else {
+            response.status(404).send(error);
+        }
     });
 }
 

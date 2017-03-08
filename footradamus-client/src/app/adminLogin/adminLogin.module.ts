@@ -4,9 +4,10 @@
 import {NgModule} from "@angular/core";
 import AdminLoginComponent from "./adminLogin.component";
 import routes from './adminLogin.routes';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
-  imports: [routes],
+  imports: [routes, FormsModule],
   declarations: [AdminLoginComponent],
   exports: [AdminLoginComponent]
 })

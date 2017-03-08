@@ -8,4 +8,9 @@ import {Component} from "@angular/core";
   templateUrl: './adminLogin.html'
 })
 export default class AdminLoginComponent{
+
+  login(usernameInputElement: any, passwordInputElement: any): void{
+    let username = usernameInputElement.value;
+    let password = passwordInputElement.value;
+  }
 }

@@ -3,22 +3,22 @@
  */
 let jwt = require('jsonwebtoken');
 let SECRET = 'footrasecret';
+let TOKEN_NAME = 'footratoken';
 
 let createJWTToken = () => jwt.sign({
     data: 'footradmin'
 }, SECRET, {expiresIn: '1h'});
 
-let validateToken = (token) => {
-    jwt.verify(token, SECRET, (err) => {
-        if(err){
-            console.log('Error');
-        }
-        else{
-            console.log('Oki');
-        }
-    });
+let isTokenValid = (token) => {
+    try {
+        jwt.verify(token, SECRET);
+        return true;
+    }
+    catch(error){
+        return false;
+    }
 }
 
 module.exports = {
-    createJWTToken, validateToken
+    createJWTToken, isTokenValid, TOKEN_NAME
 }

@@ -4,6 +4,7 @@
 
 import {Component} from "@angular/core";
 import AuthenticationService from "../../shared/authentication/authentication.service";
+import LocalStorageService from "../../shared/localStorage/localStorage.service";
 
 @Component({
   selector: 'navbar',
@@ -12,7 +13,8 @@ import AuthenticationService from "../../shared/authentication/authentication.se
 })
 export default class NavbarComponent {
 
-  constructor(private authenticationService: AuthenticationService){
+  constructor(protected authenticationService: AuthenticationService,
+              protected localStorageService: LocalStorageService) {
   }
 
 }

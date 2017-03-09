@@ -18,4 +18,8 @@ export default class LocalStorageService{
   getAdminLoginToken(): string{
     return localStorage.getItem(this.TOKEN_KEY);
   }
+
+  removeAdminLoginToken(): void {
+    localStorage.removeItem(this.TOKEN_KEY);
+  }
 }

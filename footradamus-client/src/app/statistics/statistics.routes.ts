@@ -3,9 +3,9 @@
  */
 
 import StatisticsComponent from "./statistics.component";
-import {RouterModule} from "@angular/router";
+import {RouterModule, Routes} from "@angular/router";
 
-const routes = [
+const routes: Routes = [
   { path: '', component: StatisticsComponent}
 ]
 

@@ -1,5 +1,6 @@
 let predictionsModel = require('../db/schemas/prediction.schema.js').Predictions;
 let tokenHelper = require('../authentication/token.helper');
+let corsFilter = require('../cors/cors.filter');
 
 let createPredictionsController = (footradamus) => {
 
@@ -43,9 +44,8 @@ let createPredictionsController = (footradamus) => {
     });
 
     footradamus.delete('/predictions/:id', (request, response) => {
-        let token = request.headers[tokenHelper.TOKEN_NAME];
+        let token = request.headers[corsFilter.TOKEN_NAME];
         let isTokenValid = tokenHelper.isTokenValid(token);
-
         if (isTokenValid) {
             deletePrediction(request, response);
         }

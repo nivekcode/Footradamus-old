@@ -3,6 +3,8 @@
  */
 
 import {Component} from "@angular/core";
+import AuthenticationService from "../../shared/authentication/authentication.service";
+import LocalStorageService from "../../shared/localStorage/localStorage.service";
 
 @Component({
   selector: 'navbar',
@@ -10,5 +12,9 @@ import {Component} from "@angular/core";
   styleUrls: ['navbar.css']
 })
 export default class NavbarComponent {
+
+  constructor(protected authenticationService: AuthenticationService,
+              protected localStorageService: LocalStorageService) {
+  }
 
 }

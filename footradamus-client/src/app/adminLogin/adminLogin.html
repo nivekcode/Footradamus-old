@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row col-md-4 col-md-offset-4">
+    <h4>Admin login</h4>
+    <form (ngSubmit)="login(username, password)">
+      <div class="form-group">
+        <input class="form-control" placeholder="username" #username/>
+        <input class="form-control" placeholder="password" type="password" #password/>
+      </div>
+      <button class="btn btn-default" type="submit">Login</button>
+    </form>
+  </div>
+</div>

@@ -3,7 +3,6 @@
  */
 let jwt = require('jsonwebtoken');
 let SECRET = 'footrasecret';
-let TOKEN_NAME = 'footratoken';
 
 let createJWTToken = () => jwt.sign({
     data: 'footradmin'
@@ -20,5 +19,5 @@ let isTokenValid = (token) => {
 }
 
 module.exports = {
-    createJWTToken, isTokenValid, TOKEN_NAME
+    createJWTToken, isTokenValid
 }

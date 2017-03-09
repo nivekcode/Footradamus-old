@@ -13,7 +13,7 @@ footradamus.use(bodyParser.urlencoded({extended: true}));
 footradamus.use(bodyParser.json());
 footradamus.use(express.static('src/images'));
 
-corsFilter(footradamus);
+corsFilter.createCorsFilter(footradamus);
 createAdminLoginController(footradamus);
 createPredictionsController(footradamus);
 createReverseProxy(footradamus);

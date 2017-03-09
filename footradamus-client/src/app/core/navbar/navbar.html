@@ -19,9 +19,14 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="/adminlogin" routerLinkActive="active"
-               [routerLinkActiveOptions]="{exact: true}">
-          <span class="glyphicon glyphicon-log-in"></span> Admin</a></li>
+        <li *ngIf="!authenticationService.hasValidAdminToken()">
+          <a routerLink="/adminlogin" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <span class="glyphicon glyphicon-log-in"></span> Admin Login</a></li>
+        <li *ngIf="authenticationService.hasValidAdminToken()">
+          <a routerLink="/adminlogin" routerLinkActive="active"
+             [routerLinkActiveOptions]="{exact: true}">
+            <span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </div>

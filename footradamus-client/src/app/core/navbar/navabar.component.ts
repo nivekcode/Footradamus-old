@@ -3,6 +3,7 @@
  */
 
 import {Component} from "@angular/core";
+import AuthenticationService from "../../shared/authentication/authentication.service";
 
 @Component({
   selector: 'navbar',
@@ -10,5 +11,8 @@ import {Component} from "@angular/core";
   styleUrls: ['navbar.css']
 })
 export default class NavbarComponent {
+
+  constructor(private authenticationService: AuthenticationService){
+  }
 
 }

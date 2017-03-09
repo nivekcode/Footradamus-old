@@ -4,11 +4,14 @@
 import {Injectable, Inject} from "@angular/core";
 import {Http} from "@angular/http";
 import MessageService from "../shared/message/message.service";
+import LocalStorageService from "../shared/localStorage/localStorage.service";
 
 @Injectable()
 export default class AdminLoginService {
 
-  constructor(private http: Http, @Inject('config') private config, private messageService: MessageService) {
+  constructor(private http: Http, @Inject('config') private config,
+              private messageService: MessageService,
+              private localStorageService: LocalStorageService) {
   }
 
   login(username: string, password: string): void {
@@ -16,8 +19,9 @@ export default class AdminLoginService {
       username, password
     })
       .subscribe(res => {
-        console.log(res.json());
-      },
+          this.localStorageService.setAdminLoginToken(res.json().token);
+          this.messageService.showInfoMessage('Login successfull', 'Enjoy the amin functionality');
+        },
         (error) => {
           this.messageService.showErrorMessage('Login failed', error.json().error);
         }

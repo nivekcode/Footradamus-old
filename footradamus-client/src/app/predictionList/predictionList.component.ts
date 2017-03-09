@@ -4,6 +4,7 @@
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
 import PredictionListService from "./predictionList.service";
 import predictionTableEntry from "./predictionTableEntry.model";
+import AuthenticationService from "../shared/authentication/authentication.service";
 
 @Component({
   selector: 'prediction-list',
@@ -38,13 +39,15 @@ export default class PredictionListComponent implements OnInit {
 
   private data: Array<predictionTableEntry> = [];
 
-  public constructor(private predictionListService: PredictionListService) {
+  public constructor(private predictionListService: PredictionListService,
+    private authenticationService: AuthenticationService) {
     this.length = this.data.length;
     this.predictionListService.getPredictionTableData()
       .subscribe((predictionTableData: Array<predictionTableEntry>) => {
         this.data = predictionTableData;
         this.onChangeTable(this.config);
       });
+    this.authenticationService.hasValidAdminToken();
   }
 
   public ngOnInit(): void {

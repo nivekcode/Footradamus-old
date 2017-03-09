@@ -47,7 +47,10 @@ export default class PredictionListComponent implements OnInit {
         this.data = predictionTableData;
         this.onChangeTable(this.config);
       });
-    this.authenticationService.hasValidAdminToken();
+    let hasValidAdminToken = this.authenticationService.hasValidAdminToken();
+    if(!hasValidAdminToken){
+      this.columns.splice(this.columns.length - 1, 1);
+    }
   }
 
   public ngOnInit(): void {

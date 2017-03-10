@@ -19,7 +19,8 @@
       "mobile": false,
       "styles": [
         "styles.css",
-        "styles/dist/css/bootstrap.min.css"
+        "styles/dist/css/bootstrap.min.css",
+        "../node_modules/loaders.css/loaders.min.css"
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.bundle.min.js"

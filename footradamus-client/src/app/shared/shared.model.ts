@@ -7,11 +7,13 @@ import {SimpleNotificationsModule} from "angular2-notifications/lib/simple-notif
 import MessageService from "./message/message.service";
 import LocalStorageService from "./localStorage/localStorage.service";
 import AuthenticationService from "./authentication/authentication.service";
+import SpinnerComponent from "./spinner/spinner.component";
+import {LoadersCssModule} from "angular2-loaders-css";
 
 @NgModule({
-  imports: [SimpleNotificationsModule.forRoot()],
-  declarations: [MessageComponent],
-  exports: [MessageComponent],
+  imports: [SimpleNotificationsModule.forRoot(), LoadersCssModule],
+  declarations: [MessageComponent, SpinnerComponent],
+  exports: [MessageComponent, SpinnerComponent],
   providers: [MessageService, LocalStorageService, AuthenticationService]
 })
 export default class SharedModule{

@@ -27,6 +27,7 @@
     "@ngrx/core": "^1.2.0",
     "@ngrx/store": "^2.2.1",
     "angular2-jwt": "^0.1.28",
+    "angular2-loaders-css": "^1.0.7",
     "angular2-notifications": "^0.4.53",
     "bootstrap": "^3.3.7",
     "chart.js": "^2.4.0",

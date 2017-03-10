@@ -1,7 +1,8 @@
 .loader .my-loader {
-  background-color: blue;
+  background-color: seagreen;
 }
 
-.spinner-div {
-  padding-left: 68px;
+.spinner-container{
+  margin-left: 20px;
+  margin-top: 32px;
 }

@@ -9,12 +9,14 @@ import LocalStorageService from "./localStorage/localStorage.service";
 import AuthenticationService from "./authentication/authentication.service";
 import SpinnerComponent from "./spinner/spinner.component";
 import {LoadersCssModule} from "angular2-loaders-css";
+import SpinnerService from "./spinner/spinner.service";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
-  imports: [SimpleNotificationsModule.forRoot(), LoadersCssModule],
+  imports: [SimpleNotificationsModule.forRoot(), LoadersCssModule, CommonModule],
   declarations: [MessageComponent, SpinnerComponent],
   exports: [MessageComponent, SpinnerComponent],
-  providers: [MessageService, LocalStorageService, AuthenticationService]
+  providers: [MessageService, LocalStorageService, AuthenticationService, SpinnerService]
 })
 export default class SharedModule{
 }

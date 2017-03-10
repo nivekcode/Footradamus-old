@@ -2,6 +2,7 @@
  * Created by kevinkreuzer on 09.03.17.
  */
 import {Component, ViewEncapsulation} from "@angular/core";
+import SpinnerService from "./spinner.service";
 
 @Component({
   selector: 'spinner',
@@ -10,4 +11,7 @@ import {Component, ViewEncapsulation} from "@angular/core";
   encapsulation: ViewEncapsulation.None
 })
 export default class SpinnerComponent{
+
+  constructor(protected spinnerService: SpinnerService){
+  }
 }

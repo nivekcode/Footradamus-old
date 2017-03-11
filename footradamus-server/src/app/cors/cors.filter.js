@@ -11,7 +11,7 @@ let createCorsFilter = footradamus => {
             'localhost:4200',
             'https://footradamus.firebaseapp.com'
         ],
-        headers: [TOKEN_NAME]
+        headers: [TOKEN_NAME, 'content-type']
     }));
 }
 

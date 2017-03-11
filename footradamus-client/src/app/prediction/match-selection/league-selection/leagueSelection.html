@@ -1,15 +1,13 @@
-<div class="row">
-  <div class="col-md-2" (click)="getPreviousLeague()">
-    <button class="btn">
-      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    </button>
-  </div>
-  <div class="col-md-8 text-center">
-    <img [src]="logoService.getLogoUrl(leagues[counter]?.id)" />
-  </div>
-  <div class="col-md-2">
-    <button class="btn pull-right" (click)="getNextLeague()">
-      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    </button>
-  </div>
+<div class="col-xs-2" (click)="getPreviousLeague()">
+  <button class="btn">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </button>
+</div>
+<div class="col-xs-8 text-center">
+  <img [src]="logoService.getLogoUrl(leagues[counter]?.id)"/>
+</div>
+<div class="col-xs-2">
+  <button class="btn pull-right" (click)="getNextLeague()">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </button>
 </div>

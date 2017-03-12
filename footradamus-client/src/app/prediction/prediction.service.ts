@@ -5,27 +5,29 @@
 import {Injectable} from "@angular/core";
 import StatisticService from "./statstics.service";
 import {Subject} from "rxjs";
+import {Store} from "@ngrx/store";
+import match from "../shared/model/match.model";
 
 @Injectable()
 export default class PredictionService {
 
   public $winner: Subject<string> = new Subject<string>();
 
-  constructor(private statsService: StatisticService) {
+  constructor(private statsService: StatisticService, private store: Store<match>) {
     this.statsService.$teamStats
       .subscribe(stats => {
           let homeTeamStats = stats[0].json().statistics[0];
-          let homeTeamName = stats[0].json().name;
           let awayTeamStats = stats[1].json().statistics[0];
-          let awayTeamName = stats[1].json().name;
-
           let willHomeTeamWin = this._predictResult(homeTeamStats, awayTeamStats);
-          this.$winner.next(willHomeTeamWin ? homeTeamName : awayTeamName);
-        },
-        () => {
-          console.log('Unfortunatelly we were not able to get the team statistics');
+          this.streamTeamNameFromStore(willHomeTeamWin);
         }
       );
+  }
+
+  private streamTeamNameFromStore(willHomeTeamWin: boolean): void {
+    this.store.select('match').subscribe((match: match) => {
+      this.$winner.next(willHomeTeamWin ? match.homeTeam.name : match.awayTeam.name);
+    });
   }
 
   private _predictResult(homeTeamStats, awayTeamStats) {

@@ -18,6 +18,7 @@ export default class BarChartService implements ChartService {
     scales: {
       yAxes: [{
         ticks: {
+          beginAtZero:true,
           stepSize: 1,
         }
       }]

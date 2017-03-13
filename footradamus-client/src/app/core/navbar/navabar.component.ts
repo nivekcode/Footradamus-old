@@ -19,4 +19,7 @@ export default class NavbarComponent {
               protected localStorageService: LocalStorageService) {
   }
 
+  toggleNavbar(){
+    this.isNavbarToggled = !this.isNavbarToggled;
+  }
 }

@@ -10,13 +10,15 @@ export default class DeviceDetector {
 
   private readonly TABLET_MIN_WIDTH = 768;
   private readonly DESKTOP_MIN_WIDTH = 992;
+  public $device;
 
   constructor() {
-    Observable.fromEvent(window, 'resize')
+    let $load = Observable.fromEvent(window, 'load');
+    let $resize = Observable.fromEvent(window, 'resize');
+    this.$device = Observable.merge($load, $resize)
       .map(res => window.innerWidth)
       .map(width => this.getDevice(width))
       .distinctUntilChanged()
-      .subscribe(res => console.log(res));
   }
 
   private getDevice(width: number): DEVICE {

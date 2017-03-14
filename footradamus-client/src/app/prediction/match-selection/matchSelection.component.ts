@@ -7,7 +7,8 @@ import TeamSelectionComponent from "./team-selection/teamSelection.component";
 
 @Component({
   selector: 'match-selection',
-  templateUrl: 'matchSelection.html'
+  templateUrl: 'matchSelection.html',
+  styleUrls: ['./matchSelection.css']
 })
 export default class MatchSelectionComponent {
 

@@ -13,8 +13,13 @@ import LocalStorageService from "../../shared/localStorage/localStorage.service"
 })
 export default class NavbarComponent {
 
+  protected isNavbarToggled: boolean = false;
+
   constructor(protected authenticationService: AuthenticationService,
               protected localStorageService: LocalStorageService) {
   }
 
+  toggleNavbar(){
+    this.isNavbarToggled = !this.isNavbarToggled;
+  }
 }

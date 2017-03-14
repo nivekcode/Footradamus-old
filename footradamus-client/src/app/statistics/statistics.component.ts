@@ -9,7 +9,7 @@ import chartOptions from "./shared/chartOptions.model";
 import DoughnutChartService from "./chartServices/doughnutChartService";
 import BarChartService from "./chartServices/barChartService";
 import DeviceDetector from "../shared/deviceDetector/deviceDetector.service";
-import DEVICE from "../shared/deviceDetector/devices.model";
+import DEVICE from "../shared/model/devices.model";
 
 @Component({
   selector: 'statistics',

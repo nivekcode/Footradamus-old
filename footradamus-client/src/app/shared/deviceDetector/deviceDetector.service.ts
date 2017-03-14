@@ -3,7 +3,7 @@
  */
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs";
-import DEVICE from "./devices.model";
+import DEVICE from "../model/devices.model";
 
 @Injectable()
 export default class DeviceDetector {

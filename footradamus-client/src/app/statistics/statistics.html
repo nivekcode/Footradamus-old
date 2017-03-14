@@ -8,7 +8,7 @@
   </canvas>
 </div>
 <div class="col-md-8" style="display: block">
-  <canvas *ngIf="hasDataArrived && (deviceDetector.$device | async) !== DEVICE.MOBILE"
+  <canvas *ngIf="hasDataArrived && !isMobileDevice"
           baseChart
           [datasets]="barChartData.data"
           [labels]="barChartData.labels"

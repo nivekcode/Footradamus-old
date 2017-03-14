@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import DeviceDetector from "./shared/deviceDetector/deviceDetector.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +7,6 @@ import DeviceDetector from "./shared/deviceDetector/deviceDetector.service";
 })
 export class AppComponent {
 
-  constructor(private deviceDetector: DeviceDetector){
-    this.deviceDetector.$device.subscribe(res => console.log(res));
+  constructor(){
   }
 }

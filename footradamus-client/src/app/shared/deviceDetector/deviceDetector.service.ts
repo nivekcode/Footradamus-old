@@ -22,13 +22,12 @@ export default class DeviceDetector {
   }
 
   private getDevice(width: number): DEVICE {
-    if(width < this.TABLET_MIN_WIDTH){
+    if (width < this.TABLET_MIN_WIDTH) {
       return DEVICE.MOBILE;
     }
-    if(width < this.DESKTOP_MIN_WIDTH){
+    if (width < this.DESKTOP_MIN_WIDTH) {
       return DEVICE.TABLET;
     }
     return DEVICE.COMPUTER;
   }
-
 }

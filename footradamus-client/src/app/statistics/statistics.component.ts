@@ -8,6 +8,8 @@ import predictionStatistics from "../shared/model/predictionStatistics.model";
 import chartOptions from "./shared/chartOptions.model";
 import DoughnutChartService from "./chartServices/doughnutChartService";
 import BarChartService from "./chartServices/barChartService";
+import DeviceDetector from "../shared/deviceDetector/deviceDetector.service";
+import DEVICE from "../shared/deviceDetector/devices.model";
 
 @Component({
   selector: 'statistics',
@@ -20,10 +22,12 @@ export default class StatisticsComponent {
   public doughnutChartData: chartOptions;
   public barChartData: chartOptions;
   public hasDataArrived: boolean;
+  protected DEVICE = DEVICE;
 
   constructor(private statisticsService: StatisticsService,
               private doughnutChartService: DoughnutChartService,
-              private barChartService: BarChartService) {
+              private barChartService: BarChartService,
+              private deviceDetector: DeviceDetector) {
 
     this.hasDataArrived = false;
 

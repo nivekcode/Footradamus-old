@@ -4,7 +4,7 @@
 import {Injectable, Inject} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import prediction from "../shared/model/prediction.model";
-import predictionTableEntry from "./predictionTableEntry.model";
+import predictionTableEntry from "./shared/predictionTableEntry.model";
 import {Observable} from "rxjs";
 import LocalStorageService from "../shared/localStorage/localStorage.service";
 

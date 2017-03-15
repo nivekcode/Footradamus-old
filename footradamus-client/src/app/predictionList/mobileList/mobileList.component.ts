@@ -4,8 +4,8 @@
 import {Component} from "@angular/core";
 
 @Component({
-  selector: 'prediction-list',
-  templateUrl: './predictionList.html'
+  selector: 'mobile-list',
+  templateUrl: './mobileList.html'
 })
-export class PredictionListComponent{
+export class MobileListComponent{
 }

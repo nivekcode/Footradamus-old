@@ -1,2 +1,2 @@
-<filter-table></filter-table>
-<mobile-list></mobile-list>
+<filter-table *ngIf="!($isMobileDevice | async)"></filter-table>
+<mobile-list *ngIf="$isMobileDevice | async"></mobile-list>

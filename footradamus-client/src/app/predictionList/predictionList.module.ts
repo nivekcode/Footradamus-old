@@ -4,7 +4,7 @@
 import {NgModule} from "@angular/core";
 import {PredictionListComponent} from "./predictionList.component";
 import routes from './predictionList.routes';
-import PredictionListService from "./predictionList.service";
+import PredictionListService from "./shared/service/predictionList.service";
 import { Ng2TableModule } from 'ng2-table/ng2-table';
 import {CommonModule} from "@angular/common";
 import {MobileListComponent} from "./mobileList/mobileList.component";

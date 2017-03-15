@@ -2,8 +2,8 @@
  * Created by kevinkreuzer on 22.01.17.
  */
 import {Component, OnInit, ViewEncapsulation} from "@angular/core";
-import PredictionListService from "../predictionList.service";
-import predictionTableEntry from "../shared/predictionTableEntry.model";
+import PredictionListService from "../shared/service/predictionList.service";
+import predictionTableEntry from "../shared/model/predictionTableEntry.model";
 import AuthenticationService from "../../shared/authentication/authentication.service";
 
 @Component({

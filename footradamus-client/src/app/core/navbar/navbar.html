@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Footradamus</a>
+      <a class="navbar-brand" href="#">Footradamus <span *ngIf="$device | async" class="glyphicon glyphicon-phone"></span></a>
     </div>
     <div class="collapse navbar-collapse" [ngClass]="{'in': isNavbarToggled}">
       <ul class="nav navbar-nav">

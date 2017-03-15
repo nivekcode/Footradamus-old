@@ -5,6 +5,8 @@
 import {Component} from "@angular/core";
 import AuthenticationService from "../../shared/authentication/authentication.service";
 import LocalStorageService from "../../shared/localStorage/localStorage.service";
+import DeviceDetector from "../../shared/deviceDetector/deviceDetector.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'navbar',
@@ -14,9 +16,12 @@ import LocalStorageService from "../../shared/localStorage/localStorage.service"
 export default class NavbarComponent {
 
   protected isNavbarToggled: boolean = false;
+  protected $device: Observable<boolean>;
 
   constructor(protected authenticationService: AuthenticationService,
-              protected localStorageService: LocalStorageService) {
+              protected localStorageService: LocalStorageService,
+              private deviceDetector: DeviceDetector) {
+    this.$device = this.deviceDetector.isMobileDevice();
   }
 
   toggleNavbar(){

@@ -1,0 +1,11 @@
+<div *ngFor="let prediction of $predictions | async" class="panel panel-info">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      <strong>{{prediction.homeTeam}}</strong> vs <strong>{{prediction.awayTeam}}</strong> / {{prediction.matchDate}}
+    </h3>
+  </div>
+  <div class="panel-body">
+    <span class="glyphicon glyphicon glyphicon-eye-open"></span>
+    Footradamus predicts <strong>{{prediction.winner}}</strong> as winner.
+  </div>
+</div>

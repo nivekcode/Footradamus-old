@@ -15,7 +15,7 @@ export default class MatchSelectionComponent {
   @ViewChildren(TeamSelectionComponent)
   private teamSelectionComponents: Array<TeamSelectionComponent>;
 
-  constructor(private statisticService: StatisticService) {
+  constructor() {
   }
 
   loadClubsOnTeamSelection(league) {

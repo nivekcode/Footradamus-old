@@ -57,7 +57,10 @@ export default class TeamSelectionComponent implements OnInit {
   loadClubsForLeague(league: league) {
     this.league = league;
     this.matchSelectionService.getTeams(league.id)
-      .subscribe(res => this.teams = res);
+      .subscribe(res => {
+        this.teams = res;
+        this._addMatchToStore();
+      });
   }
 
   _addMatchToStore() {

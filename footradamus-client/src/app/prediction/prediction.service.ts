@@ -25,9 +25,11 @@ export default class PredictionService {
   }
 
   private streamTeamNameFromStore(willHomeTeamWin: boolean): void {
-    this.store.select('match').subscribe((match: match) => {
-      this.$winner.next(willHomeTeamWin ? match.homeTeam.name : match.awayTeam.name);
-    });
+    this.store.select('match')
+      .subscribe((match: match) => {
+        this.$winner.next(willHomeTeamWin ? match.homeTeam.name : match.awayTeam.name);
+      })
+      .unsubscribe();
   }
 
   private _predictResult(homeTeamStats, awayTeamStats) {

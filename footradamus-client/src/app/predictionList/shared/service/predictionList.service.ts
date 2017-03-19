@@ -7,6 +7,7 @@ import prediction from "../../../shared/model/prediction.model";
 import predictionTableEntry from "../model/predictionTableEntry.model";
 import {Observable} from "rxjs";
 import LocalStorageService from "../../../shared/localStorage/localStorage.service";
+import {predictionHistory} from "../../../shared/model/prediction.model";
 
 @Injectable()
 export default class PredictionListService {
@@ -31,17 +32,32 @@ export default class PredictionListService {
         awayTeam: prediction.awayTeam,
         winner: prediction.winner,
         matchDate: prediction.matchDate,
-        wasPredicted: this.getGlyphiconForPrediction(prediction.predictionHistory),
+        isPredicted: this.isGameAlreadyPredicted(prediction.predictionHistory),
+        isCorrectlyPredicted: this.isGameCorrectlyPredicted(prediction.predictionHistory),
         actions: '<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>'
       });
     });
     return tableData;
   }
 
-  private getGlyphiconForPrediction(predictionsHistory: any) {
-    let allreadyPredictedGlypicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
-    let notYetPredictedGlypicon = '<span class="glyphicon glyphicon-remove" aria-hidden="true">';
-    return predictionsHistory ? allreadyPredictedGlypicon : notYetPredictedGlypicon;
+  private isGameCorrectlyPredicted(predictionHisotry: predictionHistory): string {
+    if(predictionHisotry){
+      return this.getCorrectOrFalseGlyphicon(predictionHisotry.correctlyPredicted);
+    }
+    return '';
+  }
+
+  private isGameAlreadyPredicted(predictionHistory: predictionHistory): string {
+    if(predictionHistory) {
+      return this.getCorrectOrFalseGlyphicon(true);
+    }
+    return this.getCorrectOrFalseGlyphicon(false);
+  }
+
+  private getCorrectOrFalseGlyphicon(isCorrect: boolean) {
+    let correctGlyphicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
+    let wrongGlyphicon = '<span class="glyphicon glyphicon-remove" aria-hidden="true">';
+    return isCorrect ? correctGlyphicon : wrongGlyphicon;
   }
 
   public deletePrediction(id: number) {

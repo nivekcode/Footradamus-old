@@ -55,8 +55,8 @@ export default class PredictionListService {
   }
 
   private getCorrectOrFalseGlyphicon(isCorrect: boolean) {
-    let correctGlyphicon = '<span class="glyphicon glyphicon-ok" aria-hidden="true">';
-    let wrongGlyphicon = '<span class="glyphicon glyphicon-remove" aria-hidden="true">';
+    let correctGlyphicon = '<span class="glyphicon glyphicon-ok"></span>';
+    let wrongGlyphicon = '<span class="glyphicon glyphicon-remove"></span>';
     return isCorrect ? correctGlyphicon : wrongGlyphicon;
   }
 

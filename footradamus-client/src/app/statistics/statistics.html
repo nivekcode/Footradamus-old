@@ -1,4 +1,12 @@
 <div class="col-md-4 col-xs-12" style="display: block">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h3 class="panel-title">Correct predicted games</h3>
+    </div>
+    <div class="panel-body text-center">
+      <h1>{{ correctPredictionPercentage | number : '1.2-2' }}%</h1>
+    </div>
+  </div>
   <canvas *ngIf="hasDataArrived"
           baseChart
           [data]="doughnutChartData.data"

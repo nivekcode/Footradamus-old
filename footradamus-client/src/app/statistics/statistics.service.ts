@@ -9,6 +9,7 @@ import predictionStatistics from "../shared/model/predictionStatistics.model";
 import {Subject} from "rxjs";
 import {leaguePredictions} from "../shared/model/predictionStatistics.model";
 import MessageService from "../shared/message/message.service";
+import chartOptions from "./shared/chartOptions.model";
 
 @Injectable()
 export default class StatisticsService {
@@ -65,7 +66,7 @@ export default class StatisticsService {
       });
   }
 
-  private showMessageForNotYetFinishedGames(matchStatistics: any){
+  private showMessageForNotYetFinishedGames(matchStatistics: any) {
     let title = 'Not all games have been played yet';
     let message = `The game between ${matchStatistics.localteam_name} and ${matchStatistics.visitorteam_name}
                         on ${matchStatistics.formatted_date} at ${matchStatistics.status} has not yet finished.`;
@@ -149,5 +150,13 @@ export default class StatisticsService {
   private _getMatchStatistics(prediction: prediction) {
     return this.http.get(`${this.config.backendUrl}matches?comp_id=${prediction.leagueID}&team_id=${prediction.homeTeamId}&match_date=${prediction.matchDate}&${this.config.authParam}`)
       .map(res => res.json());
+  }
+
+  getCorretPredictionPercentage(doughnutChartData: chartOptions) {
+    let data = doughnutChartData.data;
+    let falsePredictedGames = data[0];
+    let correctPredictedGames = data[1];
+    let totalPredictedGames = falsePredictedGames + correctPredictedGames;
+    return 100 / totalPredictedGames * correctPredictedGames;
   }
 }

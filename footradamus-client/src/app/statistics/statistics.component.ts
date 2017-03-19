@@ -18,9 +18,10 @@ export default class StatisticsComponent {
 
   public readonly DOUGHNUT_CHART_TYPE = 'doughnut';
   public readonly BAR_CHART_TYPE = 'bar';
-  public doughnutChartData: chartOptions;
-  public barChartData: chartOptions;
-  public hasDataArrived: boolean;
+  protected doughnutChartData: chartOptions;
+  protected barChartData: chartOptions;
+  protected correctPredictionPercentage;
+  protected hasDataArrived: boolean;
   protected isMobileDevice: boolean;
 
   constructor(private statisticsService: StatisticsService,
@@ -36,6 +37,7 @@ export default class StatisticsComponent {
       .subscribe((predictionStats: predictionStatistics) => {
         this.doughnutChartData = this.doughnutChartService.getChartProperties(predictionStats);
         this.barChartData = this.barChartService.getChartProperties(predictionStats);
+        this.correctPredictionPercentage = this.statisticsService.getCorretPredictionPercentage(this.doughnutChartData);
         this.hasDataArrived = true;
       });
   }

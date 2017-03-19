@@ -12,7 +12,8 @@ import DeviceDetector from "../shared/deviceDetector/deviceDetector.service";
 
 @Component({
   selector: 'statistics',
-  templateUrl: './statistics.html'
+  templateUrl: './statistics.html',
+  styleUrls: ['./statistics.css']
 })
 export default class StatisticsComponent {
 

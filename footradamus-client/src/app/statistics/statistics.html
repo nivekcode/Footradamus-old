@@ -1,29 +1,39 @@
-<div class="col-md-4 col-xs-12" style="display: block">
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      <h3 class="panel-title">Correct predicted games</h3>
+<div class="row">
+  <div class="col-md-4 col-xs-12" style="display: block">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h3 class="panel-title">Correct predicted games</h3>
+          </div>
+          <div class="panel-body text-center">
+            <h1>{{ correctPredictionPercentage | number : '1.2-2' }}%</h1>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="panel-body text-center">
-      <h1>{{ correctPredictionPercentage | number : '1.2-2' }}%</h1>
+    <div class="row">
+      <div class="col-xs-12">
+        <canvas *ngIf="hasDataArrived"
+                baseChart
+                [data]="doughnutChartData.data"
+                [labels]="doughnutChartData.labels"
+                [chartType]="DOUGHNUT_CHART_TYPE"
+        >
+        </canvas>
+      </div>
     </div>
   </div>
-  <canvas *ngIf="hasDataArrived"
-          baseChart
-          [data]="doughnutChartData.data"
-          [labels]="doughnutChartData.labels"
-          [chartType]="DOUGHNUT_CHART_TYPE"
-  >
-  </canvas>
-</div>
-<div class="col-md-8" style="display: block">
-  <canvas *ngIf="hasDataArrived && !isMobileDevice"
-          baseChart
-          [datasets]="barChartData.data"
-          [labels]="barChartData.labels"
-          [chartType]="BAR_CHART_TYPE"
-          [options]="barChartData.options"
-          [legend]="barChartData.legend"
-          [colors]="barChartData.chartColors"
-  >
-  </canvas>
+  <div class="col-md-8 bar-chart" style="display: block">
+    <canvas *ngIf="hasDataArrived && !isMobileDevice"
+            baseChart
+            [datasets]="barChartData.data"
+            [labels]="barChartData.labels"
+            [chartType]="BAR_CHART_TYPE"
+            [options]="barChartData.options"
+            [legend]="barChartData.legend"
+            [colors]="barChartData.chartColors"
+    >
+    </canvas>
+  </div>
 </div>

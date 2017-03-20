@@ -8,7 +8,7 @@
 }
 
 /*Selects the last two childs */
-.prediction-table td:nth-last-child(-n+2) {
+.prediction-table td:nth-last-child(-n+3) {
   text-align: center;
 }
 

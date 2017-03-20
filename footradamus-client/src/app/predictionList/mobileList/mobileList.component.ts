@@ -12,9 +12,9 @@ import predictionTableEntry from "../shared/model/predictionTableEntry.model";
 })
 export class MobileListComponent{
 
-  protected $predictions: Observable<Array<predictionTableEntry>>;
+  protected $predictionTableEntrys: Observable<Array<predictionTableEntry>>;
 
   constructor(protected predictionListService: PredictionListService){
-    this.$predictions = this.predictionListService.getPredictionTableData();
+    this.$predictionTableEntrys = this.predictionListService.getPredictionTableData();
   }
 }

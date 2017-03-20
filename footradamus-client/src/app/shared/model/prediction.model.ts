@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 24.12.16.
  */
 
-interface predictionHistory {
+export interface predictionHistory {
   correctlyPredicted: boolean
 }
 

@@ -11,7 +11,8 @@ export default class MessageComponent {
 
   readonly options = {
     timeOut: 7000,
-    animate: 'scale'
+    animate: 'scale',
+    maxStack: 3
   }
 
   constructor() {

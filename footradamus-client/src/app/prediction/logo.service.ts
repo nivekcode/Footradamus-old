@@ -17,7 +17,7 @@ export default class LogoService {
   constructor(@Inject('config') private config) {
   }
 
-  getLogo(leagueID: string, teamName: string) {
+  public getLogo(leagueID: string, teamName: string): string {
     let imageName = this.getImageName(teamName);
     switch (leagueID) {
       case this.PREMIER_LEAGUE_ID:
@@ -30,6 +30,11 @@ export default class LogoService {
         return null;
     }
   }
+
+  public getDrawImage(): string{
+    return `${this.config.predictionBackendUrl}/common/draw.png`;
+  }
+
 
   private getImageName(teamName: string) {
     let imageName = `${teamName

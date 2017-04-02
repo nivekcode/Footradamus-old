@@ -19,7 +19,7 @@ export default class PredictionService {
             .subscribe(stats => {
                     let homeTeamStats = stats[0].json().statistics[0];
                     let awayTeamStats = stats[1].json().statistics[0];
-                    let matchResult = this._predictResult(homeTeamStats, awayTeamStats);
+                    let matchResult = this.predictResult(homeTeamStats, awayTeamStats);
                     this.streamResult(matchResult);
                 }
             );
@@ -38,7 +38,7 @@ export default class PredictionService {
         }
     }
 
-    private _predictResult(homeTeamStats, awayTeamStats): Matchresult {
+    private predictResult(homeTeamStats, awayTeamStats): Matchresult {
         let homeTeamPoints = this.getPointsForTeam(homeTeamStats, true);
         let awayTeamPoints = this.getPointsForTeam(awayTeamStats, false);
         return this.getMatchResult(homeTeamPoints, awayTeamPoints);

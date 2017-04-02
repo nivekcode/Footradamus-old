@@ -2,7 +2,7 @@
  * Created by kevinkreuzer on 13.11.16.
  */
 import {Component, ViewChild, ViewChildren} from "@angular/core";
-import StatisticService from "../statstics.service";
+import StatisticService from "../shared/service/statstics.service";
 import TeamSelectionComponent from "./team-selection/teamSelection.component";
 
 @Component({

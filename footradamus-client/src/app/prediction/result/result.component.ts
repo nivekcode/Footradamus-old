@@ -3,11 +3,11 @@
  */
 
 import {Component} from "@angular/core";
-import PredictionService from "../prediction.service";
-import ClubLogoService from "../logo.service";
+import PredictionService from "../shared/service/prediction.service";
+import ClubLogoService from "../shared/service/logo.service";
 import {Store} from "@ngrx/store";
 import match from "../../shared/model/match.model";
-import {NO_WINNER} from '../shared/results.model';
+import {NO_WINNER} from '../shared/model/results.model';
 
 @Component({
     selector: 'result',

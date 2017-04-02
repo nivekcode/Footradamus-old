@@ -9,7 +9,7 @@ import match from "../../../shared/model/match.model";
 import {ADD_HOMETEAM, ADD_AWAYTEAM} from "../../../reducers/match.reducer";
 import team from "../../../shared/model/team.model";
 import league from "../../../shared/model/league.model";
-import MatchSelectionService from "../matchSelection.service";
+import MatchSelectionService from "../shared/matchSelection.service";
 
 @Component({
   selector: 'team-selection',

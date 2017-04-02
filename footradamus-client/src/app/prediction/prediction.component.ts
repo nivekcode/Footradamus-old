@@ -3,7 +3,7 @@
  */
 
 import {Component} from "@angular/core";
-import StatisticService from "./statstics.service";
+import StatisticService from "./shared/service/statstics.service";
 
 @Component({
   selector: 'prediction',

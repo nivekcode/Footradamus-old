@@ -1,12 +1,11 @@
 /**
  * Created by kevinkreuzer on 07.01.17.
  */
-
 import {TestBed, inject} from "@angular/core/testing";
 import {HttpModule, Http, BaseRequestOptions, ResponseOptions, Response} from "@angular/http";
 import MatchSelectionService from "./matchSelection.service";
 import {MockBackend} from "@angular/http/testing";
-import LogoService from "../logo.service";
+import LogoService from "../../shared/service/logo.service";
 
 describe('Match Selection Service', () => {
 

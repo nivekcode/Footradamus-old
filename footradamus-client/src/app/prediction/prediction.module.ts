@@ -7,8 +7,8 @@ import {DatePickerModule} from 'ng2-datepicker';
 import {FormsModule} from '@angular/forms';
 
 import PredictionComponent from './prediction.component';
-import PredictionService from './prediction.service';
-import StatisticService from './statstics.service';
+import PredictionService from './shared/service/prediction.service';
+import StatisticService from './shared/service/statstics.service';
 import predictionRoutes from './prediction.routes';
 import ResultComponent from './result/result.component';
 import SubmitComponent from './result/submit/submitPrediction.component';
@@ -18,8 +18,8 @@ import ClubLogoComponent from './match-selection/team-selection/club-logo/clubLo
 import SelectorComponent from './match-selection/team-selection/team-selector/teamSelector.component';
 import TeamSelectionComponent from './match-selection/team-selection/teamSelection.component';
 import MatchSelectionComponent from './match-selection/matchSelection.component';
-import MatchSelectionService from './match-selection/matchSelection.service';
-import LogoService from './logo.service';
+import MatchSelectionService from './match-selection/shared/matchSelection.service';
+import LogoService from './shared/service/logo.service';
 
 @NgModule({
   declarations: [

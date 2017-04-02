@@ -6,8 +6,8 @@ import {Injectable} from "@angular/core";
 import StatisticService from "./statstics.service";
 import {Subject} from "rxjs";
 import {Store} from "@ngrx/store";
-import match from "../shared/model/match.model";
-import {Matchresult, NO_WINNER} from './shared/results.model';
+import match from "../../../shared/model/match.model";
+import {Matchresult, NO_WINNER} from '../model/results.model';
 
 @Injectable()
 export default class PredictionService {

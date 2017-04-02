@@ -6,8 +6,8 @@ import {Injectable} from "@angular/core";
 import StatisticService from "./statstics.service";
 import {Subject} from "rxjs";
 import {Store} from "@ngrx/store";
-import match from "../shared/model/match.model";
-import {Matchresult, NO_WINNER} from './shared/results.model';
+import match from "../../../shared/model/match.model";
+import {Matchresult, NO_WINNER} from '../model/results.model';
 
 @Injectable()
 export default class PredictionService {
@@ -19,7 +19,7 @@ export default class PredictionService {
             .subscribe(stats => {
                     let homeTeamStats = stats[0].json().statistics[0];
                     let awayTeamStats = stats[1].json().statistics[0];
-                    let matchResult = this._predictResult(homeTeamStats, awayTeamStats);
+                    let matchResult = this.predictResult(homeTeamStats, awayTeamStats);
                     this.streamResult(matchResult);
                 }
             );
@@ -38,7 +38,7 @@ export default class PredictionService {
         }
     }
 
-    private _predictResult(homeTeamStats, awayTeamStats): Matchresult {
+    private predictResult(homeTeamStats, awayTeamStats): Matchresult {
         let homeTeamPoints = this.getPointsForTeam(homeTeamStats, true);
         let awayTeamPoints = this.getPointsForTeam(awayTeamStats, false);
         return this.getMatchResult(homeTeamPoints, awayTeamPoints);

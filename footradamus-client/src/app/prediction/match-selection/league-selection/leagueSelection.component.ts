@@ -3,9 +3,9 @@
  */
 
 import {Component, Output, EventEmitter} from "@angular/core";
-import MatchSelectionService from "../matchSelection.service";
+import MatchSelectionService from "../shared/matchSelection.service";
 import league from "../../../shared/model/league.model";
-import LogoService from "../../logo.service";
+import LogoService from "../../shared/service/logo.service";
 
 @Component({
   selector: 'league-selection',

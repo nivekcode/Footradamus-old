@@ -1,12 +1,11 @@
 /**
  * Created by kevinkreuzer on 07.01.17.
  */
-
 import {TestBed, inject} from "@angular/core/testing";
 import {HttpModule, Http, BaseRequestOptions, ResponseOptions, Response} from "@angular/http";
 import MatchSelectionService from "./matchSelection.service";
 import {MockBackend} from "@angular/http/testing";
-import LogoService from "../logo.service";
+import LogoService from "../../shared/service/logo.service";
 
 describe('Match Selection Service', () => {
 
@@ -31,7 +30,6 @@ describe('Match Selection Service', () => {
 
   it('should get the leagues and filter them to Bundesliga, Premier League and Primera Division',
     inject([MatchSelectionService, MockBackend], (sut, mockBackend) => {
-
       let expectedLeague = {id: '1399', name: 'Primera División', region: 'Spain'};
 
       const mockResponse = [

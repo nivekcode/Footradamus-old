@@ -30,7 +30,6 @@ describe('Match Selection Service', () => {
 
   it('should get the leagues and filter them to Bundesliga, Premier League and Primera Division',
     inject([MatchSelectionService, MockBackend], (sut, mockBackend) => {
-
       let expectedLeague = {id: '1399', name: 'Primera División', region: 'Spain'};
 
       const mockResponse = [
